@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "primary-container": "#956d2b", "on-tertiary-fixed-variant": "#783119", "on-secondary-fixed": "#1f1b18", "surface-variant": "#e4e2de", "tertiary-fixed": "#ffdbd0", "on-tertiary-fixed": "#390b00", "on-tertiary": "#ffffff", "surface-container": "#efeeea", "on-primary-fixed": "#281800", "surface-tint": "#7c5716", "outline-variant": "#d3c4b3", "inverse-primary": "#f0be73", "on-secondary-fixed-variant": "#4b4642", "error": "#ba1a1a", "tertiary-container": "#b15d41", "secondary-fixed-dim": "#cdc5c0", "on-surface": "#1b1c1a", "inverse-surface": "#30312e", "background": "#fbf9f5", "on-secondary": "#ffffff", "primary-fixed": "#ffddaf", "inverse-on-surface": "#f2f0ed", "secondary-container": "#eae1db", "surface": "#fbf9f5", "surface-dim": "#dbdad6", "on-surface-variant": "#4f4539", "surface-container-highest": "#e4e2de", "on-error-container": "#93000a", "secondary-fixed": "#eae1db", "on-background": "#1b1c1a", "on-primary": "#ffffff", "outline": "#817567", "error-container": "#ffdad6", "surface-container-lowest": "#ffffff", "on-tertiary-container": "#fffbff", "on-primary-fixed-variant": "#614000", "tertiary-fixed-dim": "#ffb59d", "on-primary-container": "#fffbff", "surface-container-high": "#eae8e4", "secondary": "#635d59", "primary-fixed-dim": "#f0be73", "on-error": "#ffffff", "surface-bright": "#fbf9f5", "surface-container-low": "#f5f3ef", "primary": "#7a5513", "tertiary": "#93452b", "on-secondary-container": "#69635f" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-md": "1rem", "margin-desktop": "3rem", "margin-mobile": "1.25rem", "gutter-desktop": "2rem", "space-xl": "2.5rem", "gutter": "1.5rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "space-lg": "1.5rem", "margin": "1.5rem", "gutter-mobile": "1rem" }, "fontFamily": { "label-sm": [ "Inter" ], "headline-sm": [ "EB Garamond" ], "headline-md": [ "EB Garamond" ], "body-sm": [ "Inter" ], "headline-lg-mobile": [ "EB Garamond" ], "label-md": [ "Inter" ], "display": [ "EB Garamond" ], "body-lg": [ "Inter" ], "title-md": [ "Inter" ], "display-mobile": [ "EB Garamond" ], "headline-lg": [ "EB Garamond" ], "body-md": [ "Inter" ] }, "fontSize": { "label-sm": [ "0.6875rem", { "lineHeight": "1.3", "letterSpacing": "0.08em", "fontWeight": "500" } ], "headline-sm": [ "1.25rem", { "lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "500" } ], "headline-md": [ "1.75rem", { "lineHeight": "1.3", "letterSpacing": "0em", "fontWeight": "400" } ], "body-sm": [ "0.8125rem", { "lineHeight": "1.5", "letterSpacing": "0.01em", "fontWeight": "400" } ], "headline-lg-mobile": [ "1.75rem", { "lineHeight": "1.25", "letterSpacing": "0em", "fontWeight": "400" } ], "label-md": [ "0.75rem", { "lineHeight": "1.3", "letterSpacing": "0.12em", "fontWeight": "600" } ], "display": [ "3.5rem", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400" } ], "body-lg": [ "1.125rem", { "lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400" } ], "title-md": [ "1rem", { "lineHeight": "1.5", "letterSpacing": "0.01em", "fontWeight": "600" } ], "display-mobile": [ "2.25rem", { "lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "headline-lg": [ "2.5rem", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "body-md": [ "0.9375rem", { "lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400" } ] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased selection:bg-secondary-container selection:text-on-secondary-fixed"><header class="fixed top-0 left-0 right-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="w-full bg-secondary-container text-on-secondary-fixed py-2 px-margin-mobile md:px-margin-desktop text-center"><p class="font-label-sm text-label-sm uppercase tracking-widest text-on-secondary-fixed-variant">Artful décor for beautiful spaces. Handcrafted pieces for modern interiors • Complimentary styling consultation</p></div><div class="h-20 max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="BRUSHSPACE Brand Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VbbYz9xRIObqzkaxAGpwIFPTCRuj2-ssn-BUyHe53RhLkSGY9f_wB6PWos0a8ff4l9B8jicDVf3pXBDZx8GmFqDp1RtDpGW5nnrt1MNtaFH-9WKXzlCmJU-b8erCEJCc2Oa10AGjJRjseSIfWYRuVwYw4Uy0a1VsS5YfSW-0LdNuIDOxiFoIihrz_zHc6qJsVdkOCQ2fQdWMxHJrGwXmY3eyIkZXoF8oIplH7BXHBQEWZn9eW0LWsCMg"/><a class="flex flex-col" data-path="home" href="#"><span class="font-headline-sm text-headline-sm font-semibold tracking-wider text-on-surface">BRUSHSPACE</span><span class="font-label-sm text-label-sm text-primary tracking-widest uppercase -mt-1">Artistic Décor</span></a></div><nav class="hidden lg:flex items-center gap-8" data-active-classes="text-primary font-semibold underline decoration-primary underline-offset-8"><a aria-current="page" class="uppercase tracking-widest transition-colors py-2 text-primary font-semibold underline decoration-primary underline-offset-8" data-path="home" href="#">Home</a><a class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors py-2" data-path="shop" href="#">Shop</a><a class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors py-2" data-path="categories" href="#">Categories</a><a class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors py-2" data-path="about" href="#">About</a><a class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors py-2" data-path="contact" href="#">Contact</a><a class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors py-2" data-path="faqs" href="#">FAQs</a></nav><div class="flex items-center gap-space-md"><button aria-label="Search collections" class="p-2 text-on-surface-variant hover:text-on-surface transition-colors flex items-center justify-center"><span class="material-symbols-outlined text-[22px]">search</span></button><a aria-label="Wishlist" class="relative p-2 text-on-surface-variant hover:text-on-surface transition-colors flex items-center justify-center" data-path="wishlist" href="#"><span class="material-symbols-outlined text-[22px]">favorite</span><span class="absolute top-1 right-1 bg-tertiary text-on-tertiary text-[10px] font-semibold w-4 h-4 rounded-full flex items-center justify-center">0</span></a><a aria-label="Shopping Cart" class="relative p-2 text-on-surface-variant hover:text-on-surface transition-colors flex items-center justify-center" data-path="cart" href="#"><span class="material-symbols-outlined text-[22px]">shopping_bag</span><span class="absolute top-1 right-1 bg-primary text-on-primary text-[10px] font-semibold w-4 h-4 rounded-full flex items-center justify-center">0</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-2"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-28 bg-surface"><div class="flex flex-col w-full">
+<!-- EDITORIAL HERO SECTION -->
+<section class="relative w-full overflow-hidden bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop py-space-xl lg:py-28">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center">
+<!-- Hero Text Narrative -->
+<div class="lg:col-span-6 flex flex-col items-start z-10">
+<div class="inline-flex items-center gap-2 bg-secondary-container px-3.5 py-1.5 rounded-full mb-6">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-secondary-fixed">Crafted in Limited Batches • Direct Artisan Studio</span>
+</div>
+<h1 class="font-display text-display tracking-tight text-on-surface mb-6">
+            Bring Art Into Your Space.
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-8 leading-relaxed">
+            Discover artistic decorative pieces designed to add warmth, character, and quiet beauty to every architectural corner of your home.
+          </p>
+<div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
+<a class="inline-flex items-center justify-center px-8 py-3.5 bg-on-secondary-fixed text-surface rounded-lg font-label-md text-label-md uppercase tracking-wider hover:bg-primary transition-all duration-300 shadow-sm" href="#featured-collection">
+              SHOP COLLECTION
+            </a>
+<a class="inline-flex items-center justify-center px-8 py-3.5 bg-surface-container text-on-surface rounded-lg font-label-md text-label-md uppercase tracking-wider hover:bg-surface-container-high transition-all duration-300" href="#category-section">
+              EXPLORE VASES
+            </a>
+</div>
+<!-- Editorial Metas -->
+<div class="mt-12 pt-8 w-full grid grid-cols-3 gap-4 border-t-0 bg-surface-container/60 p-4 rounded-xl">
+<div>
+<p class="font-display text-headline-sm text-primary">100%</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-0.5">Handcrafted</p>
+</div>
+<div>
+<p class="font-display text-headline-sm text-on-surface">500+</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-0.5">Homes Curated</p>
+</div>
+<div>
+<p class="font-display text-headline-sm text-tertiary">Pan-India</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-0.5">White Glove Care</p>
+</div>
+</div>
+</div>
+<!-- Hero Editorial Collage (Asymmetrical) -->
+<div class="lg:col-span-6 relative mt-8 lg:mt-0">
+<div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden shadow-xl bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" data-alt="Modern architectural interior gallery alcove with lime wash textured plaster walls, organic ceramic vessels, terracotta vases on pedestal, gilded sculptural tree, ambient warm golden sunlight filtering from a minimalist skylight, luxury editorial interior photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTyoy9OIFKK1X3d0X_jrW7H_rn9NlBkveEQB6XjR_D9Ijm0888jLYyax75ZUjYqWCIBn22zmjmVe3EjL7-x9OGp53QAzHcKNM1Vfnov6E8MjlBVaObDD7pj4zST-AMXXrDuMEwGFCfMdkj91h4Imjj3yrKsMybeDtQBHh7mOLGIqoutbbG14v7V_2-yfWob7C908M4ccDjz2OBY32tpW2N3Z3lLusiTLXzm2PUNjIsYaW4ELzhF-gw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-secondary-fixed/50 via-transparent to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6 p-4 bg-surface/90 backdrop-blur-md rounded-lg flex items-center justify-between">
+<div>
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold">Exhibition No. 04</p>
+<p class="font-headline-sm text-headline-sm text-on-surface">Atelier Terra &amp; Leaf Series</p>
+</div>
+<span class="material-symbols-outlined text-primary text-[28px]">arrow_forward</span>
+</div>
+</div>
+<!-- Secondary floating architectural tile -->
+<div class="hidden sm:block absolute -bottom-8 -left-10 w-48 h-56 rounded-xl overflow-hidden shadow-2xl bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="Macro close-up shot of hand-textured terracotta and rustic sand glaze on an art vessel with delicate brass leaf detailing, fine depth of field, warm neutral gallery tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDx29is2f-o2jOJGCD3vstgrqhGOIFy_NcjAL1ZwRLc94o4YI13jorBIh8GGuAmABXU50m2Cn0yei45sMAcqwBKR2DBMnhqMTWuCvqQFvdbnAU14MrQYaUyVXIBAes6h-7ZgviGHEQ8PcZCtxxY25o67HP73AYnYsFAKPLUfezrTcH1mltr1Cvkz3xCTrXY2DBuPP-3qSZmdAtas3-bkDtT1aEzIdgL0ZzkLfofTLGyOzgXQEDPBp9U"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SHOP BY DISCIPLINE & FORM -->
+<section class="w-full max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop py-space-xl" id="category-section">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+<div>
+<p class="font-label-md text-label-md text-primary uppercase tracking-widest mb-2 font-semibold">Curation by Medium</p>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Shop By Discipline &amp; Form</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mt-4 md:mt-0">
+        Distinct material explorations spanning terracotta, spun wire, reflective mosaic tesserae, and natural botanical structures.
+      </p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Category 1 -->
+<a class="group flex flex-col bg-surface-container-low rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg" href="#">
+<div class="relative w-full aspect-[4/3] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Editorial still life of sculptural arch ceramic vases and textured fluted vessels resting on limestone surface, soft directional gallery shadows, minimalist Scandinavian aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCc9uwDcNt62ub2S6vvEupWwXcaOahf553MgHL9OtWA4X2ICVBY7POPb8h_rfUJBsAXC-Lq2jQMShrkscgP4JYmjAkTu0K6rSVowo8dc_1DvE7RRtJTYYOpyUMnLHyzJxgQbQHZIEwXTETwR90CDHgsgaHZdBCpzgUDuRQgrKvTwksxIWlDGNZoeqYaUs-i0E3j0dyEy4Angvwf2soNOQi8Uv4XXlSl2VJyMzd9cCKc49o-KQOHSwRU"/>
+<div class="absolute top-3 left-3 bg-surface/90 backdrop-blur-sm px-2.5 py-1 rounded-full font-label-sm text-label-sm uppercase tracking-wider text-on-surface">
+            01 / Form
+          </div>
+</div>
+<div class="p-6 flex flex-col justify-between flex-grow">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2 group-hover:text-primary transition-colors">Vases &amp; Vessels</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Sculptural vessels, textured ceramics, and arch silhouettes designed to stand as standalone objets d’art.</p>
+</div>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold">
+            Explore Category <span class="material-symbols-outlined text-[16px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+</span>
+</div>
+</a>
+<!-- Category 2 -->
+<a class="group flex flex-col bg-surface-container-low rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg" href="#">
+<div class="relative w-full aspect-[4/3] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Handcrafted miniature bonsai tree sculpture created with twisted brass wire, golden bead foliage, and dark slate base on a warm wooden console, luxury decor." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa1PfmUjT-zyHNBm14IvYuafXT0Sqd82GSmCWpDQgXkVvRho6zqldRtW0YtMuExaRZ9JT9SAtwR63Q6gE8HPBMoSnMgjhzNozwp2t2sUGE7aJd5Yp2YC-tVag2WpbcOn0NzQ7Voc5fpRzpCSmXayRWDZ06XFImdC06VW_5ONwQgUiEp4CHXJc-HaeGbE5iTvOgPUCjNt-ynM8xEwN9emTxaEtgNjdjWW5nUXH3Bo9PvNfRbov9Pdhp"/>
+<div class="absolute top-3 left-3 bg-surface/90 backdrop-blur-sm px-2.5 py-1 rounded-full font-label-sm text-label-sm uppercase tracking-wider text-on-surface">
+            02 / Wirecraft
+          </div>
+</div>
+<div class="p-6 flex flex-col justify-between flex-grow">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2 group-hover:text-primary transition-colors">Decorative Trees</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Bonsai, wire &amp; gilded leaf artisanal miniature trees infused with grounding organic poise.</p>
+</div>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold">
+            Explore Category <span class="material-symbols-outlined text-[16px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+</span>
+</div>
+</a>
+<!-- Category 3 -->
+<a class="group flex flex-col bg-surface-container-low rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg" href="#">
+<div class="relative w-full aspect-[4/3] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Artisanal decorative shell display stand tray made of cast resin and natural textured stone on a low travertine coffee table, architectural luxury homeware." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRLovnf-UXHC9XFXzpn83TJ0XB-uz_2yJ95ASL54yf8gUVMPw5-TGNhT0V0mJKEdu0HHa2SjgHiYP2M-TXUu8Ldy0jm3c7lFBt40H4kyeu7HGqyibSe69fHTQztMCKakz8JGhNjgRNimCfBq3YvOsCch6BCthyJRifq-vpQcU1KszVOHyDY-M7nfRTeNFm8FDx4Y1uFjG6QEN9L3Qm2irfi_RMChdIfKm7OEDOIqJqD76p2BfOJWfC"/>
+<div class="absolute top-3 left-3 bg-surface/90 backdrop-blur-sm px-2.5 py-1 rounded-full font-label-sm text-label-sm uppercase tracking-wider text-on-surface">
+            03 / Lacquer &amp; Stone
+          </div>
+</div>
+<div class="p-6 flex flex-col justify-between flex-grow">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2 group-hover:text-primary transition-colors">Artisan Trays</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Decorative shell stands, textured lacquer &amp; inlay trays that anchor tabletop arrangements.</p>
+</div>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold">
+            Explore Category <span class="material-symbols-outlined text-[16px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+</span>
+</div>
+</a>
+<!-- Category 4 -->
+<a class="group flex flex-col bg-surface-container-low rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg" href="#">
+<div class="relative w-full aspect-[4/3] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Hand-cut mirror mosaic sculptural sphere catching golden afternoon rays, creating dancing reflections across a warm beige plaster gallery wall." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAh_msWtVReDQ2YEeJyoSbPjnoUcyJVwBuc1b3wNaOqH5apEOgZ1SVyvf7fkmhm0xA-z0cfvUQvecwirtf4vP797R9Cusuaad6ajPWiXNVAr2m-ftKmbyvUvfLGUy-uhd1rG60W6oRJ2zq17zNCzr-YoaCjkF8Coc_6St2kVh3v1GAerUVw6iP5jGDT12ER8And1UzS4Yg2WlogTL9_IWPcYjYCRH9Cf0XOcjofPdZzvdPi1m2L29r"/>
+<div class="absolute top-3 left-3 bg-surface/90 backdrop-blur-sm px-2.5 py-1 rounded-full font-label-sm text-label-sm uppercase tracking-wider text-on-surface">
+            04 / Light Refraction
+          </div>
+</div>
+<div class="p-6 flex flex-col justify-between flex-grow">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2 group-hover:text-primary transition-colors">Mirror Mosaic &amp; Shimmer</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Hand-cut mirror mosaic pieces reflecting light, lending kinetic radiance to credenzas.</p>
+</div>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold">
+            Explore Category <span class="material-symbols-outlined text-[16px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+</span>
+</div>
+</a>
+<!-- Category 5 -->
+<a class="group flex flex-col bg-surface-container-low rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg" href="#">
+<div class="relative w-full aspect-[4/3] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Sculptural wall hanging panel featuring preserved botanical branches and clay organic floral reliefs, hung over a neutral linen daybed." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnY_JX2gRL6xoz4hdPSNNmnAku1HwH74LDXetPpR9a4fQeUW6DT-O9dqe-G0t96afxv4lIgazHnq-SpqTzOiUarDtpMLO18fknFlW8YYRF5dnJ16M337XRgXB-haF7-f5wwsa3vgwO9_EBfP4hDkzFG8ULJLerAIn4TcLFBhX7TR6u8FlVjcXTHQ8YNxPffblmFaZrldClyMEWtSIiyXZYIPo67mAqLJgShPdzRrEoa8Vr0SNHj4Zn"/>
+<div class="absolute top-3 left-3 bg-surface/90 backdrop-blur-sm px-2.5 py-1 rounded-full font-label-sm text-label-sm uppercase tracking-wider text-on-surface">
+            05 / Botanical Art
+          </div>
+</div>
+<div class="p-6 flex flex-col justify-between flex-grow">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2 group-hover:text-primary transition-colors">Floral &amp; Wall Décor</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Botanical preserved floral pieces &amp; sculptural wall art handcrafted with architectural balance.</p>
+</div>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold">
+            Explore Category <span class="material-symbols-outlined text-[16px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+</span>
+</div>
+</a>
+<!-- Category 6 -->
+<a class="group flex flex-col bg-surface-container-low rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg" href="#">
+<div class="relative w-full aspect-[4/3] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Curated gift box opened with ribbon revealing a fine ceramic bud vase and hand-carved terracotta bird figurine resting inside warm linen wrapping." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDODrwtRsXTymlekuq34-5uySIjpxjXLBkVnqUB-qFrn5h_IBrxfohbDHqhGrV3Rsh324MBIw-EUygS5GK5zGqOgf3cjNoCYlzhu6xOncZJ4RXsoTlVDzSJtz2TgaavWU3xZWy3Rpw5a4OJo5fcVWGriRF-a8RIZDdbGTM6QwU7yZyPEAMC3YR19Oy88K6ihZAXhHmzw8m5EK5Q_GLRvSqwRhDTI_GEg-MKyQrIbXJkH-4EdvP5_ZHI"/>
+<div class="absolute top-3 left-3 bg-surface/90 backdrop-blur-sm px-2.5 py-1 rounded-full font-label-sm text-label-sm uppercase tracking-wider text-on-surface">
+            06 / Keepsakes
+          </div>
+</div>
+<div class="p-6 flex flex-col justify-between flex-grow">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2 group-hover:text-primary transition-colors">Gift Décor</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Curated keepsake objects for distinctive housewarmings, weddings, and milestones.</p>
+</div>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold">
+            Explore Category <span class="material-symbols-outlined text-[16px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+</span>
+</div>
+</a>
+</div>
+</section>
+<!-- CURATED FOR YOUR SPACE (FEATURED PRODUCTS) -->
+<section class="w-full bg-surface-container py-space-xl" id="featured-collection">
+<div class="max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop">
+<div class="flex flex-col items-center text-center mb-10">
+<p class="font-label-md text-label-md text-primary uppercase tracking-widest mb-2 font-semibold">Handpicked Edit</p>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-3">Curated For Your Space</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
+          Signature handcrafted pieces celebrating tactile beauty, subtle balance, and rich earthy patinas.
+        </p>
+<!-- Category Filters -->
+<div class="flex flex-wrap items-center justify-center gap-2 mt-8" id="productFilterGroup">
+<button class="filter-btn active-filter px-5 py-2 rounded-full font-label-md text-label-md uppercase tracking-wider bg-on-secondary-fixed text-surface transition-colors" data-filter="all" onclick="filterCatalog('all')">
+            All
+          </button>
+<button class="filter-btn px-5 py-2 rounded-full font-label-md text-label-md uppercase tracking-wider bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition-colors" data-filter="vases" onclick="filterCatalog('vases')">
+            Vases
+          </button>
+<button class="filter-btn px-5 py-2 rounded-full font-label-md text-label-md uppercase tracking-wider bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition-colors" data-filter="trees" onclick="filterCatalog('trees')">
+            Decorative Trees
+          </button>
+<button class="filter-btn px-5 py-2 rounded-full font-label-md text-label-md uppercase tracking-wider bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition-colors" data-filter="trays" onclick="filterCatalog('trays')">
+            Trays
+          </button>
+<button class="filter-btn px-5 py-2 rounded-full font-label-md text-label-md uppercase tracking-wider bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition-colors" data-filter="mosaic" onclick="filterCatalog('mosaic')">
+            Mosaic Pieces
+          </button>
+</div>
+</div>
+<!-- Product Cards Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter" id="productsGrid">
+<!-- Product 1 -->
+<div class="product-item group flex flex-col bg-surface rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300" data-category="vases">
+<div class="relative w-full aspect-square bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Cindrella Sculptural Vase in chalk white matte finish with gentle arch loop handle resting gracefully on an architectural limestone podium, clean warm styling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmo1S140T9norj8qsvrkiRf5MbijfrM1BzQ_Mgo7YQ5KGEfjNuonZvtVz3CoOeTjTeyEWxLOI47wp_0YUb1f67M9Z-G5jRWhe7PbLB2HAtoEJsvRftSuibB1O1kN4mgLfjy8rZGEI8bnQeuvqko2E9oxlY80WUhvJERwNX4ymiIYGRj9hTDD18c7ceGa_B7TLC_E6FnAnawb9uHruPrtf6Rbez9mMH2gSNxTdTal4Md8eDJSMvayE0"/>
+<span class="absolute top-3 left-3 bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm uppercase tracking-widest px-2.5 py-1 rounded">
+              Bestseller
+            </span>
+<button aria-label="Add to wishlist" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-tertiary transition-colors" onclick="toggleWishlist(this)">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="p-5 flex flex-col flex-grow justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">BS-VAS-01</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1 mb-2 font-medium">Cindrella Sculptural Vase</h3>
+<p class="font-title-md text-title-md text-primary font-semibold">&amp;inr3,450</p>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-5">
+<button class="w-full py-2.5 rounded bg-surface-container hover:bg-surface-container-high font-label-md text-label-md uppercase tracking-wider text-on-surface transition-colors flex items-center justify-center gap-1" onclick="addToCart('Cindrella Sculptural Vase', 'BS-VAS-01', 3450)">
+<span class="material-symbols-outlined text-[16px]">keyboard_double_arrow_left</span> Cart
+              </button>
+<button class="w-full py-2.5 rounded bg-on-secondary-fixed hover:bg-primary text-surface font-label-md text-label-md uppercase tracking-wider transition-colors" onclick="openOrderModal('Cindrella Sculptural Vase', 'BS-VAS-01', 3450)">
+                BUY NOW
+              </button>
+</div>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="product-item group flex flex-col bg-surface rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300" data-category="vases">
+<div class="relative w-full aspect-square bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Loving Birds Terracotta Pair, two hand-sculpted organic clay birds with gentle textured patina, styled on raw oak console table with warm mood lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnfN9zO6RVxF-N7MuflpJ_R02WaBIstRJ43-ihHLQ7R2DAQEktfdckAE0ZNkMOQISGXaQb-tgsW3HxDjnIfLD9Toa9yIJwjf0dH8nR_fhUiag6k785i32F7YaFy5kzFEW_bL1bKHJ5xkz3kjQ4Y4Wsng7sHZh-64VMh_JulnYC_vGE2EBtxjPAj56yIBK2_hOZPan3ZIcs_CBep2-zHUyu1lkrU1F-zdeEFURiFQ2b7wZaaGEW1aRg"/>
+<span class="absolute top-3 left-3 bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm uppercase tracking-widest px-2.5 py-1 rounded">
+              New
+            </span>
+<button aria-label="Add to wishlist" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-tertiary transition-colors" onclick="toggleWishlist(this)">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="p-5 flex flex-col flex-grow justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">BS-DEC-04</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1 mb-2 font-medium">Loving Birds Terracotta Pair</h3>
+<p class="font-title-md text-title-md text-primary font-semibold">&amp;inr2,890</p>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-5">
+<button class="w-full py-2.5 rounded bg-surface-container hover:bg-surface-container-high font-label-md text-label-md uppercase tracking-wider text-on-surface transition-colors flex items-center justify-center gap-1" onclick="addToCart('Loving Birds Terracotta Pair', 'BS-DEC-04', 2890)">
+<span class="material-symbols-outlined text-[16px]">keyboard_double_arrow_left</span> Cart
+              </button>
+<button class="w-full py-2.5 rounded bg-on-secondary-fixed hover:bg-primary text-surface font-label-md text-label-md uppercase tracking-wider transition-colors" onclick="openOrderModal('Loving Birds Terracotta Pair', 'BS-DEC-04', 2890)">
+                BUY NOW
+              </button>
+</div>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="product-item group flex flex-col bg-surface rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300" data-category="vases">
+<div class="relative w-full aspect-square bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Owl Black with Golden Leaves Vessel, matte charcoal textured ceramic body with hand-applied gilded brass leaf patterns and soft studio highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVWkhqYKLU8kLy5cel4VCEoUtI2aJR7g8GMrHzbqoJaj6p0iOe3yWv7cfnmCYZ-DKPf-Eq_25gyLdgMT-55-MjzlX2J70mPdsZAGQZsfHZ8sjzYbvKF2wyyP87PmRGN-Uqdtvw2XhoBC3eXV38G-xY4ItCPI-8oMXrKKixCFKzKee3nUwMyPoLOxIJbOQZnbaKLnJhHTaNKk5CxUMC9dpvIWofgI2OYxsJClw8HpeR5DgJs8WkZ5Ud"/>
+<span class="absolute top-3 left-3 bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm uppercase tracking-widest px-2.5 py-1 rounded">
+              Bestseller
+            </span>
+<button aria-label="Add to wishlist" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-tertiary transition-colors" onclick="toggleWishlist(this)">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="p-5 flex flex-col flex-grow justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">BS-VAS-09</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1 mb-2 font-medium">Owl Black - Golden Leaves Vessel</h3>
+<p class="font-title-md text-title-md text-primary font-semibold">&amp;inr4,200</p>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-5">
+<button class="w-full py-2.5 rounded bg-surface-container hover:bg-surface-container-high font-label-md text-label-md uppercase tracking-wider text-on-surface transition-colors flex items-center justify-center gap-1" onclick="addToCart('Owl Black - Golden Leaves Vessel', 'BS-VAS-09', 4200)">
+<span class="material-symbols-outlined text-[16px]">keyboard_double_arrow_left</span> Cart
+              </button>
+<button class="w-full py-2.5 rounded bg-on-secondary-fixed hover:bg-primary text-surface font-label-md text-label-md uppercase tracking-wider transition-colors" onclick="openOrderModal('Owl Black - Golden Leaves Vessel', 'BS-VAS-09', 4200)">
+                BUY NOW
+              </button>
+</div>
+</div>
+</div>
+<!-- Product 4 -->
+<div class="product-item group flex flex-col bg-surface rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300" data-category="vases">
+<div class="relative w-full aspect-square bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Rust Forest Hand-Embellished Vase, rich ochre and sienna clay vase with raised tree motif details and soft artisanal glaze imperfections, high-end gallery display." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDf7eH4wH1qMX1CJ14hRXcS8mZ7tlRLfShI0NvJZ2lUgoEh0_j5-lRe5uV6KBf5JhC9DRMwPvgjFL05C1T5myBZsteY7YorK2LklyWCk-ns0LbWNqYO_s6G2sjFBf10l03EwNAKaGwSdvFYiQfXzZnEm37YcjnZtXQfwiob-eHjKO-BG_GrBmqWKxZUAA_a2mZIXSZJqNt3YfqVK06pHNHrSsaAbh4p2eY0nAP6XsU9Zea-hTkjBH2K"/>
+<span class="absolute top-3 left-3 bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm uppercase tracking-widest px-2.5 py-1 rounded">
+              New
+            </span>
+<button aria-label="Add to wishlist" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-tertiary transition-colors" onclick="toggleWishlist(this)">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="p-5 flex flex-col flex-grow justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">BS-VAS-14</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1 mb-2 font-medium">Rust Forest Embellished Vase</h3>
+<p class="font-title-md text-title-md text-primary font-semibold">&amp;inr3,950</p>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-5">
+<button class="w-full py-2.5 rounded bg-surface-container hover:bg-surface-container-high font-label-md text-label-md uppercase tracking-wider text-on-surface transition-colors flex items-center justify-center gap-1" onclick="addToCart('Rust Forest Embellished Vase', 'BS-VAS-14', 3950)">
+<span class="material-symbols-outlined text-[16px]">keyboard_double_arrow_left</span> Cart
+              </button>
+<button class="w-full py-2.5 rounded bg-on-secondary-fixed hover:bg-primary text-surface font-label-md text-label-md uppercase tracking-wider transition-colors" onclick="openOrderModal('Rust Forest Embellished Vase', 'BS-VAS-14', 3950)">
+                BUY NOW
+              </button>
+</div>
+</div>
+</div>
+<!-- Product 5 -->
+<div class="product-item group flex flex-col bg-surface rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300" data-category="mosaic">
+<div class="relative w-full aspect-square bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Mirror Mosaic Shimmer 3 Sphere with hundreds of individually cut glass bevels catching room lights, casting brilliant diamond starbursts across soft cream velvet drapery." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0gCl_7tUQ-dowJMlDB45keAPkXbSXtCTXWs0bKbpgXX1_cKNGn9RJ1hYL4_XBQWcmcWdH-KpLzTOSZq2h_yeNWd1nBFOfbyXvNClpIEyiwgCvvn9YNJgHvQ8_YUHdSlOqMQOJnHcuIqo6Z4H3vQh4wJKjqt9vcX9dDamKB8R660d2_Xq9z3Ra-lFHP3rtJT7MzRn3KH1p6N6n2-KZ1CNvpKGIH27nYfk0tQ8NtSLdOn9Omizf5EzF"/>
+<span class="absolute top-3 left-3 bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm uppercase tracking-widest px-2.5 py-1 rounded">
+              Bestseller
+            </span>
+<button aria-label="Add to wishlist" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-tertiary transition-colors" onclick="toggleWishlist(this)">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="p-5 flex flex-col flex-grow justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">BS-MOS-03</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1 mb-2 font-medium">Mirror Mosaic Shimmer 3 Sphere</h3>
+<p class="font-title-md text-title-md text-primary font-semibold">&amp;inr5,100</p>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-5">
+<button class="w-full py-2.5 rounded bg-surface-container hover:bg-surface-container-high font-label-md text-label-md uppercase tracking-wider text-on-surface transition-colors flex items-center justify-center gap-1" onclick="addToCart('Mirror Mosaic Shimmer 3 Sphere', 'BS-MOS-03', 5100)">
+<span class="material-symbols-outlined text-[16px]">keyboard_double_arrow_left</span> Cart
+              </button>
+<button class="w-full py-2.5 rounded bg-on-secondary-fixed hover:bg-primary text-surface font-label-md text-label-md uppercase tracking-wider transition-colors" onclick="openOrderModal('Mirror Mosaic Shimmer 3 Sphere', 'BS-MOS-03', 5100)">
+                BUY NOW
+              </button>
+</div>
+</div>
+</div>
+<!-- Product 6 -->
+<div class="product-item group flex flex-col bg-surface rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300" data-category="trees">
+<div class="relative w-full aspect-square bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Bonsai 2 Golden Beads Decorative Tree with intricate twisted copper brass branches and glistening champagne glass bead canopy mounted on dark petrified wood plinth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAy2GtAn4YmSPLyFH7CNUIRuZFJ3HMD-DNsn3buLmk-P9L_aiJjbglbtEQxyLn5IDpleLsoPJ2NYPCILU0GxdSX1l9tEfcQ-S-pdcqVfSpqbA-y_47yEMBVfZwHBBJjTUawsmaJqeKTN8DpNuqKf-OqZJHV5NAPvbZ4fiyBStjyuX-6I3takY-slN3ASqUtiiGgpMRTKYhfidQiCNq4jQxwk0iaZ5tlvcLx-hZi0LcBB_sb1J0MjyfX"/>
+<span class="absolute top-3 left-3 bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm uppercase tracking-widest px-2.5 py-1 rounded">
+              Artisan Pick
+            </span>
+<button aria-label="Add to wishlist" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-tertiary transition-colors" onclick="toggleWishlist(this)">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="p-5 flex flex-col flex-grow justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">BS-TRE-02</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1 mb-2 font-medium">Bonsai 2 - Golden Beads Tree</h3>
+<p class="font-title-md text-title-md text-primary font-semibold">&amp;inr4,800</p>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-5">
+<button class="w-full py-2.5 rounded bg-surface-container hover:bg-surface-container-high font-label-md text-label-md uppercase tracking-wider text-on-surface transition-colors flex items-center justify-center gap-1" onclick="addToCart('Bonsai 2 - Golden Beads Decorative Tree', 'BS-TRE-02', 4800)">
+<span class="material-symbols-outlined text-[16px]">keyboard_double_arrow_left</span> Cart
+              </button>
+<button class="w-full py-2.5 rounded bg-on-secondary-fixed hover:bg-primary text-surface font-label-md text-label-md uppercase tracking-wider transition-colors" onclick="openOrderModal('Bonsai 2 - Golden Beads Decorative Tree', 'BS-TRE-02', 4800)">
+                BUY NOW
+              </button>
+</div>
+</div>
+</div>
+<!-- Product 7 -->
+<div class="product-item group flex flex-col bg-surface rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300" data-category="vases">
+<div class="relative w-full aspect-square bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Burgundy Black Leaves Vessel, high gloss obsidian dark ceramic glaze with deep wine crimson botanical impressions, luxury interior accent on warm sandstone." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-1vvLnveoTcz9Fu3G4hpRLeQ4vFiMnH-XRe_-yg4nkbUlfcaJ9Vnj8X65NjGmrTueAg4mWhvYlhllV7wiGBnvr42uIAIW3uCzwXfBETGt0y7sE9J98Jbuxet6cvxAlwoVVF90dbsEG7MCFihwUxawQy01ahtu8JiKquKwKAG2iN_1zq4BE2h2oUvetwzYs-eMsbQMt8F4MbRlE_dhCzAIqF1chh9nRQWZJQe4q68L4Z7Hj5IZaQPv"/>
+<span class="absolute top-3 left-3 bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm uppercase tracking-widest px-2.5 py-1 rounded">
+              New
+            </span>
+<button aria-label="Add to wishlist" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-tertiary transition-colors" onclick="toggleWishlist(this)">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="p-5 flex flex-col flex-grow justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">BS-VAS-07</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1 mb-2 font-medium">Burgundy Black Leaves Vessel</h3>
+<p class="font-title-md text-title-md text-primary font-semibold">&amp;inr3,600</p>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-5">
+<button class="w-full py-2.5 rounded bg-surface-container hover:bg-surface-container-high font-label-md text-label-md uppercase tracking-wider text-on-surface transition-colors flex items-center justify-center gap-1" onclick="addToCart('Burgundy Black Leaves Vessel', 'BS-VAS-07', 3600)">
+<span class="material-symbols-outlined text-[16px]">keyboard_double_arrow_left</span> Cart
+              </button>
+<button class="w-full py-2.5 rounded bg-on-secondary-fixed hover:bg-primary text-surface font-label-md text-label-md uppercase tracking-wider transition-colors" onclick="openOrderModal('Burgundy Black Leaves Vessel', 'BS-VAS-07', 3600)">
+                BUY NOW
+              </button>
+</div>
+</div>
+</div>
+<!-- Product 8 -->
+<div class="product-item group flex flex-col bg-surface rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300" data-category="trays">
+<div class="relative w-full aspect-square bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Shell Stand Decorative Tray crafted in creamy ribbed stone composite with scallop contour, cradling small brass jewellery and perfume flacons." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4SPXkIWF6-I-IcoDbAV1vrFVkRuy1ZvOAIvoJ1N6sOiD2_QStZ39obuJTOhYvcJP9XJRxUPIKDHKoYd9rgE5MBl9AONXso1dUvO-B6TzTuEhDuv4ZJ3KPv4tJqb1yyM-tG-V_u6GhQPqs9sDNWBIEg8BYyg8ZOyjh08Y3Rz2iXDc2JwcJiyX3Q8op33MYpLutVw4q6sn_EZx-abetBhPJYbH03h0MncQM4OPNW5tcvzv-UXRhSJDk"/>
+<span class="absolute top-3 left-3 bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm uppercase tracking-widest px-2.5 py-1 rounded">
+              Bestseller
+            </span>
+<button aria-label="Add to wishlist" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-tertiary transition-colors" onclick="toggleWishlist(this)">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="p-5 flex flex-col flex-grow justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">BS-TRY-01</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1 mb-2 font-medium">Shell Stand Decorative Tray</h3>
+<p class="font-title-md text-title-md text-primary font-semibold">&amp;inr2,750</p>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-5">
+<button class="w-full py-2.5 rounded bg-surface-container hover:bg-surface-container-high font-label-md text-label-md uppercase tracking-wider text-on-surface transition-colors flex items-center justify-center gap-1" onclick="addToCart('Shell Stand Decorative Tray', 'BS-TRY-01', 2750)">
+<span class="material-symbols-outlined text-[16px]">keyboard_double_arrow_left</span> Cart
+              </button>
+<button class="w-full py-2.5 rounded bg-on-secondary-fixed hover:bg-primary text-surface font-label-md text-label-md uppercase tracking-wider transition-colors" onclick="openOrderModal('Shell Stand Decorative Tray', 'BS-TRY-01', 2750)">
+                BUY NOW
+              </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- MADE TO BE NOTICED (BESTSELLER SPOTLIGHT) -->
+<section class="w-full bg-surface-container-low py-space-xl">
+<div class="max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop">
+<div class="bg-surface rounded-2xl overflow-hidden shadow-lg p-6 sm:p-10 lg:p-16">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center">
+<div class="lg:col-span-5">
+<span class="font-label-md text-label-md text-tertiary uppercase tracking-widest font-semibold">Dual Studio Spotlight</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-2 mb-4">
+              Made To Be Noticed.
+            </h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-6">
+              When illumination meets meticulous hand-craft. The convergence of mirrored tesserae and sculptural metalwork crafted to transform tranquil daylight into striking evening ambiance.
+            </p>
+<div class="space-y-4 mb-8">
+<div class="flex items-start gap-3 bg-surface-container-low p-3.5 rounded-lg">
+<span class="material-symbols-outlined text-primary text-[22px] mt-0.5">diamond</span>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface">Hand-Applied Rhinestones &amp; Mirror Tiles</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Each prism facet is hand-aligned for continuous multidirectional refraction.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 bg-surface-container-low p-3.5 rounded-lg">
+<span class="material-symbols-outlined text-primary text-[22px] mt-0.5">landscape</span>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface">Organic Terracotta Base</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Kiln-cured unglazed clay offering weighted stability and textural contrast.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 bg-surface-container-low p-3.5 rounded-lg">
+<span class="material-symbols-outlined text-primary text-[22px] mt-0.5">light_mode</span>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface">Illuminated LED Battery Option</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Warm discrete underglow engineered for cable-free table styling.</p>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-8 py-3.5 bg-on-secondary-fixed text-surface rounded-lg font-label-md text-label-md uppercase tracking-wider hover:bg-primary transition-colors" onclick="openOrderModal('Bestseller Dual Set: Mirror Mosaic + Bonsai Gilded Tree', 'BS-SPOT-SET', 9400)">
+                ORDER SPOTLIGHT SET • &amp;inr9,400
+              </button>
+</div>
+</div>
+<!-- Dual Spotlight Imagery -->
+<div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="relative aspect-[3/4] rounded-xl overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Intricate macro view of Mirror Mosaic 1 showing hundreds of tiny reflective square mirrors and sparkling rhinestone joints creating mesmerizing geometric rhythm." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZD79vjpLLYtce54pRZBzb2oWcXIIvCAj3ZPyzv9cUcq9C1k0seoaK41ZT7FVr1fnYaPo4TUSKJBPXeDPgMMWWAy6ojW_GDm8m-jtramI1xp03qsidxr-uHZwWVMgIF-wiRfvgWaSS7oLnFZMjpQtK5gK2eZ3oXC1jZQ9AzmkFKvMfACrSNxbcsywkCzUn97te7C7gTyzGNWQlL7srw6_fcIeOCPdHLuC8C1xYTgyTKw4w5tUBMY7t"/>
+<div class="absolute bottom-3 left-3 bg-surface/90 backdrop-blur-sm px-3 py-1.5 rounded font-label-sm text-label-sm uppercase tracking-wider text-on-surface">
+                Mirror Mosaic 1
+              </div>
+</div>
+<div class="relative aspect-[3/4] rounded-xl overflow-hidden bg-surface-container sm:translate-y-8">
+<img class="w-full h-full object-cover" data-alt="Close-up of Bonsai 1 Gilded Tree with delicate golden foil leaf attachments wrapping around textured dark wire stems, warm ambient gallery illumination." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxMDIUvY5qo6AnaCyCDYBM8afgKv8oJa4-sa_a_Mwqc5fZeX0par9K74ulWYJz-CaGwKTY9afjX1KYvmbweuTotjn5stFwMmEwwWQGg4wfi2VVlI4mABw6QMrJ_FyPed2xxl3X4Lj2Yc1YSHL3FcQWzLzdGa2TxVliavDkdaTjDtbknFdQxdy3tk9Ha_eGrkgiBspYwzPpxvv5gmH6E1zaHjS27HLTpLNBltxcpy7d8ATTlU0fIqDh"/>
+<div class="absolute bottom-3 left-3 bg-surface/90 backdrop-blur-sm px-3 py-1.5 rounded font-label-sm text-label-sm uppercase tracking-wider text-on-surface">
+                Bonsai 1 Gilded Tree
+              </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- BRUSHSPACE STORY -->
+<section class="w-full max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop py-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center">
+<div class="lg:col-span-6 relative">
+<div class="aspect-[4/3] rounded-2xl overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Artisan ceramic craftsperson in sunlit pottery atelier shaping a large earthen vase on a wooden workbench surrounded by sculpting tools and warm terracotta dust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDV8XNqczmdafM9cR0Yqs21wyX6XCY4q34oMdDshb1618UfMX12IRtGSWVCicdWCXyCKmVomWR32a1nVNnFcfI63lhW8TDcxqPLzZ-XNFcLSCpQ-eWHAD0udc2o8qD-TDRBR9DlO_1TmSEaARPM7rUGnvL96a1eZNz4fx09PzxPZgnKzv-BrQ71HSrEBwVhXBHOuRJgE9qVC4Qw5MdJkUGrZWXulcsSuKrltcw5VQhXes57ikcD2tDK"/>
+</div>
+<div class="absolute -bottom-6 -right-6 w-1/2 aspect-square rounded-xl overflow-hidden shadow-xl hidden sm:block bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="Close up of artisan hands carefully weaving fine gold wire around sparkling crystal beads for a decorative art sculpture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuByL7hrmCQbJHndIIe7Nds7qs5xeBIMGrjXicL9sDx-lcc6pyzf_Eh4R-LXgNDgVzqY7CB7upCqrJQVPhnk7ZX8ftOCwkMthAwBYh1IQbvqMppS09NAWY01EpjBzfGenK2i-sCGkS5cYofVCS3gPw9MTewtk6dYCom6fYT_zcCy05o2mWnu-vgXq0BDMM7HPRue0FyJ3glSFv1JGgQQhN3fO0A7kXYSZEOTexWswh8pdbMHRg8VCxLh"/>
+</div>
+</div>
+<div class="lg:col-span-6 lg:pl-8 mt-10 lg:mt-0">
+<p class="font-label-md text-label-md text-primary uppercase tracking-widest mb-2 font-semibold">Our Atelier Philosophy</p>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-6">
+          Objects With A Little More Character.
+        </h2>
+<div class="space-y-4 font-body-md text-body-md text-on-surface-variant leading-relaxed">
+<p>
+            Brushspace brings together creativity, decorative design, and beautiful objects for modern spaces. Every piece is curated to evoke warmth, turning everyday corners into personal galleries.
+          </p>
+<p>
+            We reject the disposable sameness of mass production. Instead, our craftspeople work with honest materials—earthen terracotta, unlacquered metals, and light-capturing glass—celebrating the human hand in every organic curve and subtle variation.
+          </p>
+</div>
+<div class="pt-8">
+<a class="inline-flex items-center gap-2 px-8 py-3.5 bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md uppercase tracking-widest rounded-lg transition-colors" href="#">
+            DISCOVER BRUSHSPACE <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- WHY BRUSHSPACE: 4 FEATURE PILLARS -->
+<section class="w-full bg-surface-container py-space-xl">
+<div class="max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop">
+<div class="text-center max-w-2xl mx-auto mb-14">
+<p class="font-label-md text-label-md text-primary uppercase tracking-widest mb-2 font-semibold">The Studio Standard</p>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Why Brushspace</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<div class="bg-surface p-8 rounded-xl flex flex-col items-start transition-transform hover:-translate-y-1">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-[26px]">architecture</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2 font-medium">Thoughtful Design</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Sculptural silhouettes tailored for modern architecture and understated interior palettes.
+          </p>
+</div>
+<div class="bg-surface p-8 rounded-xl flex flex-col items-start transition-transform hover:-translate-y-1">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-[26px]">grain</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2 font-medium">Beautiful Details</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Tactile clay, delicate glass beads, and brass leaf finishes executed with patient artisan care.
+          </p>
+</div>
+<div class="bg-surface p-8 rounded-xl flex flex-col items-start transition-transform hover:-translate-y-1">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-[26px]">aspect_ratio</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2 font-medium">Made For Your Space</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Versatile scale proportioned for low credenzas, dining tables, architectural alcoves &amp; mantels.
+          </p>
+</div>
+<div class="bg-surface p-8 rounded-xl flex flex-col items-start transition-transform hover:-translate-y-1">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-[26px]">support_agent</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2 font-medium">Easy Direct Ordering</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Seamless studio support, bespoke packaging, and personal updates on dispatch.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- TESTIMONIALS -->
+<section class="w-full max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop py-space-xl">
+<div class="text-center max-w-2xl mx-auto mb-12">
+<p class="font-label-md text-label-md text-primary uppercase tracking-widest mb-2 font-semibold">Collector Reflections</p>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">What Our Customers Say</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Review 1 -->
+<div class="bg-surface-container-low p-8 rounded-xl flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-1 text-primary mb-4">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface italic mb-4 font-normal">
+            “The Cindrella vase is the first thing guests compliment when they walk into our living room. The texture feels like an authentic gallery sculpture.”
+          </p>
+</div>
+<div class="pt-4 border-t-0 flex items-center justify-between">
+<div>
+<p class="font-title-md text-title-md text-on-surface">Ananya K.</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Mumbai • Verified Collector</p>
+</div>
+<span class="material-symbols-outlined text-primary text-[20px]">verified</span>
+</div>
+</div>
+<!-- Review 2 -->
+<div class="bg-surface-container-low p-8 rounded-xl flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-1 text-primary mb-4">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface italic mb-4 font-normal">
+            “The Bonsai Golden Beads tree exceeded expectations. The weight of the base and the direct ordering process on WhatsApp was refreshingly personal.”
+          </p>
+</div>
+<div class="pt-4 border-t-0 flex items-center justify-between">
+<div>
+<p class="font-title-md text-title-md text-on-surface">Vikramaditya S.</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Bengaluru • Verified Collector</p>
+</div>
+<span class="material-symbols-outlined text-primary text-[20px]">verified</span>
+</div>
+</div>
+<!-- Review 3 -->
+<div class="bg-surface-container-low p-8 rounded-xl flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-1 text-primary mb-4">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface italic mb-4 font-normal">
+            “Exquisite packaging and arrival without a single scratch. The Mirror Mosaic sphere plays with morning light across our dining room wall beautifully.”
+          </p>
+</div>
+<div class="pt-4 border-t-0 flex items-center justify-between">
+<div>
+<p class="font-title-md text-title-md text-on-surface">Rohit &amp; Meera P.</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">New Delhi • Verified Collector</p>
+</div>
+<span class="material-symbols-outlined text-primary text-[20px]">verified</span>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQS ACCORDION -->
+<section class="w-full bg-surface-container py-space-xl">
+<div class="max-w-4xl mx-auto px-margin-mobile md:px-gutter-desktop">
+<div class="text-center mb-12">
+<p class="font-label-md text-label-md text-primary uppercase tracking-widest mb-2 font-semibold">Studio Inquiries</p>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Frequently Asked Questions</h2>
+</div>
+<div class="space-y-3" id="faqAccordion">
+<!-- FAQ 1 -->
+<div class="bg-surface rounded-xl overflow-hidden transition-colors">
+<button class="w-full px-6 py-5 text-left flex items-center justify-between font-headline-sm text-headline-sm text-on-surface" onclick="toggleFaq(this)">
+<span>How can I place an order?</span>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform duration-300">expand_more</span>
+</button>
+<div class="px-6 pb-5 hidden font-body-md text-body-md text-on-surface-variant">
+            You can select ‘BUY NOW’ directly on any product to initiate an order inquiry with pre-filled specifications. Our studio curator confirms piece availability, verifies finish options, and sends direct payment details.
+          </div>
+</div>
+<!-- FAQ 2 -->
+<div class="bg-surface rounded-xl overflow-hidden transition-colors">
+<button class="w-full px-6 py-5 text-left flex items-center justify-between font-headline-sm text-headline-sm text-on-surface" onclick="toggleFaq(this)">
+<span>Can I order multiple products together?</span>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform duration-300">expand_more</span>
+</button>
+<div class="px-6 pb-5 hidden font-body-md text-body-md text-on-surface-variant">
+            Yes. You can add multiple pieces to your cart or mention additional product codes during direct studio checkout for combined packaging and consolidated shipping.
+          </div>
+</div>
+<!-- FAQ 3 -->
+<div class="bg-surface rounded-xl overflow-hidden transition-colors">
+<button class="w-full px-6 py-5 text-left flex items-center justify-between font-headline-sm text-headline-sm text-on-surface" onclick="toggleFaq(this)">
+<span>How do I make payment?</span>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform duration-300">expand_more</span>
+</button>
+<div class="px-6 pb-5 hidden font-body-md text-body-md text-on-surface-variant">
+            We accept UPI (GPay, PhonePe, Paytm), Net Banking, and all major Credit/Debit Cards via our secure encrypted payment links.
+          </div>
+</div>
+<!-- FAQ 4 -->
+<div class="bg-surface rounded-xl overflow-hidden transition-colors">
+<button class="w-full px-6 py-5 text-left flex items-center justify-between font-headline-sm text-headline-sm text-on-surface" onclick="toggleFaq(this)">
+<span>Do you offer delivery across India &amp; international?</span>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform duration-300">expand_more</span>
+</button>
+<div class="px-6 pb-5 hidden font-body-md text-body-md text-on-surface-variant">
+            We ship across all pin codes in India with reinforced shatter-safe packaging. International shipping is available upon request with custom freight calculation.
+          </div>
+</div>
+<!-- FAQ 5 -->
+<div class="bg-surface rounded-xl overflow-hidden transition-colors">
+<button class="w-full px-6 py-5 text-left flex items-center justify-between font-headline-sm text-headline-sm text-on-surface" onclick="toggleFaq(this)">
+<span>Can I request custom dimensions?</span>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform duration-300">expand_more</span>
+</button>
+<div class="px-6 pb-5 hidden font-body-md text-body-md text-on-surface-variant">
+            Custom size adaptations and bespoke color finishes are available for select terracotta vessels and decorative wire trees. Inquire via our direct studio channel.
+          </div>
+</div>
+</div>
+<div class="text-center mt-10">
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-primary uppercase tracking-widest font-semibold hover:underline" href="#">
+          VIEW ALL FAQs <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- INSTAGRAM SHOWCASE -->
+<section class="w-full max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop py-space-xl">
+<div class="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-8">
+<div>
+<p class="font-label-md text-label-md text-primary uppercase tracking-widest mb-1 font-semibold">Living Spaces</p>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Follow The Brushspace</h2>
+</div>
+<a class="mt-3 sm:mt-0 font-label-md text-label-md text-on-surface hover:text-primary transition-colors uppercase tracking-widest" href="#">
+        @brushspace.decor
+      </a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+<div class="group relative aspect-square rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Sunlit minimalist living room credenza styled with a sculptural white vase and dried olive branches, architectural aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0Ji6iXZaREQWP-GnkeTs5FtkLCB4cfsr_YpaC8O8rBrbxtAWGFykBGK3MbTsj57PCoQaLoJxXKZoQdlOe2UrhEav5sQ6-kow2RQT34Nh6N0DSnb-DnV3bKCWaIDAfpBSqYJC3tVIcmGQjc2XF5rDokv0gtuKGL5DR3820xfWFuJ9UHhYeoO5Sv9BS9MytQjN8L867dK2BALB9Dtrvsz_YCCHURBWDPNrrVaAeUhM28UW1WxzgGtRF"/>
+<div class="absolute inset-0 bg-on-secondary-fixed/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-surface">
+<span class="material-symbols-outlined text-[24px]">photo_camera</span>
+</div>
+</div>
+<div class="group relative aspect-square rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Travertine bedside table with miniature gilded bonsai tree under soft reading sconce light, cozy luxury bedroom interior." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4Y7VA55whJsQPpnFjRDW3kHrpiHvztzOOco4p1kUfXFRMimsoeVVi4289DjkIWOhhTOtBTamdazwiU-1k_TdIZ-yHyTi6utkz2ng1t76YGi8S_4QTlCKcN2CsO6ySCjMoRVvnwRAIIqdB_UhMRCUv9kJ2hC5aiwUz4O9Gi_DafAkHUziSPp38CEtb2H_XtfeAlXMBDZvJb6l-i3Ovpxho3HdExfTpmWavq3ztf38evYB5Po3BNBxp"/>
+<div class="absolute inset-0 bg-on-secondary-fixed/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-surface">
+<span class="material-symbols-outlined text-[24px]">photo_camera</span>
+</div>
+</div>
+<div class="group relative aspect-square rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Modern dining sideboard featuring mirror mosaic globe reflecting light onto textured off-white limewash backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpkFy5Gu8NaumvGeWBVGlXgUEdwhc-FBXvc0WsJDYth2ijtY8X-SceOlDG7guFyXtRCPHN0D3E5RBQYLyexB80m2XKf1ejqXX7ldKbz-G6XGmr6UWSaCaMSoemqteVfXYiICj-0grKASsbVsR58-xs8hnQbCI6-Vu2gOeDrJKpx6TCz1D6XFl2KAN3qq1av6Y98tmldRqwh9olBX7bm9t48r33lEOwZwsTLjPjES99HJcs9mne7G7Z"/>
+<div class="absolute inset-0 bg-on-secondary-fixed/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-surface">
+<span class="material-symbols-outlined text-[24px]">photo_camera</span>
+</div>
+</div>
+<div class="group relative aspect-square rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Architectural curved niche in clay living room holding dark forest embellished vessel and ceramic spheres." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGOCGaFDodYxKkKOx23k4GLtxs8xY0SGXMp_nniAlhPx9oyKG8rBK_i1o39Gby94P0VW6GMw8XP9oCbV4YnGRXUNhl5MLMhaUBW3YuDcAvzxDLmmdqQIAqPbV3sE_79LJG-kRZ0Fs1lgFVzGjVlxAQcKrkGneVTjKpNyjfnvmRqdHObJcX4RV7OD1H31ESVOeu2qRm8d2MjSDkqtgjiIeiGzW6-iaGo13s7-d1M405JwPnMViY8WxM"/>
+<div class="absolute inset-0 bg-on-secondary-fixed/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-surface">
+<span class="material-symbols-outlined text-[24px]">photo_camera</span>
+</div>
+</div>
+<div class="group relative aspect-square rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Earthy kitchen island with fluted shell tray holding organic fruits and ceramic cruets, warm sunlight streaming in." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7GBX82nZ1trYO8CbstVHGgSIrW27J0nxhq95QnvxAPUNpsQHibrf1hJB481_9Sv8hFTJrKhW5oKNdM6Gcw1UAA-EzPcGdhmCpObMR94b0ePHZHfQVW0LrsbSc9xUcnKk8hnSwcfPrXlO_GedaqBv5hQfLDEjdHvbw5eJof3ehSPP0LcsN_pBT9a8MmRQL6N3EW5Pac_IsyyPKbnxTTrA6KQl-Pi-H6gauUUMBzT96PoHmSdBYRHqB"/>
+<div class="absolute inset-0 bg-on-secondary-fixed/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-surface">
+<span class="material-symbols-outlined text-[24px]">photo_camera</span>
+</div>
+</div>
+<div class="group relative aspect-square rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Study desk styling with terracotta loving birds pair on stacked architecture books and bronze lamp." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7zhdTknBK18lf6kTZxwuKpr82FcX3rGhch0dXYTCWPrnkVr4sBMof8Ves6AAnc49vesUobRhzSqkffq9y7UskCiNg-KN1ojnsVfRJdgaZwpZNvSs3mObdlGnnPk8-6leH4Y6-4piXhG9axAXNwN9Ui15pj8k8VGAJpl45NGkazaf2wiutuzRUaD_-4efrpvg8kWFaQHWdhH-uiXcvm_f7s-aHbp0IjhFb-HJVqZyH76LXV7SdCJwQ"/>
+<div class="absolute inset-0 bg-on-secondary-fixed/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-surface">
+<span class="material-symbols-outlined text-[24px]">photo_camera</span>
+</div>
+</div>
+</div>
+</section>
+<!-- NEWSLETTER -->
+<section class="w-full bg-surface-container-high py-space-xl">
+<div class="max-w-3xl mx-auto px-margin-mobile text-center">
+<span class="material-symbols-outlined text-primary text-[32px] mb-2">mail</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-3">Stay Inspired.</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg mx-auto mb-8">
+        Receive quarterly studio dispatches, preview early limited batch drops, and explore home styling essays.
+      </p>
+<form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="handleNewsletter(event)">
+<input class="flex-grow px-4 py-3 rounded-lg bg-surface text-on-surface placeholder:text-on-surface-variant/60 font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary shadow-sm" placeholder="Enter your email address" required="" type="email"/>
+<button class="px-8 py-3 rounded-lg bg-on-secondary-fixed hover:bg-primary text-surface font-label-md text-label-md uppercase tracking-wider transition-colors shadow-sm" type="submit">
+          SUBSCRIBE
+        </button>
+</form>
+<p class="font-label-sm text-label-sm text-on-surface-variant/70 mt-3">We respect your space. Unsubscribe anytime.</p>
+</div>
+</section>
+<!-- DYNAMIC ORDER MODAL (SIMULATOR FOR BUY NOW) -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-on-secondary-fixed/50 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300" id="orderModal">
+<div class="bg-surface rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl transform transition-transform duration-300 scale-95" id="orderModalContent">
+<div class="flex items-center justify-between pb-4">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-md text-label-md text-primary uppercase tracking-widest font-semibold">Studio Direct Checkout</span>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface" onclick="closeOrderModal()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="py-4">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2" id="modalProductName">Product Title</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4" id="modalProductMeta">Code: BS-000 • &amp;inr0,000</p>
+<div class="bg-surface-container-low p-4 rounded-xl mb-5">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2 font-semibold">Prepared Order Dispatch Message:</p>
+<div class="bg-surface p-3.5 rounded-lg font-body-sm text-body-sm text-on-surface leading-relaxed shadow-sm" id="modalOrderMessage">
+<!-- Dynamic Message Injection -->
+</div>
+</div>
+<div class="space-y-3">
+<button class="w-full py-3.5 bg-on-secondary-fixed hover:bg-primary text-surface rounded-lg font-label-md text-label-md uppercase tracking-wider transition-colors flex items-center justify-center gap-2 shadow-sm" onclick="triggerOrderConfirmation()">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+            Send Order Request
+          </button>
+<button class="w-full py-2.5 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg font-label-md text-label-md uppercase tracking-wider transition-colors" onclick="closeOrderModal()">
+            Continue Browsing
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- TOAST NOTIFICATION -->
+<div class="fixed bottom-6 right-6 z-50 bg-on-secondary-fixed text-surface px-5 py-3.5 rounded-xl shadow-xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none" id="toastNotification">
+<span class="material-symbols-outlined text-primary text-[20px]" id="toastIcon">shopping_bag</span>
+<span class="font-body-sm text-body-sm font-medium" id="toastMessage">Item added to cart</span>
+</div>
+<!-- CLIENT-SIDE SCRIPT FOR INTERACTIONS -->
+<script>
+    function filterCatalog(category) {
+      const items = document.querySelectorAll('.product-item');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      buttons.forEach(btn => {
+        if(btn.dataset.filter === category) {
+          btn.classList.add('bg-on-secondary-fixed', 'text-surface');
+          btn.classList.remove('bg-surface-container-high', 'text-on-surface');
+        } else {
+          btn.classList.remove('bg-on-secondary-fixed', 'text-surface');
+          btn.classList.add('bg-surface-container-high', 'text-on-surface');
+        }
+      });
+
+      items.forEach(item => {
+        if (category === 'all' || item.dataset.category === category) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    }
+
+    function toggleWishlist(btn) {
+      const icon = btn.querySelector('.material-symbols-outlined');
+      if (icon.style.fontVariationSettings?.includes("'FILL' 1")) {
+        icon.style.fontVariationSettings = "'FILL' 0";
+        showToast("Removed from Wishlist", "favorite");
+      } else {
+        icon.style.fontVariationSettings = "'FILL' 1";
+        showToast("Saved to Wishlist", "favorite");
+      }
+    }
+
+    function addToCart(title, code, price) {
+      showToast(`Added ${title} to Cart`, "shopping_bag");
+    }
+
+    function openOrderModal(title, code, price) {
+      const modal = document.getElementById('orderModal');
+      const content = document.getElementById('orderModalContent');
+      const nameEl = document.getElementById('modalProductName');
+      const metaEl = document.getElementById('modalProductMeta');
+      const msgEl = document.getElementById('modalOrderMessage');
+
+      nameEl.textContent = title;
+      metaEl.textContent = `Product Code: ${code} • ₹${price.toLocaleString('en-IN')}`;
+      
+      const orderMessage = `Hello, I am interested in ordering this product.\nProduct: ${title} | Code: ${code} | Price: ₹${price.toLocaleString('en-IN')} | Quantity: 1\nPlease share the next steps for placing the order.`;
+      
+      msgEl.innerHTML = `&ldquo;Hello, I am interested in ordering this product.<br><strong>Product:</strong> ${title} | <strong>Code:</strong> ${code} | <strong>Price:</strong> &inr;${price.toLocaleString('en-IN')} | <strong>Quantity:</strong> 1<br>Please share the next steps for placing the order.&rdquo;`;
+
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        content.classList.remove('scale-95');
+        content.classList.add('scale-100');
+      }, 10);
+    }
+
+    function closeOrderModal() {
+      const modal = document.getElementById('orderModal');
+      const content = document.getElementById('orderModalContent');
+      content.classList.remove('scale-100');
+      content.classList.add('scale-95');
+      modal.classList.add('opacity-0');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+      }, 300);
+    }
+
+    function triggerOrderConfirmation() {
+      closeOrderModal();
+      showToast("Order request transmitted to the studio!", "task_alt");
+    }
+
+    function toggleFaq(button) {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector('.material-symbols-outlined');
+      const isOpen = !content.classList.contains('hidden');
+
+      if (isOpen) {
+        content.classList.add('hidden');
+        icon.classList.remove('rotate-180');
+      } else {
+        content.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+      }
+    }
+
+    function handleNewsletter(e) {
+      e.preventDefault();
+      e.target.reset();
+      showToast("Welcome to the Brushspace Circle.", "mark_email_read");
+    }
+
+    function showToast(message, iconName = "check_circle") {
+      const toast = document.getElementById('toastNotification');
+      const toastMessage = document.getElementById('toastMessage');
+      const toastIcon = document.getElementById('toastIcon');
+
+      toastMessage.textContent = message;
+      toastIcon.textContent = iconName;
+
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 3500);
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-low text-on-surface pt-space-xl pb-space-lg"><div class="max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter-desktop mb-space-xl"><div class="flex flex-col space-y-space-md"><div class="flex items-center gap-space-sm"><img alt="BRUSHSPACE Brand Logo" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VbbYz9xRIObqzkaxAGpwIFPTCRuj2-ssn-BUyHe53RhLkSGY9f_wB6PWos0a8ff4l9B8jicDVf3pXBDZx8GmFqDp1RtDpGW5nnrt1MNtaFH-9WKXzlCmJU-b8erCEJCc2Oa10AGjJRjseSIfWYRuVwYw4Uy0a1VsS5YfSW-0LdNuIDOxiFoIihrz_zHc6qJsVdkOCQ2fQdWMxHJrGwXmY3eyIkZXoF8oIplH7BXHBQEWZn9eW0LWsCMg"/><span class="font-headline-sm text-headline-sm font-semibold tracking-wider text-on-surface">BRUSHSPACE</span></div><p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">Curated decorative objects bringing art, warmth and character into modern living spaces.</p><div class="pt-2 flex items-center gap-space-sm"><span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold">Handcrafted Studio</span></div></div><div><h3 class="font-label-md text-label-md uppercase tracking-widest text-on-surface mb-space-md font-semibold">Collections</h3><ul class="space-y-space-sm"><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a data-path="categories" href="#">Vases &amp; Vessels</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a data-path="categories" href="#">Decorative Trees</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a data-path="categories" href="#">Handcrafted Trays</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a data-path="categories" href="#">Mirror Mosaics</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a data-path="categories" href="#">Table &amp; Floral Décor</a></li></ul></div><div><h3 class="font-label-md text-label-md uppercase tracking-widest text-on-surface mb-space-md font-semibold">Customer Care</h3><ul class="space-y-space-sm"><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a data-path="about" href="#">About Our Story</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a data-path="contact" href="#">Contact Studio</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a data-path="faqs" href="#">Shipping &amp; Delivery</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a data-path="faqs" href="#">Returns &amp; Exchanges</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a data-path="faqs" href="#">FAQs</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a data-path="faqs" href="#">Terms of Service</a></li></ul></div><div><h3 class="font-label-md text-label-md uppercase tracking-widest text-on-surface mb-space-md font-semibold">Studio Connect</h3><div class="space-y-space-sm font-body-sm text-body-sm text-on-surface-variant"><p class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-tertiary">chat</span>Direct WhatsApp ordering inquiry</p><p class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-tertiary">mail</span><a class="hover:text-primary transition-colors" href="mailto:contact@brushspace.com">contact@brushspace.com</a></p><p class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-tertiary">location_on</span>Mumbai / Delhi showroom</p></div><div class="mt-space-md pt-space-xs flex items-center gap-space-md"><a aria-label="Instagram" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">photo_camera</span></a><a aria-label="Pinterest" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">push_pin</span></a><a aria-label="Facebook" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">public</span></a></div></div></div><div class="pt-space-md mt-space-md bg-surface-container/50 -mx-margin-mobile md:-mx-gutter-desktop px-margin-mobile md:px-gutter-desktop py-space-sm flex flex-col sm:flex-row items-center justify-between gap-space-sm text-center sm:text-left"><p class="font-body-sm text-body-sm text-on-surface-variant">© 2025 BRUSHSPACE Home Décor. All rights reserved. Handcrafted artistic living.</p><p class="font-label-sm text-label-sm text-on-surface-variant/80 uppercase tracking-widest">Architectural Minimalist Luxury</p></div></div></footer></body></html>

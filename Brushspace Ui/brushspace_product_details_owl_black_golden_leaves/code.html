@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "primary-container": "#956d2b", "on-tertiary-fixed-variant": "#783119", "on-secondary-fixed": "#1f1b18", "surface-variant": "#e4e2de", "tertiary-fixed": "#ffdbd0", "on-tertiary-fixed": "#390b00", "on-tertiary": "#ffffff", "surface-container": "#efeeea", "on-primary-fixed": "#281800", "surface-tint": "#7c5716", "outline-variant": "#d3c4b3", "inverse-primary": "#f0be73", "on-secondary-fixed-variant": "#4b4642", "error": "#ba1a1a", "tertiary-container": "#b15d41", "secondary-fixed-dim": "#cdc5c0", "on-surface": "#1b1c1a", "inverse-surface": "#30312e", "background": "#fbf9f5", "on-secondary": "#ffffff", "primary-fixed": "#ffddaf", "inverse-on-surface": "#f2f0ed", "secondary-container": "#eae1db", "surface": "#fbf9f5", "surface-dim": "#dbdad6", "on-surface-variant": "#4f4539", "surface-container-highest": "#e4e2de", "on-error-container": "#93000a", "secondary-fixed": "#eae1db", "on-background": "#1b1c1a", "on-primary": "#ffffff", "outline": "#817567", "error-container": "#ffdad6", "surface-container-lowest": "#ffffff", "on-tertiary-container": "#fffbff", "on-primary-fixed-variant": "#614000", "tertiary-fixed-dim": "#ffb59d", "on-primary-container": "#fffbff", "surface-container-high": "#eae8e4", "secondary": "#635d59", "primary-fixed-dim": "#f0be73", "on-error": "#ffffff", "surface-bright": "#fbf9f5", "surface-container-low": "#f5f3ef", "primary": "#7a5513", "tertiary": "#93452b", "on-secondary-container": "#69635f" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-md": "1rem", "margin-desktop": "3rem", "margin-mobile": "1.25rem", "gutter-desktop": "2rem", "space-xl": "2.5rem", "gutter": "1.5rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "space-lg": "1.5rem", "margin": "1.5rem", "gutter-mobile": "1rem" }, "fontFamily": { "label-sm": [ "Inter" ], "headline-sm": [ "EB Garamond" ], "headline-md": [ "EB Garamond" ], "body-sm": [ "Inter" ], "headline-lg-mobile": [ "EB Garamond" ], "label-md": [ "Inter" ], "display": [ "EB Garamond" ], "body-lg": [ "Inter" ], "title-md": [ "Inter" ], "display-mobile": [ "EB Garamond" ], "headline-lg": [ "EB Garamond" ], "body-md": [ "Inter" ] }, "fontSize": { "label-sm": [ "0.6875rem", { "lineHeight": "1.3", "letterSpacing": "0.08em", "fontWeight": "500" } ], "headline-sm": [ "1.25rem", { "lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "500" } ], "headline-md": [ "1.75rem", { "lineHeight": "1.3", "letterSpacing": "0em", "fontWeight": "400" } ], "body-sm": [ "0.8125rem", { "lineHeight": "1.5", "letterSpacing": "0.01em", "fontWeight": "400" } ], "headline-lg-mobile": [ "1.75rem", { "lineHeight": "1.25", "letterSpacing": "0em", "fontWeight": "400" } ], "label-md": [ "0.75rem", { "lineHeight": "1.3", "letterSpacing": "0.12em", "fontWeight": "600" } ], "display": [ "3.5rem", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400" } ], "body-lg": [ "1.125rem", { "lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400" } ], "title-md": [ "1rem", { "lineHeight": "1.5", "letterSpacing": "0.01em", "fontWeight": "600" } ], "display-mobile": [ "2.25rem", { "lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "headline-lg": [ "2.5rem", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "body-md": [ "0.9375rem", { "lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400" } ] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased selection:bg-secondary-container selection:text-on-secondary-fixed"><header class="fixed top-0 left-0 right-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="w-full bg-secondary-container text-on-secondary-fixed py-2 px-margin-mobile md:px-margin-desktop text-center"><p class="font-label-sm text-label-sm uppercase tracking-widest text-on-secondary-fixed-variant">Artful décor for beautiful spaces. Handcrafted pieces for modern interiors • Complimentary styling consultation</p></div><div class="h-20 max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="BRUSHSPACE Brand Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VbbYz9xRIObqzkaxAGpwIFPTCRuj2-ssn-BUyHe53RhLkSGY9f_wB6PWos0a8ff4l9B8jicDVf3pXBDZx8GmFqDp1RtDpGW5nnrt1MNtaFH-9WKXzlCmJU-b8erCEJCc2Oa10AGjJRjseSIfWYRuVwYw4Uy0a1VsS5YfSW-0LdNuIDOxiFoIihrz_zHc6qJsVdkOCQ2fQdWMxHJrGwXmY3eyIkZXoF8oIplH7BXHBQEWZn9eW0LWsCMg"/><a class="flex flex-col" data-path="home" href="#"><span class="font-headline-sm text-headline-sm font-semibold tracking-wider text-on-surface">BRUSHSPACE</span><span class="font-label-sm text-label-sm text-primary tracking-widest uppercase -mt-1">Artistic Décor</span></a></div><nav class="hidden lg:flex items-center gap-8" data-active-classes="text-primary font-semibold underline decoration-primary underline-offset-8"><a class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors py-2" data-path="home" href="#">Home</a><a aria-current="page" class="uppercase tracking-widest transition-colors py-2 text-primary font-semibold underline decoration-primary underline-offset-8" data-path="shop" href="#">Shop</a><a class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors py-2" data-path="categories" href="#">Categories</a><a class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors py-2" data-path="about" href="#">About</a><a class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors py-2" data-path="contact" href="#">Contact</a><a class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors py-2" data-path="faqs" href="#">FAQs</a></nav><div class="flex items-center gap-space-md"><button aria-label="Search collections" class="p-2 text-on-surface-variant hover:text-on-surface transition-colors flex items-center justify-center"><span class="material-symbols-outlined text-[22px]">search</span></button><a aria-label="Wishlist" class="relative p-2 text-on-surface-variant hover:text-on-surface transition-colors flex items-center justify-center" data-path="wishlist" href="#"><span class="material-symbols-outlined text-[22px]">favorite</span><span class="absolute top-1 right-1 bg-tertiary text-on-tertiary text-[10px] font-semibold w-4 h-4 rounded-full flex items-center justify-center">0</span></a><a aria-label="Shopping Cart" class="relative p-2 text-on-surface-variant hover:text-on-surface transition-colors flex items-center justify-center" data-path="cart" href="#"><span class="material-symbols-outlined text-[22px]">shopping_bag</span><span class="absolute top-1 right-1 bg-primary text-on-primary text-[10px] font-semibold w-4 h-4 rounded-full flex items-center justify-center">0</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-2"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-28 bg-surface"><div class="flex flex-col w-full">
+<!-- Top Breadcrumb & Quick Actions Bar -->
+<section class="w-full max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop pt-space-md pb-space-sm">
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<nav aria-label="Breadcrumbs" class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="text-outline-variant font-light">/</span>
+<a class="hover:text-primary transition-colors" href="#">Shop</a>
+<span class="text-outline-variant font-light">/</span>
+<a class="hover:text-primary transition-colors" href="#">Vases</a>
+<span class="text-outline-variant font-light">/</span>
+<span class="text-on-surface font-semibold">Owl Black - Golden Leaves</span>
+</nav>
+<div class="flex items-center gap-space-md">
+<button class="flex items-center gap-space-xs text-on-surface-variant hover:text-primary font-label-sm text-label-sm uppercase tracking-widest transition-colors" id="shareBtn">
+<span class="material-symbols-outlined text-[18px]">share</span>
+<span>Share Artifact</span>
+</button>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<button class="flex items-center gap-space-xs text-on-surface-variant hover:text-tertiary font-label-sm text-label-sm uppercase tracking-widest transition-colors" id="wishlistToggle">
+<span class="material-symbols-outlined text-[18px]" id="wishlistIcon">favorite</span>
+<span id="wishlistLabel">Curate to Wishlist</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Main Showcase: Architectural Two-Column Split Grid -->
+<section class="w-full max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop py-space-md lg:py-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg lg:gap-gutter-desktop items-start">
+<!-- LEFT COLUMN: Immersive Visual Gallery (7 Columns) -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<!-- Main Focal Frame with atmospheric overlay -->
+<div class="relative w-full aspect-[4/5] rounded-xl bg-surface-container-low overflow-hidden shadow-sm group">
+<!-- Main Showcase Image -->
+<img alt="Owl Black - Golden Leaves Sculptural Vase" class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105" data-alt="Editorial studio photography of the handcrafted Owl Black sculptural ceramic vase. The deep matte charcoal terracotta body is adorned with intricate textured gold leaf botanical foliage and delicate glass bead accents. Styled with tall organic dried pampas grass against a warm minimalist plaster wall, bathed in soft afternoon museum gallery sunlight with sharp artistic shadows." id="mainShowcaseImg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmnirN-bKE0ualwuxMBCcJQfzIyS-7Nh9mdU0CI6u5uVMSffmOtFzZlDS8kdnQxqVxLyr2XCL_SX5VJ7dhODlaOk36O2wGBHUWgMvqyyPpwGooerp2b8kEFTrFn9shecK89Q7_XgqbPFnUjajEWNEFo5s812t8zZPOuhrQa0Wnea0FAaPmDhdRsqdmn5BQln-hbu7-YWWl4njsD7tw-FCQY2H9zfjKXwlV9XmLATY1zlhYgSjduUpk"/>
+<!-- Floating Badges: Architectural minimal cards -->
+<div class="absolute top- space-md left-space-md flex flex-col gap-space-xs pointer-events-none">
+<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-lowest/90 backdrop-blur-md shadow-sm font-label-sm text-label-sm uppercase tracking-wider text-on-secondary-fixed">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+              Authentic Studio Handcraft
+            </span>
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-secondary-container/90 backdrop-blur-md font-label-sm text-label-sm tracking-widest text-on-secondary-fixed-variant uppercase">
+              Batch: #04/2025
+            </span>
+</div>
+<div class="absolute bottom-space-md right-space-md flex items-center gap-space-xs">
+<button aria-label="Expand image" class="p-2.5 rounded-full bg-surface/90 backdrop-blur-md text-on-surface hover:bg-surface-container-lowest transition-colors shadow-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">zoom_in</span>
+</button>
+<button aria-label="View in 3D AR" class="p-2.5 rounded-full bg-surface/90 backdrop-blur-md text-on-surface hover:bg-surface-container-lowest transition-colors shadow-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">view_in_ar</span>
+</button>
+</div>
+</div>
+<!-- Thumbnails Multi-Angle Mosaic -->
+<div class="grid grid-cols-4 gap-space-sm sm:gap-space-md">
+<button class="gallery-thumb active-thumb relative aspect-square rounded-lg overflow-hidden bg-surface-container-low transition-all duration-300 shadow-sm outline-none" data-desc="Frontal perspective of the Owl Black ceramic vase displaying overall silhouette and symmetry." data-src="placeholder" onclick="switchGalleryImage(0, this)">
+<img alt="Front view" class="w-full h-full object-cover" data-alt="Front straight angle of Owl Black vase showing the sculptural owl inspired curvature and gold foliage overlay on black earthenware with neutral beige background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVM0aRbN5PNPdcREhu9lRIuJp66HSV7QQ2gvVnGH2QpQJMLaMulNxO8RsoM1yJCHbXZrwxyr1eGc_oZuYPrbTzICsm5CPtm_I1CWQe69lFwKK5QyMpDuYVLpJ1_WWPaFF8sWFtq_tdK-lu3aEdwrhOhQjPyNZfqH6cb-X_KZmg82sRnYdmu11Pswn4ar3PIZoDIwWMwhy8sPJn6qKhb8WsD_2-0Czsx2shKnJxy6I1BjeYVrDDP5Gx"/>
+<div class="absolute inset-0 bg-primary/10 opacity-100 thumb-overlay transition-opacity"></div>
+</button>
+<button class="gallery-thumb relative aspect-square rounded-lg overflow-hidden bg-surface-container-low transition-all duration-300 shadow-sm outline-none" data-desc="Macro detail of gold leafing and applied glass beads on matte dark clay." data-src="placeholder" onclick="switchGalleryImage(1, this)">
+<img alt="Close-up craft detail" class="w-full h-full object-cover" data-alt="Extreme close-up macro photograph of handcrafted 24k gold foil leaf work and tiny iridescent beaded accents set into the porous black earthenware clay texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDEdsrsJX1NSHEm-YzOHWjh9lcR3HjdFil7Sl3G2ws_u5XtqMLTqJaEa5iUdByH1TdT3iJ3XPnyapYXsobHQfXnWSzgnlb7kQHNh23jf2Xd7rN7uRx1ZTRP3UD7pM-oPnk17Nzb0enEDF6fqUSJ-U_76wUwNMs3HvM-QZpfNbp_UrNAwWJc3Lm9UwBQPiVS_5c4EGWbFKnmMr20WsxZVQJdN-kWzpkTKqfOD8hy1pVusJF6rGi-Okw"/>
+<div class="absolute inset-0 bg-primary/10 opacity-0 thumb-overlay transition-opacity"></div>
+</button>
+<button class="gallery-thumb relative aspect-square rounded-lg overflow-hidden bg-surface-container-low transition-all duration-300 shadow-sm outline-none" data-desc="Architectural placement on a monolithic stone console." data-src="placeholder" onclick="switchGalleryImage(2, this)">
+<img alt="Atmospheric interior styling" class="w-full h-full object-cover" data-alt="Living room interior styling with the Owl Black vase sitting atop a honed travertine console table, near an archway window with dappled natural sunlight and curated art books." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXPymv__kxeMQNXF9QDSi3NJZGr7TAFDJx27pasOjf87_mcq7rBNFWPhmg7KRAq1y2g-Ba7GgKAv2ZX_GyedhuJZq5651MKbJg8171JmyJ2Tn1UycQuE4DF4k6Kng-buxRak8uAsT0vSK2V9kK8rskPSyvy37o7zo1rvidx7E9BUGVwQvonS5CIXZM6NWXwmE1Otccdj2QKJz2ujexYmN9oYRRh5Ilmc9yftjOqbhKWSNaIcvwgbdr"/>
+<div class="absolute inset-0 bg-primary/10 opacity-0 thumb-overlay transition-opacity"></div>
+</button>
+<button class="gallery-thumb relative aspect-square rounded-lg overflow-hidden bg-surface-container-low transition-all duration-300 shadow-sm outline-none" data-desc="Base craft stamp and silhouette measurement proportion." data-src="placeholder" onclick="switchGalleryImage(3, this)">
+<img alt="Base and dimension scale" class="w-full h-full object-cover" data-alt="Base and profile scale view showing the artist studio imprint etched on the bottom of the black stoneware vase alongside an artisan wooden measuring rule." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFp7P3ObENwZpd0YU60GYCfyhEN0YroVPoFBJOYt__r7gVewbGYgr4wZtuQkoKZ8sQoo3qbCN4Gj6WWpxJtH98sX4GKkrOOYOdWOK0Uh5T2_Zw_ndF-tQPun3674lKnZLHSimy7IME9S9FbclERP2kH4cPqjVfZDF1nw_vW77G3EF22PrtlkX2DW5DIk8Fn1jI4OeKJa-hmPaqEyryzeos_3WfSHjGQN_YrXNZnmayWIzjklYQ24qH"/>
+<div class="absolute inset-0 bg-primary/10 opacity-0 thumb-overlay transition-opacity"></div>
+</button>
+</div>
+<!-- Craftsmanship Authenticity Micro-Bento -->
+<div class="mt-space-sm p-space-md rounded-xl bg-surface-container-low flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface">Numbered Studio Certificate</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Hand-signed by Master Potter Rajiv Sharma</p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs text-primary font-label-sm text-label-sm uppercase tracking-widest font-semibold">
+<span>Archival Edition</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Curatorial Narrative & Studio Actions (5 Columns) -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg lg:pl-space-sm">
+<!-- Header & Signature Tag -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-primary font-semibold">
+              BRUSHSPACE Atelier • Signature Collection
+            </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container px-2.5 py-0.5 rounded-full">
+              Code: BS-VAS-09
+            </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface leading-tight mt-1">
+            Owl Black - Golden Leaves Sculptural Vase
+          </h1>
+<!-- Reviews & Social Proof -->
+<div class="flex items-center gap-space-sm mt-1">
+<div class="flex items-center text-primary-container">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface font-bold">4.9</span>
+<span class="text-outline-variant">•</span>
+<a class="font-body-sm text-body-sm text-on-surface-variant underline decoration-outline-variant underline-offset-4 hover:text-primary transition-colors" href="#reviews-section">
+              28 collector reviews
+            </a>
+</div>
+</div>
+<!-- Price & Availability Block -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs">
+<div class="flex items-baseline justify-between">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg font-normal text-on-surface">₹4,200</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">INR</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary-container/15 text-tertiary font-label-sm text-label-sm uppercase tracking-wider font-semibold">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+              Only 4 Pieces in Batch
+            </span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Includes all bespoke taxes &amp; archival packaging within India</p>
+</div>
+<!-- Curatorial Description -->
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          A statement centerpiece sculpted from rich dark stoneware, featuring hand-embellished gilded metallic leaves and beaded accents that catch the ambient light. Shaped with subtle avian contours honoring ancient totemic vessels.
+        </p>
+<!-- Material Badges Matrix -->
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm tracking-wider uppercase flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-primary">circle</span>
+            Terracotta Clay
+          </span>
+<span class="px-3 py-1.5 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm tracking-wider uppercase flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-primary">wb_sunny</span>
+            Gold Leaf Finish
+          </span>
+<span class="px-3 py-1.5 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm tracking-wider uppercase flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-primary">grain</span>
+            Hand-applied Beads
+          </span>
+</div>
+<!-- Quick Spec Grid -->
+<div class="grid grid-cols-3 gap-space-xs py-space-sm px-space-md rounded-xl bg-surface-container text-center">
+<div class="flex flex-col py-1">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Height</span>
+<span class="font-headline-sm text-headline-sm text-on-surface mt-0.5">32 cm</span>
+</div>
+<div class="flex flex-col py-1 bg-surface/50 rounded-lg">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Diameter</span>
+<span class="font-headline-sm text-headline-sm text-on-surface mt-0.5">18 cm</span>
+</div>
+<div class="flex flex-col py-1">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Weight</span>
+<span class="font-headline-sm text-headline-sm text-on-surface mt-0.5">1.8 kg</span>
+</div>
+</div>
+<!-- Quantity & Direct Studio Ordering -->
+<div class="flex flex-col gap-space-md">
+<!-- Quantity Selector -->
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface font-semibold">Select Edition Quantity</span>
+<div class="inline-flex items-center bg-surface-container rounded-lg p-1">
+<button aria-label="Decrease quantity" class="w-8 h-8 rounded flex items-center justify-center text-on-surface hover:bg-surface-container-highest transition-colors active:scale-95" onclick="adjustQuantity(-1)">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="w-10 text-center font-title-md text-title-md font-semibold text-on-surface" id="qtyDisplay">1</span>
+<button aria-label="Increase quantity" class="w-8 h-8 rounded flex items-center justify-center text-on-surface hover:bg-surface-container-highest transition-colors active:scale-95" onclick="adjustQuantity(1)">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+<!-- Dual Call to Action Buttons -->
+<div class="flex flex-col sm:flex-row gap-space-sm pt-space-xs">
+<button class="flex-1 py-3.5 px-6 rounded-lg bg-surface-container-highest text-on-secondary-fixed hover:bg-secondary-container transition-all duration-200 font-label-md text-label-md uppercase tracking-widest flex items-center justify-center gap-space-xs shadow-sm hover:shadow active:scale-[0.99]" id="addToCartBtn" onclick="triggerAddToCart()">
+<span class="material-symbols-outlined text-[18px]">shopping_bag</span>
+<span>Add to Cart</span>
+</button>
+<button class="flex-1 py-3.5 px-6 rounded-lg bg-on-secondary-fixed text-surface hover:bg-primary-container transition-all duration-200 font-label-md text-label-md uppercase tracking-widest flex items-center justify-center gap-space-xs shadow-md hover:shadow-lg active:scale-[0.99]" id="buyNowBtn" onclick="triggerWhatsAppOrder()">
+<span class="material-symbols-outlined text-[18px] text-inverse-primary">bolt</span>
+<span>Buy Now via Studio</span>
+</button>
+</div>
+<!-- Direct WhatsApp Dispatch Notice -->
+<div class="flex items-start gap-space-xs p-space-sm rounded-lg bg-surface-container-low text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">forum</span>
+<p class="font-body-sm text-body-sm leading-relaxed">
+              When clicking <strong class="text-on-surface font-medium">Buy Now</strong>, you will connect directly with our studio via WhatsApp with your order specifications and shipping address query pre-filled.
+            </p>
+</div>
+<!-- Interactive WhatsApp Message Live Preview Modal Card -->
+<div class="rounded-xl bg-secondary-container/40 p-space-md flex flex-col gap-space-xs">
+<div class="flex items-center justify-between text-on-surface">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                WhatsApp Atelier Dispatch Preview
+              </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant" id="liveDate">Oct 24, 2025</span>
+</div>
+<!-- WhatsApp Message Bubble Look -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm font-body-sm text-body-sm text-on-surface flex flex-col gap-1 leading-relaxed">
+<p class="text-on-surface-variant font-medium">Hello BRUSHSPACE Atelier,</p>
+<p>I am interested in ordering this product:</p>
+<div class="pl-2 border-l-2 border-primary/40 my-1 text-on-surface-variant text-[13px] flex flex-col gap-0.5">
+<p><span class="font-medium text-on-surface">Product:</span> Owl Black - Golden Leaves Sculptural Vase</p>
+<p><span class="font-medium text-on-surface">Product Code:</span> BS-VAS-09</p>
+<p><span class="font-medium text-on-surface">Price:</span> ₹4,200</p>
+<p><span class="font-medium text-on-surface">Quantity:</span> <span id="waQty">1</span> (Total: <span id="waTotal">₹4,200</span>)</p>
+<p><span class="font-medium text-on-surface">Link:</span> <span class="text-primary underline">https://brushspace.com/product/bs-vas-09</span></p>
+</div>
+<p class="text-on-surface-variant font-medium pt-1">Please share the next steps and estimated delivery window for placing the order.</p>
+</div>
+</div>
+</div>
+<!-- Architectural Accordions for Atelier Details -->
+<div class="flex flex-col gap-space-xs pt-space-xs" id="accordionGroup">
+<!-- Accordion Item 1: Story & Craftsmanship -->
+<div class="rounded-xl bg-surface-container-low overflow-hidden">
+<button class="w-full p-space-md flex items-center justify-between text-left hover:bg-surface-container transition-colors" onclick="toggleAccordion('craftStory')">
+<span class="font-title-md text-title-md text-on-surface font-semibold flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-primary">brush</span>
+                1. Story &amp; Craftsmanship
+              </span>
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant transition-transform duration-300" id="icon-craftStory">expand_more</span>
+</button>
+<div class="hidden px-space-md pb-space-md pt-0 text-on-surface-variant font-body-md text-body-md leading-relaxed flex flex-col gap-2" id="content-craftStory">
+<p>Each Owl Black vase is wheel-thrown individually in our studio using mineral-rich clay harvested from rural Khurja. The dramatic silhouette evokes an abstract owl guardian, an age-old symbol of quiet wisdom.</p>
+<p>Following high-temperature firing, our craft masters gently treat the surface with a hand-burnished matte oxidation coat. Real 24k-sheen gold foil leafing is meticulously adhered alongside delicate glass bead mosaics across three separate drying sessions.</p>
+</div>
+</div>
+<!-- Accordion Item 2: Specifications & Dimensions -->
+<div class="rounded-xl bg-surface-container-low overflow-hidden">
+<button class="w-full p-space-md flex items-center justify-between text-left hover:bg-surface-container transition-colors" onclick="toggleAccordion('specsDim')">
+<span class="font-title-md text-title-md text-on-surface font-semibold flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-primary">straighten</span>
+                2. Specifications &amp; Dimensions
+              </span>
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant transition-transform duration-300" id="icon-specsDim">expand_more</span>
+</button>
+<div class="hidden px-space-md pb-space-md pt-0 text-on-surface-variant font-body-md text-body-md leading-relaxed" id="content-specsDim">
+<div class="grid grid-cols-2 gap-y-2 gap-x-4 py-2 font-body-sm text-body-sm">
+<div><span class="font-semibold text-on-surface">Overall Height:</span> 32 cm (12.6 inches)</div>
+<div><span class="font-semibold text-on-surface">Maximum Width:</span> 18 cm (7.1 inches)</div>
+<div><span class="font-semibold text-on-surface">Top Aperture Neck:</span> 7.5 cm</div>
+<div><span class="font-semibold text-on-surface">Base Footprint:</span> 11 cm flat stable base</div>
+<div><span class="font-semibold text-on-surface">Net Weight:</span> 1.82 kg (Dense stoneware)</div>
+<div><span class="font-semibold text-on-surface">Firing Atmosphere:</span> Reduction kiln, 1220°C</div>
+</div>
+</div>
+</div>
+<!-- Accordion Item 3: Material & Care -->
+<div class="rounded-xl bg-surface-container-low overflow-hidden">
+<button class="w-full p-space-md flex items-center justify-between text-left hover:bg-surface-container transition-colors" onclick="toggleAccordion('matCare')">
+<span class="font-title-md text-title-md text-on-surface font-semibold flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-primary">dry_cleaning</span>
+                3. Material &amp; Care
+              </span>
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant transition-transform duration-300" id="icon-matCare">expand_more</span>
+</button>
+<div class="hidden px-space-md pb-space-md pt-0 text-on-surface-variant font-body-md text-body-md leading-relaxed flex flex-col gap-2" id="content-matCare">
+<p>Designed primarily for dry floral arrangements, pampas grass, sculptural twigs, or solitary pedestal display. Do not fill with untreated water as this is an unglazed decorative oxidation finish.</p>
+<p>To clean: Dust gently with a clean feather duster or wipe using a soft dry microfiber cloth. Avoid commercial liquid chemicals or abrasive sponges to preserve the gold leaf leafing integrity.</p>
+</div>
+</div>
+<!-- Accordion Item 4: Shipping & Safe Delivery -->
+<div class="rounded-xl bg-surface-container-low overflow-hidden">
+<button class="w-full p-space-md flex items-center justify-between text-left hover:bg-surface-container transition-colors" onclick="toggleAccordion('shipping')">
+<span class="font-title-md text-title-md text-on-surface font-semibold flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-primary">local_shipping</span>
+                4. Shipping &amp; Safe Delivery
+              </span>
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant transition-transform duration-300" id="icon-shipping">expand_more</span>
+</button>
+<div class="hidden px-space-md pb-space-md pt-0 text-on-surface-variant font-body-md text-body-md leading-relaxed flex flex-col gap-2" id="content-shipping">
+<p>Every piece is encased in custom-moulded shockproof EPS casing and packed inside a reinforced 7-ply corrugated exhibition box.</p>
+<p>We provide 100% insured transit via expedited courier across all major Indian pin-codes (typically 3–5 working days). In the improbable event of damage during transit, a prompt studio replacement is guaranteed.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Complete the Look / Curated Pairings (Editorial Split Carousel) -->
+<section class="w-full bg-surface-container-low py-space-xl mt-space-lg">
+<div class="max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-space-xs">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-primary font-semibold">Harmonious Cohesion</span>
+<h2 class="font-headline-md text-headline-md text-on-surface mt-1">Complete The Look • Curated Pairings</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-md">
+          Objects selected by our resident curators to balance scale, textural nuance, and tonal harmony in modern living spaces.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<!-- Pairing Card 1: Bonsai 1 - Gilded Leaves Tree -->
+<div class="bg-surface rounded-xl p-space-md flex flex-col sm:flex-row gap-space-md items-center shadow-sm hover:shadow-md transition-shadow group">
+<div class="w-full sm:w-44 aspect-square rounded-lg overflow-hidden bg-surface-container shrink-0">
+<img alt="Bonsai 1 - Gilded Leaves Tree" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Modern sculptural brass and gilded copper decorative bonsai wire tree on a black raw granite stand, complementing dark ceramic home decor." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANILj2bqdH_SDAyY4KD0LTANxicoFVKz_9IG0Yl1ZQvCi5RQ61n3vgxqsYzkQ9nodpFR5ZBbHjJcEksJSFQYSAhi6wgWSc9QVLxugIstaSI9CE9L3Cz0c8YcgIw6hIjkPx1hd3BSv1LsjpBl9x3V6ds7MnQyMo1UQ0PYlP8sL1yEHDCV9orIMoIqMXHZV-ihjk2HYS8b66m5QKqzledd6zHgeIR0hIDBqK9fxwo5hN2OWvH-DuODej"/>
+</div>
+<div class="flex flex-col justify-between flex-1 h-full gap-space-xs">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-medium">Curator Pairing No. 01</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold mt-0.5">Bonsai 1 - Gilded Leaves Tree</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-1">
+                Hand-twisted brass armature with warm shimmering foil foliage mounted on raw textured stone.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium">₹4,400</span>
+<button class="px-4 py-2 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md uppercase tracking-wider hover:bg-on-secondary-fixed hover:text-surface transition-colors flex items-center gap-1">
+<span>View Piece</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Pairing Card 2: Rust Forest Vase -->
+<div class="bg-surface rounded-xl p-space-md flex flex-col sm:flex-row gap-space-md items-center shadow-sm hover:shadow-md transition-shadow group">
+<div class="w-full sm:w-44 aspect-square rounded-lg overflow-hidden bg-surface-container shrink-0">
+<img alt="Rust Forest Vase" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Handcrafted terracotta Rust Forest vessel with warm terracotta burnt sienna ombre glaze and fine vertical comb grooved texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdUomzCYFGhOLz4zjqBHNsqzfC6Ay6Ogoa4FK4QYw7jYfzJFPpmuHq2MWOMz415dmqvOp2EgaoZlZh8xKccs0bi2J7n6XO6TlvMONGy9IX4o8dr6zgJICpDdM2L3AdAHbnP5t62dpaVdHbRAnl1lWLZWtToz1AQ_EecPZJHLcTVjxA3U7blovPEZ2O8-EyfIf5mseEktKj3NcKWrjH0nhgio6tOAPjjQNGnBeGCuZPzoikpS1BATZ0"/>
+</div>
+<div class="flex flex-col justify-between flex-1 h-full gap-space-xs">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-medium">Curator Pairing No. 02</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold mt-0.5">Rust Forest Tall Vase</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-1">
+                Earthy oxidized patina with sienna undertones creating tactile contrast beside matte black ceramics.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium">₹3,950</span>
+<button class="px-4 py-2 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md uppercase tracking-wider hover:bg-on-secondary-fixed hover:text-surface transition-colors flex items-center gap-1">
+<span>View Piece</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Collector Impressions & Reviews Section -->
+<section class="w-full max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop py-space-xl" id="reviews-section">
+<div class="flex flex-col gap-space-lg">
+<!-- Section Header with Overall Breakdown -->
+<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-primary font-semibold">Living Space Testimonials</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-1">Collector Impressions</h2>
+</div>
+<button class="py-2.5 px-5 rounded-lg bg-surface-container-highest text-on-surface font-label-md text-label-md uppercase tracking-widest hover:bg-secondary-container transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+<span>Submit Impression</span>
+</button>
+</div>
+<!-- Rating Stats & Gallery Proof Bento -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Rating Numeric Summary Card (4 cols) -->
+<div class="lg:col-span-4 p-space-lg rounded-xl bg-surface-container-low flex flex-col justify-between">
+<div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-display text-display font-medium text-on-surface">4.9</span>
+<span class="font-headline-sm text-headline-sm text-on-surface-variant">/ 5.0</span>
+</div>
+<div class="flex items-center text-primary-container my-2">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Based on 28 authenticated collector deliveries</p>
+</div>
+<!-- Progress Bars Breakdown -->
+<div class="flex flex-col gap-2 mt-space-md pt-space-md bg-surface-container/60 p-space-sm rounded-lg">
+<div class="flex items-center gap-2 font-label-sm text-label-sm">
+<span class="w-12 text-on-surface-variant">5 Star</span>
+<div class="flex-1 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 92%;"></div>
+</div>
+<span class="w-8 text-right font-medium text-on-surface">92%</span>
+</div>
+<div class="flex items-center gap-2 font-label-sm text-label-sm">
+<span class="w-12 text-on-surface-variant">4 Star</span>
+<div class="flex-1 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary/70 rounded-full" style="width: 8%;"></div>
+</div>
+<span class="w-8 text-right font-medium text-on-surface">8%</span>
+</div>
+<div class="flex items-center gap-2 font-label-sm text-label-sm opacity-50">
+<span class="w-12 text-on-surface-variant">3 Star</span>
+<div class="flex-1 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary/50 rounded-full" style="width: 0%;"></div>
+</div>
+<span class="w-8 text-right font-medium text-on-surface">0%</span>
+</div>
+</div>
+</div>
+<!-- Real Customer Styling Photos Strip (8 cols) -->
+<div class="lg:col-span-8 flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface font-semibold">Real Home Styling Spaces</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">#BrushspaceInTheWild</span>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm">
+<div class="relative aspect-square rounded-lg overflow-hidden group shadow-sm">
+<img alt="Collector styling Delhi home" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Collector photo of Owl Black vase styled on a mid-century walnut side credenza with dried white eucalyptus stems." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJqJKZvkDMhvK0uAeI4z0DAZsmnZylNeuCBhmp7jTXTz-4cvmESIwBRImhMrNfEwio_hYzKzillmBMnJ3PWBpj9CY_UgPh-PRgmpRzp0n9Q4KqedNIOPEpWF8tY_7PQat46qhNDHPEax6jmxnqgvioD3l4VX3miAy3zZt7jTKdQigMU4PLgqNbLRYqIvirh-J3Mp1JpyZm1ZFp3-vwzRogMY47nNr4XQXVPslnBukypKDSgcuzd7M8"/>
+<div class="absolute bottom-1 left-1 px-2 py-0.5 rounded bg-surface/80 backdrop-blur-sm text-[10px] font-label-sm text-on-surface">
+                Aarav M. (Delhi)
+              </div>
+</div>
+<div class="relative aspect-square rounded-lg overflow-hidden group shadow-sm">
+<img alt="Collector styling Mumbai penthouse" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Interior styling photograph of the black and gold ceramic vase placed inside an illuminated dining wall alcove with warm backlighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuApyQe8BRJCTxpF48p-aWsZ5VCMbQ_zYSIbXHnbGVm-rLPJ6j7vs4UPJ9i_SDZA5y0xaKx1kQ-8I_fxNpNWpY8LMLSsCj16pvEwWixV_RYRrg_Ck5YBJF1uXX_ME_RgMWsAbVIaR132-G6jaq45rudjocG4Atn9HtodloFiNG0wNWP4J8iIlBs3W57PTKx5VuRZD8noJP2e2Qy_3K0DGAIZulvf1QVWDyV1AC3yPp-JN8sImrBJP7lW"/>
+<div class="absolute bottom-1 left-1 px-2 py-0.5 rounded bg-surface/80 backdrop-blur-sm text-[10px] font-label-sm text-on-surface">
+                Pooja K. (Mumbai)
+              </div>
+</div>
+<div class="relative aspect-square rounded-lg overflow-hidden group shadow-sm">
+<img alt="Collector styling Bengaluru studio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close-up of the Owl Black ceramic vase on a rustic light oak dining table catching morning sunbeams on the metallic gold leaves." src="https://lh3.googleusercontent.com/aida-public/AB6AXuApuNeVP3V53S4ce6gc50KD3eWZ6n75v9osJEiCKGIiQG1QmiKcOaX2eke3KLHx8EXu_uVSGE6oEnlrjhmTt6WeVZGGdErOcyk_pPCf6ps_CEZACTzZBgAEidkR25VfKuVJEy5O7h9GHdyFaxuA3M1MWSJv31uBGOsA0Wt9jQ3Y7EjKWkEopRMASz1YjsXwblGURZ2dPt6zFtvxImR5pV1HpMPxPHp3Uiit66ZMC3LCx4HnhW_FhA39"/>
+<div class="absolute bottom-1 left-1 px-2 py-0.5 rounded bg-surface/80 backdrop-blur-sm text-[10px] font-label-sm text-on-surface">
+                Nandita S. (Bengaluru)
+              </div>
+</div>
+<div class="relative aspect-square rounded-lg overflow-hidden group shadow-sm">
+<img alt="Collector styling Jaipur villa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Architectural photo of high-ceiling hallway entry table with the Owl Black vase paired alongside stone candleholders." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWci9bBZHKOoFIvWVbsf1hVvv44ob4-a4AgiDoyPA7Uld2Ftp3YR9xORzGGrXuBFRqs_slUi7N9TDS2uVbJHMcc-UigU4fAS25oLczIKakDdLvB9CjRpFFqq3ODLXdz1n4sZByiujH3KpFBnreEafZmIEzqrIZmrZVPhnbUFhIvfa81dK6wJEwBWPBK0hlRWsHRFzFo0qeWVRIH9ZN0FoC00bUT_KVif2WReeokAC_a122DFucSNFD"/>
+<div class="absolute bottom-1 left-1 px-2 py-0.5 rounded bg-surface/80 backdrop-blur-sm text-[10px] font-label-sm text-on-surface">
+                Vikram T. (Jaipur)
+              </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Verified Editorial Review Quotes -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md pt-space-sm">
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between gap-space-sm">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center text-primary-container">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Verified Collector • 2 weeks ago</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface font-semibold">
+              “Far more commanding in person than through photographs.”
+            </p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              The weight and density of the clay immediately convey museum calibre. The gold foil work has an almost ancient Byzantine luminosity when the lamp light hits it at dusk. The packaging was immaculate.
+            </p>
+</div>
+<div class="flex items-center gap-space-xs pt-space-xs">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center font-label-sm text-on-secondary-fixed font-semibold">
+              DR
+            </div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">Devika Roy</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Architectural Stylist, New Delhi</p>
+</div>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between gap-space-sm">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center text-primary-container">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Verified Collector • 1 month ago</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface font-semibold">
+              “The WhatsApp dispatch concierge made custom delivery effortless.”
+            </p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Clicked Buy Now, sent the message, and received personalized styling guidance from their head studio curator in minutes. It has transformed our entryway console.
+            </p>
+</div>
+<div class="flex items-center gap-space-xs pt-space-xs">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center font-label-sm text-on-secondary-fixed font-semibold">
+              SM
+            </div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">Siddharth Mehta</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Collector, Mumbai</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Logic Script: Gallery, Accordions, Quantity & WhatsApp String Prepper -->
+<script>
+    // State
+    let currentQty = 1;
+    const basePrice = 4200;
+    const maxStock = 4;
+    let isWishlisted = false;
+
+    // Set dynamic current date in WhatsApp preview
+    document.addEventListener('DOMContentLoaded', () => {
+      const today = new Date();
+      const options = { year: 'numeric', month: 'short', day: 'numeric' };
+      const dateStr = today.toLocaleDateString('en-US', options);
+      const dateEl = document.getElementById('liveDate');
+      if (dateEl) dateEl.innerText = dateStr;
+    });
+
+    // Quantity adjuster
+    function adjustQuantity(delta) {
+      const next = currentQty + delta;
+      if (next >= 1 && next <= maxStock) {
+        currentQty = next;
+        document.getElementById('qtyDisplay').innerText = currentQty;
+        document.getElementById('waQty').innerText = currentQty;
+        
+        const totalAmount = (basePrice * currentQty).toLocaleString('en-IN');
+        document.getElementById('waTotal').innerText = '₹' + totalAmount;
+      }
+    }
+
+    // Gallery switch
+    function switchGalleryImage(index, element) {
+      const thumbs = document.querySelectorAll('.gallery-thumb');
+      thumbs.forEach(t => {
+        const overlay = t.querySelector('.thumb-overlay');
+        if (overlay) overlay.classList.remove('opacity-100');
+        if (overlay) overlay.classList.add('opacity-0');
+      });
+
+      const currentOverlay = element.querySelector('.thumb-overlay');
+      if (currentOverlay) {
+        currentOverlay.classList.remove('opacity-0');
+        currentOverlay.classList.add('opacity-100');
+      }
+
+      // Smooth subtle fade effect on primary
+      const mainImg = document.getElementById('mainShowcaseImg');
+      if (mainImg) {
+        mainImg.style.opacity = '0.6';
+        setTimeout(() => {
+          mainImg.style.opacity = '1';
+        }, 150);
+      }
+    }
+
+    // Accordion toggle
+    function toggleAccordion(id) {
+      const content = document.getElementById('content-' + id);
+      const icon = document.getElementById('icon-' + id);
+      
+      if (!content) return;
+      
+      const isHidden = content.classList.contains('hidden');
+      if (isHidden) {
+        content.classList.remove('hidden');
+        if (icon) icon.style.transform = 'rotate(180deg)';
+      } else {
+        content.classList.add('hidden');
+        if (icon) icon.style.transform = 'rotate(0deg)';
+      }
+    }
+
+    // WhatsApp Direct Order Action
+    function triggerWhatsAppOrder() {
+      const today = new Date();
+      const options = { year: 'numeric', month: 'short', day: 'numeric' };
+      const dateFormatted = today.toLocaleDateString('en-US', options);
+      const totalAmount = '₹' + (basePrice * currentQty).toLocaleString('en-IN');
+      
+      const message = 
+        `Hello BRUSHSPACE Atelier,\n\n` +
+        `I am interested in ordering this product.\n` +
+        `Product: Owl Black - Golden Leaves Sculptural Vase\n` +
+        `Product Code: BS-VAS-09\n` +
+        `Price: ₹4,200\n` +
+        `Quantity: ${currentQty} (Total: ${totalAmount})\n` +
+        `Date: ${dateFormatted}\n` +
+        `Product Link: https://brushspace.com/product/bs-vas-09\n\n` +
+        `Please share the next steps for placing the order.`;
+      
+      const encodedMsg = encodeURIComponent(message);
+      // Fallback studio inquiry phone number
+      const waUrl = `https://wa.me/919876543210?text=${encodedMsg}`;
+      window.open(waUrl, '_blank');
+    }
+
+    // Add to cart feedback micro-interaction
+    function triggerAddToCart() {
+      const btn = document.getElementById('addToCartBtn');
+      if (!btn) return;
+      
+      const originalHTML = btn.innerHTML;
+      btn.innerHTML = `
+        <span class="material-symbols-outlined text-[18px] text-primary">check_circle</span>
+        <span>Added to Atelier Cart (${currentQty})</span>
+      `;
+      btn.classList.add('bg-secondary-container');
+
+      setTimeout(() => {
+        btn.innerHTML = originalHTML;
+        btn.classList.remove('bg-secondary-container');
+      }, 2200);
+    }
+
+    // Wishlist Toggle
+    const wishlistBtn = document.getElementById('wishlistToggle');
+    if (wishlistBtn) {
+      wishlistBtn.addEventListener('click', () => {
+        isWishlisted = !isWishlisted;
+        const icon = document.getElementById('wishlistIcon');
+        const label = document.getElementById('wishlistLabel');
+        if (isWishlisted) {
+          icon.style.fontVariationSettings = "'FILL' 1";
+          icon.classList.add('text-tertiary');
+          label.innerText = 'Curated in Wishlist';
+        } else {
+          icon.style.fontVariationSettings = "'FILL' 0";
+          icon.classList.remove('text-tertiary');
+          label.innerText = 'Curate to Wishlist';
+        }
+      });
+    }
+
+    // Share API Integration
+    const shareBtn = document.getElementById('shareBtn');
+    if (shareBtn) {
+      shareBtn.addEventListener('click', () => {
+        if (navigator.share) {
+          navigator.share({
+            title: 'Owl Black - Golden Leaves Sculptural Vase | BRUSHSPACE',
+            text: 'Discover this handcrafted sculptural ceramic vase from BRUSHSPACE Atelier.',
+            url: window.location.href,
+          }).catch(() => {});
+        } else {
+          navigator.clipboard.writeText(window.location.href);
+          const original = shareBtn.innerHTML;
+          shareBtn.innerHTML = `
+            <span class="material-symbols-outlined text-[18px] text-primary">done</span>
+            <span>Link Copied</span>
+          `;
+          setTimeout(() => {
+            shareBtn.innerHTML = original;
+          }, 2000);
+        }
+      });
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-low text-on-surface pt-space-xl pb-space-lg"><div class="max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter-desktop mb-space-xl"><div class="flex flex-col space-y-space-md"><div class="flex items-center gap-space-sm"><img alt="BRUSHSPACE Brand Logo" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VbbYz9xRIObqzkaxAGpwIFPTCRuj2-ssn-BUyHe53RhLkSGY9f_wB6PWos0a8ff4l9B8jicDVf3pXBDZx8GmFqDp1RtDpGW5nnrt1MNtaFH-9WKXzlCmJU-b8erCEJCc2Oa10AGjJRjseSIfWYRuVwYw4Uy0a1VsS5YfSW-0LdNuIDOxiFoIihrz_zHc6qJsVdkOCQ2fQdWMxHJrGwXmY3eyIkZXoF8oIplH7BXHBQEWZn9eW0LWsCMg"/><span class="font-headline-sm text-headline-sm font-semibold tracking-wider text-on-surface">BRUSHSPACE</span></div><p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">Curated decorative objects bringing art, warmth and character into modern living spaces.</p><div class="pt-2 flex items-center gap-space-sm"><span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold">Handcrafted Studio</span></div></div><div><h3 class="font-label-md text-label-md uppercase tracking-widest text-on-surface mb-space-md font-semibold">Collections</h3><ul class="space-y-space-sm"><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a data-path="categories" href="#">Vases &amp; Vessels</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a data-path="categories" href="#">Decorative Trees</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a data-path="categories" href="#">Handcrafted Trays</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a data-path="categories" href="#">Mirror Mosaics</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a data-path="categories" href="#">Table &amp; Floral Décor</a></li></ul></div><div><h3 class="font-label-md text-label-md uppercase tracking-widest text-on-surface mb-space-md font-semibold">Customer Care</h3><ul class="space-y-space-sm"><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a data-path="about" href="#">About Our Story</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a data-path="contact" href="#">Contact Studio</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a data-path="faqs" href="#">Shipping &amp; Delivery</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a data-path="faqs" href="#">Returns &amp; Exchanges</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a data-path="faqs" href="#">FAQs</a></li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"><a data-path="faqs" href="#">Terms of Service</a></li></ul></div><div><h3 class="font-label-md text-label-md uppercase tracking-widest text-on-surface mb-space-md font-semibold">Studio Connect</h3><div class="space-y-space-sm font-body-sm text-body-sm text-on-surface-variant"><p class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-tertiary">chat</span>Direct WhatsApp ordering inquiry</p><p class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-tertiary">mail</span><a class="hover:text-primary transition-colors" href="mailto:contact@brushspace.com">contact@brushspace.com</a></p><p class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-tertiary">location_on</span>Mumbai / Delhi showroom</p></div><div class="mt-space-md pt-space-xs flex items-center gap-space-md"><a aria-label="Instagram" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">photo_camera</span></a><a aria-label="Pinterest" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">push_pin</span></a><a aria-label="Facebook" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">public</span></a></div></div></div><div class="pt-space-md mt-space-md bg-surface-container/50 -mx-margin-mobile md:-mx-gutter-desktop px-margin-mobile md:px-gutter-desktop py-space-sm flex flex-col sm:flex-row items-center justify-between gap-space-sm text-center sm:text-left"><p class="font-body-sm text-body-sm text-on-surface-variant">© 2025 BRUSHSPACE Home Décor. All rights reserved. Handcrafted artistic living.</p><p class="font-label-sm text-label-sm text-on-surface-variant/80 uppercase tracking-widest">Architectural Minimalist Luxury</p></div></div></footer></body></html>

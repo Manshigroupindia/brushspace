@@ -1,0 +1,957 @@
+import type { Product } from '../types';
+
+export const initialProducts: Product[] = [
+  {
+    "id": "prod-01",
+    "name": "Cindrella Sculptural Vase",
+    "slug": "cindrella-sculptural-vase",
+    "productCode": "BS-VAS-01",
+    "price": 3450,
+    "compareAtPrice": 3950,
+    "shortDescription": "Chalk white matte terracotta vessel with graceful arched handles.",
+    "description": "A sculptural handcrafted contemporary white matte terracotta vase with delicate curved handles standing on an architectural sandstone plinth. Designed to stand as a calm, statuesque centerpiece in modern minimalist interiors.",
+    "category": "Vases",
+    "subcategory": "Sculptural Ceramic",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699700/brushspace/products/prod_cindrella-sculptural-vase_1.jpg",
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699701/brushspace/products/prod_cindrella-sculptural-vase_2.jpg"
+    ],
+    "material": "Terracotta & White Matte",
+    "dimensions": {
+      "height": "30 cm",
+      "width": "16 cm",
+      "diameter": "12 cm",
+      "weight": "1.5 kg"
+    },
+    "color": "Chalk White",
+    "tags": [
+      "Vase",
+      "Terracotta",
+      "Bestseller",
+      "Sculptural"
+    ],
+    "stockStatus": "in_stock",
+    "featured": true,
+    "newArrival": false,
+    "isActive": true,
+    "createdAt": "2025-01-10T10:00:00Z"
+  },
+  {
+    "id": "prod-02",
+    "name": "Loving Birds Terracotta Pair Vessel",
+    "slug": "loving-birds-terracotta-pair-vessel",
+    "productCode": "BS-DEC-04",
+    "price": 2890,
+    "compareAtPrice": 3200,
+    "shortDescription": "Twin sculptured bird silhouettes resting on a warm beige clay rim.",
+    "description": "Artisanal ceramic vase featuring a delicate sculptured twin bird silhouette motif resting gently on the rim. Finished in warm beige glaze and earthen clay textures to evoke lifelong devotion and quiet companionship.",
+    "category": "Vases",
+    "subcategory": "Figurative Ceramic",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699703/brushspace/products/prod_loving-birds-terracotta-pair-vessel_1.jpg",
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699704/brushspace/products/prod_loving-birds-terracotta-pair-vessel_2.jpg"
+    ],
+    "material": "Ceramic & Natural Clay",
+    "dimensions": {
+      "height": "24 cm",
+      "width": "14 cm",
+      "diameter": "10 cm",
+      "weight": "1.2 kg"
+    },
+    "color": "Warm Beige Sand",
+    "tags": [
+      "Vase",
+      "Birds",
+      "Ceramic",
+      "Clay",
+      "New Arrival"
+    ],
+    "stockStatus": "in_stock",
+    "featured": true,
+    "newArrival": true,
+    "isActive": true,
+    "createdAt": "2025-01-15T10:00:00Z"
+  },
+  {
+    "id": "prod-03",
+    "name": "Owl Black - Golden Leaves Sculptural Vase",
+    "slug": "owl-black-golden-leaves-sculptural-vase",
+    "productCode": "BS-VAS-09",
+    "price": 4200,
+    "compareAtPrice": 4800,
+    "shortDescription": "Matte charcoal stoneware vase with hand-hammered golden leaves.",
+    "description": "A statement centerpiece sculpted from rich dark stoneware, featuring hand-embellished gilded metallic leaves and beaded accents that catch the ambient light. Shaped with subtle avian contours honoring ancient totemic vessels.",
+    "category": "Vases",
+    "subcategory": "Embellished Pottery",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699705/brushspace/products/prod_owl-black-golden-leaves-sculptural-vase_1.jpg",
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699705/brushspace/products/prod_owl-black-golden-leaves-sculptural-vase_2.jpg",
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699706/brushspace/products/prod_owl-black-golden-leaves-sculptural-vase_3.jpg",
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699707/brushspace/products/prod_owl-black-golden-leaves-sculptural-vase_4.jpg"
+    ],
+    "material": "Earthen Stoneware, Gold Leaf & Brass",
+    "dimensions": {
+      "height": "32 cm",
+      "width": "18 cm",
+      "diameter": "7.5 cm",
+      "weight": "1.8 kg"
+    },
+    "color": "Charcoal Black & Antique Gold",
+    "tags": [
+      "Owl",
+      "Leaves",
+      "Vase",
+      "Gold Leaf",
+      "Bestseller"
+    ],
+    "stockStatus": "made_to_order",
+    "featured": true,
+    "newArrival": false,
+    "isActive": true,
+    "createdAt": "2025-01-05T10:00:00Z"
+  },
+  {
+    "id": "prod-04",
+    "name": "Black - Golden Leaves Atelier Vessel",
+    "slug": "black-golden-leaves-atelier-vessel",
+    "productCode": "BS-VAS-10",
+    "price": 4100,
+    "compareAtPrice": 4600,
+    "shortDescription": "Deep black ceramic vessel with branching gilded leaf filigree.",
+    "description": "Deep black ceramic vessel with intricate branching gilded leaf filigree. Crafted to catch morning light and create dramatic evening shadows on consoles and mantlepieces.",
+    "category": "Vases",
+    "subcategory": "Embellished Pottery",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699708/brushspace/products/prod_black-golden-leaves-atelier-vessel_1.jpg"
+    ],
+    "material": "Black Terracotta & Brass Leaf",
+    "dimensions": {
+      "height": "31 cm",
+      "width": "17 cm",
+      "weight": "1.7 kg"
+    },
+    "color": "Obsidian Black & Gold",
+    "tags": [
+      "Vase",
+      "Gold Leaf",
+      "Leaves",
+      "Black"
+    ],
+    "stockStatus": "in_stock",
+    "featured": false,
+    "newArrival": false,
+    "isActive": true,
+    "createdAt": "2025-01-12T10:00:00Z"
+  },
+  {
+    "id": "prod-05",
+    "name": "Burgundy Statement Vase",
+    "slug": "burgundy-statement-vase",
+    "productCode": "BS-VAS-06",
+    "price": 3500,
+    "compareAtPrice": 3900,
+    "shortDescription": "Rich wine-tinted high gloss stoneware vase.",
+    "description": "A deep wine-red artisanal ceramic vessel offering velvety gloss reflection. Proportioned to enrich dining table arrangements or bedroom accents.",
+    "category": "Vases",
+    "subcategory": "Glazed Ceramics",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699709/brushspace/products/prod_burgundy-statement-vase_1.jpg"
+    ],
+    "material": "Glazed Ceramic & Terracotta",
+    "dimensions": {
+      "height": "28 cm",
+      "width": "15 cm",
+      "weight": "1.4 kg"
+    },
+    "color": "Deep Burgundy",
+    "tags": [
+      "Vase",
+      "Burgundy",
+      "Glazed",
+      "Ceramic"
+    ],
+    "stockStatus": "in_stock",
+    "featured": false,
+    "newArrival": true,
+    "isActive": true,
+    "createdAt": "2025-01-20T10:00:00Z"
+  },
+  {
+    "id": "prod-06",
+    "name": "Burgundy Black Leaves Vase",
+    "slug": "burgundy-black-leaves-vase",
+    "productCode": "BS-VAS-07",
+    "price": 3600,
+    "compareAtPrice": 4100,
+    "shortDescription": "Charred black relief leaf patterns over deep burgundy clay.",
+    "description": "Rich deep burgundy glazed clay statement vase accented with charred black relief leaf patterns against a minimal gallery studio background. Wheel-thrown and hand-finished with dual oxidation technique.",
+    "category": "Vases",
+    "subcategory": "Embellished Pottery",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699710/brushspace/products/prod_burgundy-black-leaves-vase_1.jpg"
+    ],
+    "material": "Burgundy Clay & Charred Glaze",
+    "dimensions": {
+      "height": "29 cm",
+      "width": "16 cm",
+      "weight": "1.5 kg"
+    },
+    "color": "Burgundy & Obsidian Black",
+    "tags": [
+      "Vase",
+      "Burgundy",
+      "Leaves",
+      "Artisan Pick"
+    ],
+    "stockStatus": "in_stock",
+    "featured": true,
+    "newArrival": true,
+    "isActive": true,
+    "createdAt": "2025-01-18T10:00:00Z"
+  },
+  {
+    "id": "prod-07",
+    "name": "Black - Golden Beads Vessel",
+    "slug": "black-golden-beads-vessel",
+    "productCode": "BS-VAS-11",
+    "price": 3800,
+    "compareAtPrice": 4200,
+    "shortDescription": "Midnight black ceramic vessel encrusted with golden metallic beads.",
+    "description": "Midnight black ceramic vessel encrusted with an architectural horizontal band of golden metallic beads and refined geometric tactile texture.",
+    "category": "Vases",
+    "subcategory": "Beaded Ceramics",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699711/brushspace/products/prod_black-golden-beads-vessel_1.jpg"
+    ],
+    "material": "Ceramic & Glass Beads",
+    "dimensions": {
+      "height": "26 cm",
+      "width": "15 cm",
+      "weight": "1.3 kg"
+    },
+    "color": "Matte Black & Gold",
+    "tags": [
+      "Vase",
+      "Beads",
+      "Black",
+      "Gold",
+      "Ceramic"
+    ],
+    "stockStatus": "in_stock",
+    "featured": false,
+    "newArrival": false,
+    "isActive": true,
+    "createdAt": "2025-01-08T10:00:00Z"
+  },
+  {
+    "id": "prod-08",
+    "name": "Rust Forest Arch Vase",
+    "slug": "rust-forest-arch-vase",
+    "productCode": "BS-VAS-14",
+    "price": 3950,
+    "compareAtPrice": 4500,
+    "shortDescription": "Natural earth rust terracotta with vertical forest striations.",
+    "description": "Architectural arch-shaped terracotta vase in natural earth rust wash with minimalist carved vertical striations casting sharp diagonal shadows. Pairs earthy raw terracotta with modern geometric form.",
+    "category": "Vases",
+    "subcategory": "Terracotta Architectural",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699712/brushspace/products/prod_rust-forest-arch-vase_1.jpg",
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699713/brushspace/products/prod_rust-forest-arch-vase_2.jpg"
+    ],
+    "material": "Natural Terracotta & Iron Oxide",
+    "dimensions": {
+      "height": "33 cm",
+      "width": "20 cm",
+      "diameter": "11 cm",
+      "weight": "1.9 kg"
+    },
+    "color": "Earthen Rust & Ochre",
+    "tags": [
+      "Rust",
+      "Forest",
+      "Terracotta",
+      "Arch",
+      "Featured"
+    ],
+    "stockStatus": "made_to_order",
+    "featured": true,
+    "newArrival": true,
+    "isActive": true,
+    "createdAt": "2025-01-22T10:00:00Z"
+  },
+  {
+    "id": "prod-09",
+    "name": "Forest Canopy Organic Vessel",
+    "slug": "forest-canopy-organic-vessel",
+    "productCode": "BS-VAS-15",
+    "price": 3650,
+    "compareAtPrice": 4100,
+    "shortDescription": "Deep moss and forest textured terracotta vessel.",
+    "description": "An organic earthen clay vase washed in subtle moss greens and earthy under-tones, recalling quiet woodland walks and damp stone trails.",
+    "category": "Vases",
+    "subcategory": "Terracotta",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699714/brushspace/products/prod_forest-canopy-organic-vessel_1.jpg"
+    ],
+    "material": "Terracotta & Moss Patina",
+    "dimensions": {
+      "height": "27 cm",
+      "width": "16 cm",
+      "weight": "1.4 kg"
+    },
+    "color": "Forest Green & Raw Earth",
+    "tags": [
+      "Forest",
+      "Vase",
+      "Terracotta",
+      "Organic"
+    ],
+    "stockStatus": "in_stock",
+    "featured": false,
+    "newArrival": false,
+    "isActive": true,
+    "createdAt": "2025-01-14T10:00:00Z"
+  },
+  {
+    "id": "prod-10",
+    "name": "Mirror Mosaic 1 Urn",
+    "slug": "mirror-mosaic-1-urn",
+    "productCode": "BS-MOS-01",
+    "price": 4600,
+    "compareAtPrice": 5200,
+    "shortDescription": "Artisanal decorative urn sheathed in hand-cut mirror mosaics.",
+    "description": "Large artisanal decorative urn completely sheathed in hand-cut mirror glass mosaics reflecting dappled light beams on an ivory gallery surface. Kinetic and luminous from dawn to evening.",
+    "category": "Mosaic",
+    "subcategory": "Reflective Mosaic",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699715/brushspace/products/prod_mirror-mosaic-1-urn_1.jpg",
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699698/brushspace/banners/banner_ban-spotlight-1.jpg"
+    ],
+    "material": "Hand-cut Glass Mirror & Terracotta Base",
+    "dimensions": {
+      "height": "35 cm",
+      "diameter": "22 cm",
+      "weight": "2.4 kg"
+    },
+    "color": "Silver Mirror & Shimmer",
+    "tags": [
+      "Mirror Mosaic",
+      "Mosaic",
+      "Reflective",
+      "Urn",
+      "Spotlight"
+    ],
+    "stockStatus": "in_stock",
+    "featured": true,
+    "newArrival": false,
+    "isActive": true,
+    "createdAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "prod-11",
+    "name": "Mirror Mosaic 2 Cylinder",
+    "slug": "mirror-mosaic-2-cylinder",
+    "productCode": "BS-MOS-02",
+    "price": 4900,
+    "compareAtPrice": 5500,
+    "shortDescription": "Sleek cylinder vessel constructed of micro-mirror tiles with gilded brass rim.",
+    "description": "Sleek cylinder vessel constructed of miniature micro-mirror tiles with gilded brass rim detailing captured in warm golden hour interior light. Perfect for statement reeds or standalone sculptural lighting reflections.",
+    "category": "Mosaic",
+    "subcategory": "Reflective Mosaic",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699717/brushspace/products/prod_mirror-mosaic-2-cylinder_1.jpg"
+    ],
+    "material": "Micro-mirror Tiles & Spun Brass",
+    "dimensions": {
+      "height": "34 cm",
+      "diameter": "16 cm",
+      "weight": "2.1 kg"
+    },
+    "color": "Mirror Silver & Gilded Brass",
+    "tags": [
+      "Mosaic",
+      "Mirror Mosaic",
+      "Brass",
+      "Cylinder"
+    ],
+    "stockStatus": "in_stock",
+    "featured": false,
+    "newArrival": false,
+    "isActive": true,
+    "createdAt": "2025-01-07T10:00:00Z"
+  },
+  {
+    "id": "prod-12",
+    "name": "Mirror Mosaic Shimmer 3 Sphere",
+    "slug": "mirror-mosaic-shimmer-3-sphere",
+    "productCode": "BS-MOS-03",
+    "price": 5100,
+    "compareAtPrice": 5800,
+    "shortDescription": "Handcrafted sphere with hundreds of individually cut glass bevels.",
+    "description": "Tall statement urn and sphere embellished with iridescent shimmer mosaic and micro-prisms reflecting rainbow prisms in a soft luxury studio environment. Hand-placed tesserae create dancing starbursts on walls.",
+    "category": "Mosaic",
+    "subcategory": "Reflective Mosaic",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699718/brushspace/products/prod_mirror-mosaic-shimmer-3-sphere_1.jpg",
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699719/brushspace/products/prod_mirror-mosaic-shimmer-3-sphere_2.jpg",
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699719/brushspace/products/prod_mirror-mosaic-shimmer-3-sphere_3.jpg"
+    ],
+    "material": "Hand-cut Mirror Mosaic & Rhinestone Grout",
+    "dimensions": {
+      "height": "38 cm",
+      "diameter": "24 cm",
+      "weight": "2.7 kg"
+    },
+    "color": "Iridescent Silver Mirror",
+    "tags": [
+      "Mirror Mosaic",
+      "Shimmer",
+      "Bestseller",
+      "Sphere"
+    ],
+    "stockStatus": "made_to_order",
+    "featured": true,
+    "newArrival": false,
+    "isActive": true,
+    "createdAt": "2025-01-02T10:00:00Z"
+  },
+  {
+    "id": "prod-13",
+    "name": "Bonsai 1 - Gilded Leaves Tree",
+    "slug": "bonsai-1-gilded-leaves-tree",
+    "productCode": "BS-TRE-01",
+    "price": 4400,
+    "compareAtPrice": 4950,
+    "shortDescription": "Artisanal wire bonsai tree hand-twisted with shimmering gilded brass leaves.",
+    "description": "Artisanal wire bonsai tree hand-twisted with shimmering gilded brass leaves mounted onto a rough slate organic stone base. A timeless symbol of enduring strength and organic harmony.",
+    "category": "Trees",
+    "subcategory": "Artisan Wirecraft",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699720/brushspace/products/prod_bonsai-1-gilded-leaves-tree_1.jpg",
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699700/brushspace/banners/banner_ban-spotlight-1_sec.jpg"
+    ],
+    "material": "Copper Wire, Gilded Brass Leaves & Natural Slate",
+    "dimensions": {
+      "height": "28 cm",
+      "width": "22 cm",
+      "weight": "1.6 kg"
+    },
+    "color": "Gilded Antique Gold & Dark Charcoal",
+    "tags": [
+      "Bonsai",
+      "Decorative Trees",
+      "Wirecraft",
+      "Gold Leaf"
+    ],
+    "stockStatus": "in_stock",
+    "featured": true,
+    "newArrival": false,
+    "isActive": true,
+    "createdAt": "2025-01-09T10:00:00Z"
+  },
+  {
+    "id": "prod-14",
+    "name": "Bonsai 2 - Golden Beads Tree",
+    "slug": "bonsai-2-golden-beads-tree",
+    "productCode": "BS-TRE-02",
+    "price": 4800,
+    "compareAtPrice": 5400,
+    "shortDescription": "Wire sculpture tree woven with sparkling golden beads and copper branches.",
+    "description": "Wire sculpture decorative tree woven with sparkling golden beads and intricate copper wire branches grounded on an architectural timber cube. Exudes serene grandeur in contemplative interiors.",
+    "category": "Trees",
+    "subcategory": "Artisan Wirecraft",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699721/brushspace/products/prod_bonsai-2-golden-beads-tree_1.jpg",
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699722/brushspace/products/prod_bonsai-2-golden-beads-tree_2.jpg"
+    ],
+    "material": "Spun Copper Wire, Golden Glass Beads & Solid Wood Base",
+    "dimensions": {
+      "height": "32 cm",
+      "width": "26 cm",
+      "weight": "2.0 kg"
+    },
+    "color": "Champagne Gold Beads & Copper",
+    "tags": [
+      "Bonsai",
+      "Decorative Trees",
+      "Beads",
+      "Artisan Pick"
+    ],
+    "stockStatus": "in_stock",
+    "featured": true,
+    "newArrival": false,
+    "isActive": true,
+    "createdAt": "2025-01-11T10:00:00Z"
+  },
+  {
+    "id": "prod-15",
+    "name": "Bonsai 3 - Illuminated Tree",
+    "slug": "bonsai-3-illuminated-tree",
+    "productCode": "BS-TRE-03",
+    "price": 5600,
+    "compareAtPrice": 6200,
+    "shortDescription": "Illuminated wire tree with glowing warm LED micro-lights in crystal clusters.",
+    "description": "Illuminated sculptural miniature wire tree with glowing warm LED micro-lights integrated into crystal and bead blossom clusters in evening dim light. Features discrete cable-free concealed power unit.",
+    "category": "Trees",
+    "subcategory": "Artisan Wirecraft",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699723/brushspace/products/prod_bonsai-3-illuminated-tree_1.jpg"
+    ],
+    "material": "Brass Wire, Crystal Beads & Concealed Micro-LED",
+    "dimensions": {
+      "height": "36 cm",
+      "width": "28 cm",
+      "weight": "2.3 kg"
+    },
+    "color": "Warm Golden Glow & Brass",
+    "tags": [
+      "Bonsai",
+      "Decorative Trees",
+      "Illuminated",
+      "LED"
+    ],
+    "stockStatus": "in_stock",
+    "featured": true,
+    "newArrival": true,
+    "isActive": true,
+    "createdAt": "2025-01-25T10:00:00Z"
+  },
+  {
+    "id": "prod-16",
+    "name": "White Printed Floral Vessel",
+    "slug": "white-printed-floral-vessel",
+    "productCode": "BS-VAS-16",
+    "price": 3100,
+    "compareAtPrice": 3500,
+    "shortDescription": "Chalk-white stoneware with minimalist embossed botanical impressions.",
+    "description": "Chalk-white stoneware vessel decorated with minimalist embossed botanical impressions and textured rough matte glaze. Beautiful holding dried grasses or displayed bare.",
+    "category": "Vases",
+    "subcategory": "Embossed Ceramics",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699724/brushspace/products/prod_white-printed-floral-vessel_1.jpg"
+    ],
+    "material": "White Stoneware Clay",
+    "dimensions": {
+      "height": "27 cm",
+      "width": "15 cm",
+      "weight": "1.3 kg"
+    },
+    "color": "Chalk White & Sand",
+    "tags": [
+      "White Printed",
+      "Vase",
+      "Floral",
+      "Ceramic"
+    ],
+    "stockStatus": "in_stock",
+    "featured": false,
+    "newArrival": false,
+    "isActive": true,
+    "createdAt": "2025-01-16T10:00:00Z"
+  },
+  {
+    "id": "prod-17",
+    "name": "Red Printed Amphora",
+    "slug": "red-printed-amphora",
+    "productCode": "BS-VAS-17",
+    "price": 3350,
+    "compareAtPrice": 3800,
+    "shortDescription": "Traditional ceramic amphora with red terracotta block-print patterns.",
+    "description": "Traditional shaped ceramic amphora with red terracotta block-print patterns, flared rim, and tactile raw clay foundation. Crafted honoring centuries-old regional block-carving motifs.",
+    "category": "Vases",
+    "subcategory": "Traditional Amphora",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699725/brushspace/products/prod_red-printed-amphora_1.jpg"
+    ],
+    "material": "Natural Terracotta & Mineral Pigments",
+    "dimensions": {
+      "height": "30 cm",
+      "width": "18 cm",
+      "weight": "1.7 kg"
+    },
+    "color": "Crimson Red & Terracotta",
+    "tags": [
+      "Red Printed",
+      "Amphora",
+      "Vase",
+      "Terracotta"
+    ],
+    "stockStatus": "in_stock",
+    "featured": false,
+    "newArrival": false,
+    "isActive": true,
+    "createdAt": "2025-01-17T10:00:00Z"
+  },
+  {
+    "id": "prod-18",
+    "name": "Green Yellow Textured Urn",
+    "slug": "green-yellow-textured-urn",
+    "productCode": "BS-VAS-18",
+    "price": 3200,
+    "compareAtPrice": 3600,
+    "shortDescription": "Olive green and ochre yellow ombre glaze textured urn.",
+    "description": "Olive green and ochre yellow ombre glaze textured urn showing bubbly reactive artisan finish on a sandstone surface. Every kiln firing delivers completely unique chromatic mottling.",
+    "category": "Vases",
+    "subcategory": "Reactive Glaze",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699726/brushspace/products/prod_green-yellow-textured-urn_1.jpg"
+    ],
+    "material": "Ceramic & Reactive Ombre Glaze",
+    "dimensions": {
+      "height": "26 cm",
+      "width": "17 cm",
+      "weight": "1.4 kg"
+    },
+    "color": "Olive Green & Ochre Yellow",
+    "tags": [
+      "Green Yellow",
+      "Urn",
+      "Vase",
+      "Reactive Glaze"
+    ],
+    "stockStatus": "made_to_order",
+    "featured": false,
+    "newArrival": true,
+    "isActive": true,
+    "createdAt": "2025-01-21T10:00:00Z"
+  },
+  {
+    "id": "prod-19",
+    "name": "Green - Pink Leaves Vessel",
+    "slug": "green-pink-leaves-vessel",
+    "productCode": "BS-VAS-19",
+    "price": 3700,
+    "compareAtPrice": 4200,
+    "shortDescription": "Sage green sculptural vessel hand-painted with dusty rose foliage motifs.",
+    "description": "Sage green sculptural vessel hand-painted with dusty rose and terracotta foliage motifs placed in soft indirect daylight. Delicate botanical harmony in muted earthen tones.",
+    "category": "Vases",
+    "subcategory": "Botanical Clay",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699726/brushspace/products/prod_green-pink-leaves-vessel_1.jpg"
+    ],
+    "material": "Earthen Clay & Hand-painted Foliage",
+    "dimensions": {
+      "height": "29 cm",
+      "width": "16 cm",
+      "weight": "1.5 kg"
+    },
+    "color": "Sage Green & Dusty Rose",
+    "tags": [
+      "Green",
+      "Pink Leaves",
+      "Leaves",
+      "Vase"
+    ],
+    "stockStatus": "in_stock",
+    "featured": false,
+    "newArrival": true,
+    "isActive": true,
+    "createdAt": "2025-01-23T10:00:00Z"
+  },
+  {
+    "id": "prod-20",
+    "name": "Black - Red Flowers Vase",
+    "slug": "black-red-flowers-vase",
+    "productCode": "BS-VAS-20",
+    "price": 3900,
+    "compareAtPrice": 4400,
+    "shortDescription": "Bold black ceramic vase adorned with sculpted scarlet red blossoms.",
+    "description": "Bold black ceramic vase adorned with sculpted scarlet red ceramic blossoms and delicate bronze beaded center points. An assertive yet poetically balanced dining accent.",
+    "category": "Vases",
+    "subcategory": "Floral Ceramic",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699727/brushspace/products/prod_black-red-flowers-vase_1.jpg"
+    ],
+    "material": "Charcoal Ceramic & Sculpted Floral Relief",
+    "dimensions": {
+      "height": "30 cm",
+      "width": "17 cm",
+      "weight": "1.6 kg"
+    },
+    "color": "Charcoal Black & Scarlet Red",
+    "tags": [
+      "Black",
+      "Red Flowers",
+      "Flowers",
+      "Vase"
+    ],
+    "stockStatus": "in_stock",
+    "featured": false,
+    "newArrival": false,
+    "isActive": true,
+    "createdAt": "2025-01-19T10:00:00Z"
+  },
+  {
+    "id": "prod-21",
+    "name": "Shell Stand Artisan Tray",
+    "slug": "shell-stand-artisan-tray",
+    "productCode": "BS-TRY-01",
+    "price": 2750,
+    "compareAtPrice": 3200,
+    "shortDescription": "Cast brass shell centerpiece tray resting on architectural micro-feet.",
+    "description": "Cast antique brass decorative tray resting on an earthy terracotta shell-shaped stand, architectural still life on raw sandstone, warm golden studio lighting, tactile interior styling.",
+    "category": "Trays",
+    "subcategory": "Brass & Terracotta",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699728/brushspace/products/prod_shell-stand-artisan-tray_1.jpg",
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699729/brushspace/products/prod_shell-stand-artisan-tray_2.jpg",
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699730/brushspace/products/prod_shell-stand-artisan-tray_3.jpg"
+    ],
+    "material": "Cast Brass & Earthen Terracotta",
+    "dimensions": {
+      "height": "8 cm",
+      "width": "26 cm",
+      "diameter": "24 cm",
+      "weight": "1.2 kg"
+    },
+    "color": "Antique Brass & Clay",
+    "tags": [
+      "Shell",
+      "Stand",
+      "Tray",
+      "Brass",
+      "Bestseller"
+    ],
+    "stockStatus": "in_stock",
+    "featured": true,
+    "newArrival": false,
+    "isActive": true,
+    "createdAt": "2025-01-03T10:00:00Z"
+  },
+  {
+    "id": "prod-22",
+    "name": "Artisan Scallop Shell Tray",
+    "slug": "artisan-scallop-shell-tray",
+    "productCode": "BS-TRY-04",
+    "price": 2600,
+    "compareAtPrice": 3000,
+    "shortDescription": "Ribbed stone composite tray with organic scallop contour.",
+    "description": "Creamy ribbed stone composite decorative tray sculpted with organic scallop contours. Perfect for cradling perfumes, delicate jewelry, or dried botanical petals.",
+    "category": "Trays",
+    "subcategory": "Cast Stone",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699693/brushspace/categories/cat_trays.jpg"
+    ],
+    "material": "Cast Stone & Resin Composite",
+    "dimensions": {
+      "height": "6 cm",
+      "width": "24 cm",
+      "weight": "1.1 kg"
+    },
+    "color": "Ivory Travertine",
+    "tags": [
+      "Shell",
+      "Tray",
+      "Stone",
+      "Keepsake"
+    ],
+    "stockStatus": "in_stock",
+    "featured": false,
+    "newArrival": true,
+    "isActive": true,
+    "createdAt": "2025-01-13T10:00:00Z"
+  },
+  {
+    "id": "prod-23",
+    "name": "Tray 1 Textured Oval",
+    "slug": "tray-1-textured-oval",
+    "productCode": "BS-TRY-02",
+    "price": 2400,
+    "compareAtPrice": 2800,
+    "shortDescription": "Oval valet tray with brass edge accents and textured dark lacquer.",
+    "description": "Sleek oval wooden valet tray with polished brass edge accents and deep textured dark lacquer surface. Grounding tabletop accessory for entryway keys, desk accessories, or candles.",
+    "category": "Trays",
+    "subcategory": "Lacquerware",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699731/brushspace/products/prod_tray-1-textured-oval_1.jpg"
+    ],
+    "material": "Hardwood, Spun Brass & Dark Lacquer",
+    "dimensions": {
+      "height": "4 cm",
+      "width": "32 cm",
+      "diameter": "18 cm",
+      "weight": "0.9 kg"
+    },
+    "color": "Espresso Black & Polished Brass",
+    "tags": [
+      "Tray 1",
+      "Tray",
+      "Wood",
+      "Brass"
+    ],
+    "stockStatus": "in_stock",
+    "featured": false,
+    "newArrival": false,
+    "isActive": true,
+    "createdAt": "2025-01-06T10:00:00Z"
+  },
+  {
+    "id": "prod-24",
+    "name": "Tray 2 Inlay Rectangle",
+    "slug": "tray-2-inlay-rectangle",
+    "productCode": "BS-TRY-03",
+    "price": 2950,
+    "compareAtPrice": 3400,
+    "shortDescription": "Bone and resin chevron inlay rectangular tray on natural linen.",
+    "description": "Refined bone and resin inlay rectangular tray featuring delicate chevron mosaic patterns resting flat on a natural linen tablecloth. Handcrafted by heritage marquetry artisans.",
+    "category": "Trays",
+    "subcategory": "Inlay Tray",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699732/brushspace/products/prod_tray-2-inlay-rectangle_1.jpg"
+    ],
+    "material": "Natural Inlay, Resin & Teak Wood Core",
+    "dimensions": {
+      "height": "5 cm",
+      "width": "36 cm",
+      "diameter": "24 cm",
+      "weight": "1.4 kg"
+    },
+    "color": "Ivory & Warm Teak",
+    "tags": [
+      "Tray 2",
+      "Tray",
+      "Inlay",
+      "Chevron"
+    ],
+    "stockStatus": "in_stock",
+    "featured": false,
+    "newArrival": false,
+    "isActive": true,
+    "createdAt": "2025-01-09T10:00:00Z"
+  },
+  {
+    "id": "prod-25",
+    "name": "Bag Shape Ceramic Vase",
+    "slug": "bag-shape-ceramic-vase",
+    "productCode": "BS-VAS-21",
+    "price": 3150,
+    "compareAtPrice": 3600,
+    "shortDescription": "Soft folded paper bag contour sculpted in oatmeal textured stoneware.",
+    "description": "Playful yet architecturally disciplined ceramic vessel shaped like a soft folded paper bag in raw oatmeal textured stoneware glaze. An instant talking point on coffee tables and kitchen islands.",
+    "category": "Vases",
+    "subcategory": "Sculptural Ceramic",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699733/brushspace/products/prod_bag-shape-ceramic-vase_1.jpg"
+    ],
+    "material": "Stoneware Ceramic & Matte Oatmeal Glaze",
+    "dimensions": {
+      "height": "25 cm",
+      "width": "18 cm",
+      "diameter": "12 cm",
+      "weight": "1.4 kg"
+    },
+    "color": "Oatmeal Natural Clay",
+    "tags": [
+      "Bag Shape",
+      "Vase",
+      "Ceramic",
+      "Playful Design"
+    ],
+    "stockStatus": "in_stock",
+    "featured": false,
+    "newArrival": true,
+    "isActive": true,
+    "createdAt": "2025-01-24T10:00:00Z"
+  },
+  {
+    "id": "prod-26",
+    "name": "Rose Flower Brass Cloche",
+    "slug": "rose-flower-brass-cloche",
+    "productCode": "BS-FLO-01",
+    "price": 2600,
+    "compareAtPrice": 3100,
+    "shortDescription": "Everlasting preserved vintage rose blossom encased under glass dome.",
+    "description": "Everlasting preserved vintage rose blossom encased under an architectural glass dome with an antique spun brass base. Retains its deep botanical texture indefinitely without watering.",
+    "category": "Floral",
+    "subcategory": "Botanical Cloche",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699734/brushspace/products/prod_rose-flower-brass-cloche_1.jpg",
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699695/brushspace/categories/cat_floral.jpg"
+    ],
+    "material": "Preserved Botanical, Borosilicate Glass & Spun Brass",
+    "dimensions": {
+      "height": "24 cm",
+      "diameter": "14 cm",
+      "weight": "0.95 kg"
+    },
+    "color": "Antique Brass & Dusty Crimson",
+    "tags": [
+      "Rose Flower",
+      "Floral",
+      "Cloche",
+      "Gift"
+    ],
+    "stockStatus": "in_stock",
+    "featured": false,
+    "newArrival": false,
+    "isActive": true,
+    "createdAt": "2025-01-11T10:00:00Z"
+  },
+  {
+    "id": "prod-27",
+    "name": "Bamboo Minimalist Stand",
+    "slug": "bamboo-minimalist-stand",
+    "productCode": "BS-DEC-08",
+    "price": 2100,
+    "compareAtPrice": 2500,
+    "shortDescription": "Pedestal stand made of natural fluted bamboo reed textures and clay.",
+    "description": "Minimalist architectural pedestal stand made of natural fluted bamboo reed textures paired with an earthy clay support block. Scaled for display of small stone vessels, incense, or keepsakes.",
+    "category": "Gift",
+    "subcategory": "Display Stands",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699735/brushspace/products/prod_bamboo-minimalist-stand_1.jpg"
+    ],
+    "material": "Natural Fluted Bamboo & Unglazed Clay",
+    "dimensions": {
+      "height": "18 cm",
+      "width": "16 cm",
+      "weight": "0.8 kg"
+    },
+    "color": "Natural Reed & Buff Clay",
+    "tags": [
+      "Bamboo",
+      "Stand",
+      "Gift",
+      "Minimalist"
+    ],
+    "stockStatus": "in_stock",
+    "featured": false,
+    "newArrival": false,
+    "isActive": true,
+    "createdAt": "2025-01-15T10:00:00Z"
+  },
+  {
+    "id": "prod-28",
+    "name": "Peacock Decorative Platter",
+    "slug": "peacock-decorative-platter",
+    "productCode": "BS-DEC-09",
+    "price": 4750,
+    "compareAtPrice": 5300,
+    "shortDescription": "Ornamental round platter inlaid with jewel-toned peacock eye enamel beads.",
+    "description": "Ornate ornamental decorative round platter inlaid with jewel-toned peacock eye enamel beads and reflective mirror accents. A ceremonial centerpiece crafted for memorable gifting and celebration tables.",
+    "category": "Gift",
+    "subcategory": "Artisan Platter",
+    "images": [
+      "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699736/brushspace/products/prod_peacock-decorative-platter_1.jpg"
+    ],
+    "material": "Cast Terracotta, Enamel Beads & Mirror Inlay",
+    "dimensions": {
+      "diameter": "34 cm",
+      "height": "6 cm",
+      "weight": "2.1 kg"
+    },
+    "color": "Deep Teal, Bronze & Mirror",
+    "tags": [
+      "Peacock",
+      "Platter",
+      "Gift",
+      "Enamel",
+      "Beads"
+    ],
+    "stockStatus": "made_to_order",
+    "featured": false,
+    "newArrival": false,
+    "isActive": true,
+    "createdAt": "2025-01-18T10:00:00Z"
+  }
+];
