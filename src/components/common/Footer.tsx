@@ -142,6 +142,18 @@ export const Footer: React.FC = () => {
             Architectural Minimalist Luxury
           </p>
         </div>
+
+        {/* Developer Credit */}
+        <div className="mt-3 sm:mt-4 text-center pb-16 md:pb-0">
+          <a
+            href="https://www.manshigroup.in"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block text-[12px] text-on-surface-variant/80 hover:text-primary tracking-wide transition-colors duration-200"
+          >
+            Designed by Manshi Group of Services
+          </a>
+        </div>
       </div>
     </footer>
   );
