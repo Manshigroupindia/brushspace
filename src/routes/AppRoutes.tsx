@@ -21,6 +21,7 @@ import { PrivacyPolicyPage } from '../pages/public/PrivacyPolicyPage';
 import { TermsPage } from '../pages/public/TermsPage';
 import { ShippingPolicyPage } from '../pages/public/ShippingPolicyPage';
 import { ReturnPolicyPage } from '../pages/public/ReturnPolicyPage';
+import { NotFoundPage } from '../pages/public/NotFoundPage';
 
 // Admin Pages
 import { AdminLoginPage } from '../pages/admin/AdminLoginPage';
@@ -75,10 +76,13 @@ export const AppRoutes: React.FC = () => {
         <Route path="customers" element={<AdminCustomersPage />} />
         <Route path="pages" element={<AdminPagesPage />} />
         <Route path="settings" element={<AdminSettingsPage />} />
+        <Route path="*" element={<Navigate to="/admin" replace />} />
       </Route>
 
-      {/* Catch-all redirect */}
-      <Route path="*" element={<Navigate to="/" replace />} />
+      {/* Catch-all Not Found Route */}
+      <Route element={<PublicLayout />}>
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
     </Routes>
   );
 };
