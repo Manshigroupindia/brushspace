@@ -60,7 +60,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, layout = 'gri
     window.open(url, '_blank');
   };
 
-  const primaryImage = product.images[0] || 'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=800&q=80';
+  const primaryImage = (product.images && product.images[0]) || 'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=800&q=80';
 
   if (layout === 'editorial') {
     return (
@@ -114,7 +114,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, layout = 'gri
               {product.shortDescription}
             </p>
             <p className="font-headline-sm text-headline-sm text-primary font-bold">
-              {formatINR(product.price)}
+              {product.price > 0 ? formatINR(product.price) : 'Price on Request'}
             </p>
           </div>
           <div className="grid grid-cols-2 gap-3 mt-6 pt-4 border-t border-outline-variant/15">
@@ -185,7 +185,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, layout = 'gri
             </h3>
           </Link>
           <p className="font-title-md text-title-md text-primary font-semibold">
-            {formatINR(product.price)}
+            {product.price > 0 ? formatINR(product.price) : 'Price on Request'}
           </p>
         </div>
 

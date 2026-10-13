@@ -57,7 +57,13 @@ export const AdminProductFormPage: React.FC = () => {
             : '',
         shortDescription: existingProduct.shortDescription,
         description: existingProduct.description,
-        category: existingProduct.category,
+        category:
+          categories.find(
+            (c) =>
+              c.name.toLowerCase() === existingProduct.category.toLowerCase() ||
+              c.slug.toLowerCase() === existingProduct.category.toLowerCase() ||
+              (existingProduct.category.toLowerCase() === 'vases' && (c.slug === 'vases' || c.name.toLowerCase().includes('vases')))
+          )?.name || existingProduct.category,
         subcategory: existingProduct.subcategory || '',
         material: existingProduct.material,
         height: existingProduct.dimensions?.height || '',
@@ -375,6 +381,9 @@ export const AdminProductFormPage: React.FC = () => {
                   {c.name}
                 </option>
               ))}
+              {!categories.some((c) => c.name.toLowerCase() === formData.category.toLowerCase()) && formData.category && (
+                <option value={formData.category}>{formData.category}</option>
+              )}
             </select>
           </div>
 

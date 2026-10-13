@@ -50,7 +50,10 @@ export const ProductDetailPage: React.FC = () => {
   }
 
   const isFavorited = isInWishlist(product.id);
-  const activeImage = product.images[activeImageIndex] || product.images[0];
+  const activeImage =
+    (product.images && product.images[activeImageIndex]) ||
+    (product.images && product.images[0]) ||
+    'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=1200&q=80';
 
   const handleWishlistToggle = () => {
     const added = toggleWishlist(product);
@@ -252,10 +255,12 @@ export const ProductDetailPage: React.FC = () => {
               <div className="flex items-baseline justify-between">
                 <div className="flex items-baseline gap-space-xs">
                   <span className="font-headline-lg text-headline-lg font-normal text-on-surface">
-                    {formatINR(product.price)}
+                    {product.price > 0 ? formatINR(product.price) : 'Price on Request'}
                   </span>
-                  <span className="font-body-sm text-body-sm text-on-surface-variant">INR</span>
-                  {product.compareAtPrice && (
+                  {product.price > 0 && (
+                    <span className="font-body-sm text-body-sm text-on-surface-variant">INR</span>
+                  )}
+                  {product.price > 0 && product.compareAtPrice && (
                     <span className="font-body-sm text-body-sm text-outline line-through ml-2">
                       {formatINR(product.compareAtPrice)}
                     </span>

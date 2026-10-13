@@ -67,7 +67,11 @@ export const ShopPage: React.FC = () => {
 
         // Category filter
         if (selectedCategory !== 'all') {
-          if (p.category.toLowerCase() !== selectedCategory.toLowerCase()) {
+          const catObj = categories.find((c) => c.slug.toLowerCase() === selectedCategory.toLowerCase());
+          const matchSlug = p.category.toLowerCase() === selectedCategory.toLowerCase();
+          const matchName = catObj && p.category.toLowerCase() === catObj.name.toLowerCase();
+          const matchVases = selectedCategory.toLowerCase() === 'vases' && (p.category.toLowerCase() === 'vases' || p.category.toLowerCase() === 'vases & vessels');
+          if (!matchSlug && !matchName && !matchVases) {
             return false;
           }
         }
@@ -253,7 +257,11 @@ export const ShopPage: React.FC = () => {
             </button>
             {categories.map((cat) => {
               const count = products.filter(
-                (p) => p.isActive && p.category.toLowerCase() === cat.slug.toLowerCase()
+                (p) =>
+                  p.isActive &&
+                  (p.category.toLowerCase() === cat.slug.toLowerCase() ||
+                    p.category.toLowerCase() === cat.name.toLowerCase() ||
+                    (cat.slug.toLowerCase() === 'vases' && p.category.toLowerCase() === 'vases'))
               ).length;
               return (
                 <button

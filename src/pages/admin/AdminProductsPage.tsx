@@ -25,10 +25,13 @@ export const AdminProductsPage: React.FC = () => {
         p.productCode.toLowerCase().includes(search.toLowerCase()) ||
         p.material.toLowerCase().includes(search.toLowerCase());
       const matchCat =
-        categoryFilter === 'all' || p.category.toLowerCase() === categoryFilter.toLowerCase();
+        categoryFilter === 'all' ||
+        p.category.toLowerCase() === categoryFilter.toLowerCase() ||
+        (categories.find((c) => c.slug.toLowerCase() === categoryFilter.toLowerCase())?.name.toLowerCase() === p.category.toLowerCase()) ||
+        (categoryFilter.toLowerCase() === 'vases' && (p.category.toLowerCase() === 'vases' || p.category.toLowerCase() === 'vases & vessels'));
       return matchSearch && matchCat;
     });
-  }, [products, search, categoryFilter]);
+  }, [products, search, categoryFilter, categories]);
 
   const handleDelete = async (id: string, name: string) => {
     if (window.confirm(`Are you sure you want to delete this product: "${name}"?`)) {
@@ -113,11 +116,17 @@ export const AdminProductsPage: React.FC = () => {
                 <tr key={prod.id} className="hover:bg-surface-container-low/50 transition-colors">
                   <td className="py-3 px-4">
                     <div className="flex items-center gap-3">
-                      <img
-                        src={prod.images[0]}
-                        alt={prod.name}
-                        className="w-12 h-12 rounded-lg object-cover bg-surface-container shrink-0 border border-outline-variant/15"
-                      />
+                      {prod.images && prod.images[0] ? (
+                        <img
+                          src={prod.images[0]}
+                          alt={prod.name}
+                          className="w-12 h-12 rounded-lg object-cover bg-surface-container shrink-0 border border-outline-variant/15"
+                        />
+                      ) : (
+                        <div className="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface-variant/50 shrink-0 border border-outline-variant/15">
+                          <span className="material-symbols-outlined text-[20px]">image</span>
+                        </div>
+                      )}
                       <div className="min-w-0">
                         <Link
                           to={`/product/${prod.slug}`}
@@ -138,7 +147,13 @@ export const AdminProductsPage: React.FC = () => {
                   </td>
 
                   <td className="py-3 px-4 font-semibold text-on-surface">
-                    {formatINR(prod.price)}
+                    {prod.price > 0 ? (
+                      formatINR(prod.price)
+                    ) : (
+                      <span className="text-[11px] font-normal text-on-surface-variant bg-surface-container px-2 py-0.5 rounded">
+                        Unset
+                      </span>
+                    )}
                   </td>
 
                   <td className="py-3 px-4 text-center">
