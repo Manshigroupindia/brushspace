@@ -4,11 +4,11 @@ export interface Product {
   slug: string;
   productCode: string;
   price: number;
-  compareAtPrice?: number;
+  compareAtPrice?: number | null;
   description: string;
   shortDescription: string;
   category: string;
-  subcategory?: string;
+  subcategory?: string | null;
   images: string[];
   material: string;
   dimensions: {

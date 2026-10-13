@@ -31,6 +31,125 @@ function formatTimestamp(ts: any): string {
   return new Date().toISOString();
 }
 
+/**
+ * Recursively strips undefined values from an object or array.
+ * Preserves null, Firestore FieldValues, Date, and other primitives.
+ */
+export function sanitizeFirestorePayload<T extends Record<string, any>>(obj: T): T {
+  const result: any = Array.isArray(obj) ? [] : {};
+  for (const [key, value] of Object.entries(obj)) {
+    if (value === undefined) {
+      continue;
+    }
+    if (
+      value !== null &&
+      typeof value === 'object' &&
+      !Array.isArray(value) &&
+      !(value instanceof Date) &&
+      typeof (value as any).toMillis !== 'function'
+    ) {
+      // Check for FieldValue sentinels (e.g. serverTimestamp, deleteField)
+      if ((value as any).constructor?.name === 'FieldValue' || '_methodName' in (value as any)) {
+        result[key] = value;
+      } else {
+        result[key] = sanitizeFirestorePayload(value);
+      }
+    } else if (Array.isArray(value)) {
+      result[key] = value
+        .filter((item) => item !== undefined)
+        .map((item) =>
+          item !== null && typeof item === 'object' && !(item instanceof Date)
+            ? sanitizeFirestorePayload(item)
+            : item
+        );
+    } else {
+      result[key] = value;
+    }
+  }
+  return result;
+}
+
+/**
+ * Normalizes and prepares product fields for saving/updating in Firestore.
+ * Ensures numbers are parsed, empty optional fields never contain undefined,
+ * and compareAtPrice / subcategory / dimensions are safely handled.
+ */
+export function prepareProductData(data: Record<string, any>, isNew = false): Record<string, any> {
+  const clean: Record<string, any> = {};
+
+  for (const [key, value] of Object.entries(data)) {
+    // 1. Safe handling of compareAtPrice
+    if (key === 'compareAtPrice') {
+      if (value !== null && value !== undefined && value !== '' && !isNaN(Number(value)) && Number(value) > 0) {
+        clean.compareAtPrice = Number(value);
+      } else if (isNew) {
+        // When empty on new product creation, omit compareAtPrice from the document
+        continue;
+      } else {
+        // When empty on update, save null so Firestore clears any existing compareAtPrice
+        clean.compareAtPrice = null;
+      }
+      continue;
+    }
+
+    // 2. Safe handling of subcategory
+    if (key === 'subcategory') {
+      if (typeof value === 'string' && value.trim()) {
+        clean.subcategory = value.trim();
+      } else if (isNew) {
+        // Omit subcategory from new product if empty
+        continue;
+      } else {
+        clean.subcategory = null;
+      }
+      continue;
+    }
+
+    // 3. Skip any other undefined values
+    if (value === undefined) {
+      continue;
+    }
+
+    // 4. Price
+    if (key === 'price') {
+      clean.price = Number(value) || 0;
+      continue;
+    }
+
+    // 5. Safe handling of dimensions
+    if (key === 'dimensions' && value && typeof value === 'object' && !Array.isArray(value)) {
+      const cleanDims: Record<string, string> = {};
+      for (const [dimKey, dimVal] of Object.entries(value)) {
+        if (typeof dimVal === 'string' && dimVal.trim()) {
+          cleanDims[dimKey] = dimVal.trim();
+        }
+      }
+      clean.dimensions = cleanDims;
+      continue;
+    }
+
+    // 6. Object / array recursion for safety
+    if (
+      value !== null &&
+      typeof value === 'object' &&
+      !Array.isArray(value) &&
+      !(value instanceof Date) &&
+      typeof (value as any).toMillis !== 'function'
+    ) {
+      if ((value as any).constructor?.name === 'FieldValue' || '_methodName' in (value as any)) {
+        clean[key] = value;
+      } else {
+        clean[key] = sanitizeFirestorePayload(value);
+      }
+      continue;
+    }
+
+    clean[key] = value;
+  }
+
+  return sanitizeFirestorePayload(clean);
+}
+
 // ==========================================
 // PRODUCTS
 // ==========================================
@@ -80,20 +199,25 @@ export async function fetchProducts(): Promise<Product[]> {
 
 export async function saveProduct(product: Omit<Product, 'id' | 'createdAt'> & { id?: string }): Promise<string> {
   const { id, ...data } = product;
-  const docData = {
-    ...data,
-    code: product.productCode,
-    active: product.isActive,
+  const isNew = !id;
+  const preparedData = prepareProductData(data, isNew);
+
+  const docData: Record<string, any> = {
+    ...preparedData,
+    code: product.productCode || preparedData.productCode || `BS-${(id || 'NEW').slice(0, 6).toUpperCase()}`,
+    active: product.isActive !== undefined ? product.isActive : preparedData.isActive ?? true,
     updatedAt: serverTimestamp(),
   };
 
+  const safeDocData = sanitizeFirestorePayload(docData);
+
   if (id) {
     const docRef = doc(db, PRODUCTS_COLLECTION, id);
-    await setDoc(docRef, { ...docData, createdAt: serverTimestamp() }, { merge: true });
+    await setDoc(docRef, { ...safeDocData, createdAt: serverTimestamp() }, { merge: true });
     return id;
   } else {
     const docRef = await addDoc(collection(db, PRODUCTS_COLLECTION), {
-      ...docData,
+      ...safeDocData,
       createdAt: serverTimestamp(),
     });
     return docRef.id;
@@ -102,10 +226,12 @@ export async function saveProduct(product: Omit<Product, 'id' | 'createdAt'> & {
 
 export async function updateProductDoc(id: string, updates: Partial<Product>): Promise<void> {
   const docRef = doc(db, PRODUCTS_COLLECTION, id);
-  const data: any = { ...updates, updatedAt: serverTimestamp() };
+  const preparedUpdates = prepareProductData(updates, false /* isNew = false */);
+  const data: Record<string, any> = { ...preparedUpdates, updatedAt: serverTimestamp() };
   if (updates.isActive !== undefined) data.active = updates.isActive;
   if (updates.productCode !== undefined) data.code = updates.productCode;
-  await updateDoc(docRef, data);
+  const safeData = sanitizeFirestorePayload(data);
+  await updateDoc(docRef, safeData);
 }
 
 export async function removeProductDoc(id: string): Promise<void> {
@@ -139,12 +265,12 @@ export async function fetchCategories(): Promise<Category[]> {
 
 export async function saveCategory(category: Omit<Category, 'id'> & { id?: string }): Promise<string> {
   const { id, ...data } = category;
-  const docData = {
+  const docData = sanitizeFirestorePayload({
     ...data,
     sortOrder: category.displayOrder,
     active: category.isActive,
     updatedAt: serverTimestamp(),
-  };
+  });
 
   if (id) {
     const docRef = doc(db, CATEGORIES_COLLECTION, id);
@@ -161,7 +287,7 @@ export async function saveCategory(category: Omit<Category, 'id'> & { id?: strin
 
 export async function updateCategoryDoc(id: string, updates: Partial<Category>): Promise<void> {
   const docRef = doc(db, CATEGORIES_COLLECTION, id);
-  const data: any = { ...updates, updatedAt: serverTimestamp() };
+  const data: any = sanitizeFirestorePayload({ ...updates, updatedAt: serverTimestamp() });
   if (updates.isActive !== undefined) data.active = updates.isActive;
   if (updates.displayOrder !== undefined) data.sortOrder = updates.displayOrder;
   await updateDoc(docRef, data);
@@ -201,12 +327,12 @@ export async function fetchBanners(): Promise<Banner[]> {
 
 export async function saveBanner(banner: Omit<Banner, 'id'> & { id?: string }): Promise<string> {
   const { id, ...data } = banner;
-  const docData = {
+  const docData = sanitizeFirestorePayload({
     ...data,
     buttonLink: banner.buttonUrl,
     active: banner.isActive,
     updatedAt: serverTimestamp(),
-  };
+  });
 
   if (id) {
     const docRef = doc(db, BANNERS_COLLECTION, id);
@@ -223,7 +349,7 @@ export async function saveBanner(banner: Omit<Banner, 'id'> & { id?: string }): 
 
 export async function updateBannerDoc(id: string, updates: Partial<Banner>): Promise<void> {
   const docRef = doc(db, BANNERS_COLLECTION, id);
-  const data: any = { ...updates, updatedAt: serverTimestamp() };
+  const data: any = sanitizeFirestorePayload({ ...updates, updatedAt: serverTimestamp() });
   if (updates.isActive !== undefined) data.active = updates.isActive;
   if (updates.buttonUrl !== undefined) data.buttonLink = updates.buttonUrl;
   await updateDoc(docRef, data);
@@ -260,12 +386,12 @@ export async function fetchTestimonials(): Promise<Testimonial[]> {
 
 export async function saveTestimonial(t: Omit<Testimonial, 'id'> & { id?: string }): Promise<string> {
   const { id, ...data } = t;
-  const docData = {
+  const docData = sanitizeFirestorePayload({
     ...data,
     message: t.review,
     active: t.isActive,
     updatedAt: serverTimestamp(),
-  };
+  });
 
   if (id) {
     const docRef = doc(db, TESTIMONIALS_COLLECTION, id);
@@ -282,7 +408,7 @@ export async function saveTestimonial(t: Omit<Testimonial, 'id'> & { id?: string
 
 export async function updateTestimonialDoc(id: string, updates: Partial<Testimonial>): Promise<void> {
   const docRef = doc(db, TESTIMONIALS_COLLECTION, id);
-  const data: any = { ...updates, updatedAt: serverTimestamp() };
+  const data: any = sanitizeFirestorePayload({ ...updates, updatedAt: serverTimestamp() });
   if (updates.isActive !== undefined) data.active = updates.isActive;
   if (updates.review !== undefined) data.message = updates.review;
   await updateDoc(docRef, data);
@@ -316,12 +442,12 @@ export async function fetchFAQs(): Promise<FAQItem[]> {
 
 export async function saveFAQ(faq: Omit<FAQItem, 'id'> & { id?: string }): Promise<string> {
   const { id, ...data } = faq;
-  const docData = {
+  const docData = sanitizeFirestorePayload({
     ...data,
     sortOrder: faq.order,
     active: faq.isActive,
     updatedAt: serverTimestamp(),
-  };
+  });
 
   if (id) {
     const docRef = doc(db, FAQS_COLLECTION, id);
@@ -338,7 +464,7 @@ export async function saveFAQ(faq: Omit<FAQItem, 'id'> & { id?: string }): Promi
 
 export async function updateFAQDoc(id: string, updates: Partial<FAQItem>): Promise<void> {
   const docRef = doc(db, FAQS_COLLECTION, id);
-  const data: any = { ...updates, updatedAt: serverTimestamp() };
+  const data: any = sanitizeFirestorePayload({ ...updates, updatedAt: serverTimestamp() });
   if (updates.isActive !== undefined) data.active = updates.isActive;
   if (updates.order !== undefined) data.sortOrder = updates.order;
   await updateDoc(docRef, data);
@@ -454,7 +580,7 @@ export async function fetchOrders(): Promise<OrderInquiry[]> {
 }
 
 export async function saveOrderDoc(order: Omit<OrderInquiry, 'id' | 'createdAt'>): Promise<string> {
-  const docRef = await addDoc(collection(db, ORDERS_COLLECTION), {
+  const docRef = await addDoc(collection(db, ORDERS_COLLECTION), sanitizeFirestorePayload({
     ...order,
     customerName: order.customerName || 'Direct Studio Patron',
     products: order.items,
@@ -462,7 +588,7 @@ export async function saveOrderDoc(order: Omit<OrderInquiry, 'id' | 'createdAt'>
     status: order.status || 'new',
     createdAt: serverTimestamp(),
     updatedAt: serverTimestamp(),
-  });
+  }));
   return docRef.id;
 }
 
@@ -495,10 +621,10 @@ export async function fetchCustomers(): Promise<CustomerInquiry[]> {
 }
 
 export async function saveCustomerInquiryDoc(inquiry: Omit<CustomerInquiry, 'id' | 'createdAt'>): Promise<string> {
-  const docRef = await addDoc(collection(db, CUSTOMERS_COLLECTION), {
+  const docRef = await addDoc(collection(db, CUSTOMERS_COLLECTION), sanitizeFirestorePayload({
     ...inquiry,
     createdAt: serverTimestamp(),
     updatedAt: serverTimestamp(),
-  });
+  }));
   return docRef.id;
 }

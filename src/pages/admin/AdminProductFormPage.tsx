@@ -20,7 +20,7 @@ export const AdminProductFormPage: React.FC = () => {
     slug: '',
     productCode: '',
     price: 3500,
-    compareAtPrice: 0,
+    compareAtPrice: '' as string | number,
     shortDescription: '',
     description: '',
     category: 'Vases',
@@ -51,18 +51,21 @@ export const AdminProductFormPage: React.FC = () => {
         slug: existingProduct.slug,
         productCode: existingProduct.productCode,
         price: existingProduct.price,
-        compareAtPrice: existingProduct.compareAtPrice || 0,
+        compareAtPrice:
+          existingProduct.compareAtPrice != null && existingProduct.compareAtPrice > 0
+            ? existingProduct.compareAtPrice
+            : '',
         shortDescription: existingProduct.shortDescription,
         description: existingProduct.description,
         category: existingProduct.category,
         subcategory: existingProduct.subcategory || '',
         material: existingProduct.material,
-        height: existingProduct.dimensions.height || '',
-        width: existingProduct.dimensions.width || '',
-        diameter: existingProduct.dimensions.diameter || '',
-        weight: existingProduct.dimensions.weight || '',
+        height: existingProduct.dimensions?.height || '',
+        width: existingProduct.dimensions?.width || '',
+        diameter: existingProduct.dimensions?.diameter || '',
+        weight: existingProduct.dimensions?.weight || '',
         color: existingProduct.color,
-        tags: existingProduct.tags.join(', '),
+        tags: Array.isArray(existingProduct.tags) ? existingProduct.tags.join(', ') : '',
         stockStatus: existingProduct.stockStatus,
         featured: existingProduct.featured,
         newArrival: existingProduct.newArrival,
@@ -141,24 +144,42 @@ export const AdminProductFormPage: React.FC = () => {
 
     const finalImages = imageList.length > 0 ? imageList : [fallbackImage];
 
-    const productPayload = {
+    const rawPrice = formData.price;
+    const parsedPrice = typeof rawPrice === 'number' ? rawPrice : parseFloat(String(rawPrice).trim());
+    const finalPrice = Number.isFinite(parsedPrice) ? parsedPrice : 0;
+
+    let parsedCompareAtPrice: number | null = null;
+    if (
+      formData.compareAtPrice !== '' &&
+      formData.compareAtPrice !== null &&
+      formData.compareAtPrice !== undefined
+    ) {
+      const parsed =
+        typeof formData.compareAtPrice === 'number'
+          ? formData.compareAtPrice
+          : parseFloat(String(formData.compareAtPrice).trim());
+      if (Number.isFinite(parsed) && parsed > 0) {
+        parsedCompareAtPrice = parsed;
+      }
+    }
+
+    const dimensions: { height?: string; width?: string; diameter?: string; weight?: string } = {};
+    if (formData.height.trim()) dimensions.height = formData.height.trim();
+    if (formData.width.trim()) dimensions.width = formData.width.trim();
+    if (formData.diameter.trim()) dimensions.diameter = formData.diameter.trim();
+    if (formData.weight.trim()) dimensions.weight = formData.weight.trim();
+
+    const productPayload: any = {
       name: formData.name.trim(),
       slug: formData.slug.trim() || slugify(formData.name),
       productCode: formData.productCode.trim().toUpperCase(),
-      price: Number(formData.price) || 0,
-      compareAtPrice: Number(formData.compareAtPrice) || undefined,
+      price: finalPrice,
       shortDescription: formData.shortDescription.trim(),
       description: formData.description.trim(),
       category: formData.category,
-      subcategory: formData.subcategory.trim() || undefined,
       images: finalImages,
       material: formData.material.trim(),
-      dimensions: {
-        height: formData.height.trim() || undefined,
-        width: formData.width.trim() || undefined,
-        diameter: formData.diameter.trim() || undefined,
-        weight: formData.weight.trim() || undefined,
-      },
+      dimensions,
       color: formData.color.trim() || 'Natural Clay',
       tags: formData.tags
         .split(',')
@@ -169,6 +190,18 @@ export const AdminProductFormPage: React.FC = () => {
       newArrival: formData.newArrival,
       isActive: formData.isActive,
     };
+
+    if (parsedCompareAtPrice !== null) {
+      productPayload.compareAtPrice = parsedCompareAtPrice;
+    } else if (isEditing) {
+      productPayload.compareAtPrice = null;
+    }
+
+    if (formData.subcategory.trim()) {
+      productPayload.subcategory = formData.subcategory.trim();
+    } else if (isEditing) {
+      productPayload.subcategory = null;
+    }
 
     setIsSubmitting(true);
     try {
@@ -296,7 +329,10 @@ export const AdminProductFormPage: React.FC = () => {
             <input
               type="number"
               value={formData.compareAtPrice}
-              onChange={(e) => setFormData({ ...formData, compareAtPrice: Number(e.target.value) })}
+              onChange={(e) => setFormData({ ...formData, compareAtPrice: e.target.value })}
+              placeholder="e.g. 4200 (optional)"
+              min="0"
+              step="any"
               className="w-full bg-surface-container-low px-4 py-2.5 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none focus:border-primary"
             />
           </div>
