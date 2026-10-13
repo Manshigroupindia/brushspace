@@ -453,10 +453,16 @@ export const ProductDetailPage: React.FC = () => {
                 {openAccordion === 'specsDim' && (
                   <div className="px-space-md pb-space-md pt-0 text-on-surface-variant font-body-md text-body-md leading-relaxed">
                     <div className="grid grid-cols-2 gap-y-2 gap-x-4 py-2 font-body-sm text-body-sm">
-                      <div><span className="font-semibold text-on-surface">Height:</span> {product.dimensions.height || '32 cm'}</div>
-                      <div><span className="font-semibold text-on-surface">Diameter/Width:</span> {product.dimensions.width || product.dimensions.diameter || '18 cm'}</div>
-                      <div><span className="font-semibold text-on-surface">Weight:</span> {product.dimensions.weight || '1.8 kg'}</div>
-                      <div><span className="font-semibold text-on-surface">Primary Material:</span> {product.material}</div>
+                      {(product.dimensions as any).raw ? (
+                        <div><span className="font-semibold text-on-surface">Dimensions:</span> {(product.dimensions as any).raw}</div>
+                      ) : (
+                        <>
+                          <div><span className="font-semibold text-on-surface">Height:</span> {product.dimensions.height || '—'}</div>
+                          <div><span className="font-semibold text-on-surface">Diameter/Width:</span> {product.dimensions.width || product.dimensions.diameter || '—'}</div>
+                        </>
+                      )}
+                      <div><span className="font-semibold text-on-surface">Weight:</span> {product.dimensions.weight || '—'}</div>
+                      <div><span className="font-semibold text-on-surface">Primary Material:</span> {product.material || 'Artisanal Medium'}</div>
                     </div>
                   </div>
                 )}

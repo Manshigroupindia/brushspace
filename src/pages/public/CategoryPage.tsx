@@ -31,7 +31,10 @@ export const CategoryPage: React.FC = () => {
         // Match category slug or name
         const matchSlug = p.category.toLowerCase() === slug.toLowerCase();
         const matchCatName = category && p.category.toLowerCase() === category.name.toLowerCase();
-        return matchSlug || matchCatName;
+        const matchVases = slug.toLowerCase() === 'vases' && (p.category.toLowerCase() === 'vases' || p.category.toLowerCase() === 'vases & vessels');
+        const matchGift = (slug.toLowerCase() === 'gift' || slug.toLowerCase() === 'gifts') && (p.category.toLowerCase() === 'gift' || p.category.toLowerCase() === 'gifts' || p.category.toLowerCase() === 'gift décor');
+        const matchFurniture = slug.toLowerCase() === 'decorative-furniture' && (p.category.toLowerCase() === 'decorative furniture' || p.category.toLowerCase() === 'furniture');
+        return matchSlug || matchCatName || matchVases || matchGift || matchFurniture;
       })
       .filter((p) => {
         if (selectedPriceRange === 'under-2500') return p.price < 2500;

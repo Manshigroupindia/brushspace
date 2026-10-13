@@ -71,7 +71,9 @@ export const ShopPage: React.FC = () => {
           const matchSlug = p.category.toLowerCase() === selectedCategory.toLowerCase();
           const matchName = catObj && p.category.toLowerCase() === catObj.name.toLowerCase();
           const matchVases = selectedCategory.toLowerCase() === 'vases' && (p.category.toLowerCase() === 'vases' || p.category.toLowerCase() === 'vases & vessels');
-          if (!matchSlug && !matchName && !matchVases) {
+          const matchGift = (selectedCategory.toLowerCase() === 'gift' || selectedCategory.toLowerCase() === 'gifts') && (p.category.toLowerCase() === 'gift' || p.category.toLowerCase() === 'gifts' || p.category.toLowerCase() === 'gift décor');
+          const matchFurniture = selectedCategory.toLowerCase() === 'decorative-furniture' && (p.category.toLowerCase() === 'decorative furniture' || p.category.toLowerCase() === 'furniture');
+          if (!matchSlug && !matchName && !matchVases && !matchGift && !matchFurniture) {
             return false;
           }
         }
@@ -261,7 +263,9 @@ export const ShopPage: React.FC = () => {
                   p.isActive &&
                   (p.category.toLowerCase() === cat.slug.toLowerCase() ||
                     p.category.toLowerCase() === cat.name.toLowerCase() ||
-                    (cat.slug.toLowerCase() === 'vases' && p.category.toLowerCase() === 'vases'))
+                    (cat.slug.toLowerCase() === 'vases' && (p.category.toLowerCase() === 'vases' || p.category.toLowerCase() === 'vases & vessels')) ||
+                    ((cat.slug.toLowerCase() === 'gift' || cat.slug.toLowerCase() === 'gifts') && (p.category.toLowerCase() === 'gift' || p.category.toLowerCase() === 'gifts' || p.category.toLowerCase() === 'gift décor')) ||
+                    (cat.slug.toLowerCase() === 'decorative-furniture' && (p.category.toLowerCase() === 'decorative furniture' || p.category.toLowerCase() === 'furniture')))
               ).length;
               return (
                 <button

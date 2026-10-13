@@ -28,7 +28,9 @@ export const AdminProductsPage: React.FC = () => {
         categoryFilter === 'all' ||
         p.category.toLowerCase() === categoryFilter.toLowerCase() ||
         (categories.find((c) => c.slug.toLowerCase() === categoryFilter.toLowerCase())?.name.toLowerCase() === p.category.toLowerCase()) ||
-        (categoryFilter.toLowerCase() === 'vases' && (p.category.toLowerCase() === 'vases' || p.category.toLowerCase() === 'vases & vessels'));
+        (categoryFilter.toLowerCase() === 'vases' && (p.category.toLowerCase() === 'vases' || p.category.toLowerCase() === 'vases & vessels')) ||
+        ((categoryFilter.toLowerCase() === 'gift' || categoryFilter.toLowerCase() === 'gifts') && (p.category.toLowerCase() === 'gift' || p.category.toLowerCase() === 'gifts' || p.category.toLowerCase() === 'gift décor')) ||
+        (categoryFilter.toLowerCase() === 'decorative-furniture' && (p.category.toLowerCase() === 'decorative furniture' || p.category.toLowerCase() === 'furniture'));
       return matchSearch && matchCat;
     });
   }, [products, search, categoryFilter, categories]);
