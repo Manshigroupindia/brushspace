@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useStoreData } from '../../context/StoreDataContext';
 import { useToast } from '../../context/ToastContext';
 import type { Testimonial } from '../../types';
@@ -10,6 +10,16 @@ export const AdminTestimonialsPage: React.FC = () => {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (modalOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [modalOpen]);
   const [isUploading, setIsUploading] = useState(false);
 
   const [formData, setFormData] = useState<Omit<Testimonial, 'id'>>({
@@ -171,117 +181,133 @@ export const AdminTestimonialsPage: React.FC = () => {
       </div>
 
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-on-secondary-fixed/50 backdrop-blur-sm">
-          <div className="bg-surface rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-outline-variant/20 animate-scaleIn">
-            <h2 className="font-headline-sm text-headline-sm text-on-surface mb-4 font-semibold">
-              {editingId ? 'Edit Testimonial' : 'New Collector Reflection'}
-            </h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-on-secondary-fixed/50 backdrop-blur-sm overflow-y-auto">
+          <div className="bg-surface rounded-2xl max-w-lg w-full shadow-2xl border border-outline-variant/20 animate-scaleIn flex flex-col max-h-[90vh] my-auto overflow-hidden">
+            {/* Modal Header */}
+            <div className="p-6 pb-4 border-b border-outline-variant/15 flex items-center justify-between shrink-0">
+              <h2 className="font-headline-sm text-headline-sm text-on-surface font-semibold">
+                {editingId ? 'Edit Testimonial' : 'New Collector Reflection'}
+              </h2>
+              <button
+                type="button"
+                onClick={() => setModalOpen(false)}
+                className="p-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"
+                title="Close modal"
+              >
+                <span className="material-symbols-outlined text-[20px]">close</span>
+              </button>
+            </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
-                    Customer Name *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none"
-                  />
-                </div>
-                <div>
-                  <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
-                    Location
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.location}
-                    onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                    className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
-                  Rating (1-5)
-                </label>
-                <input
-                  type="number"
-                  min={1}
-                  max={5}
-                  value={formData.rating}
-                  onChange={(e) => setFormData({ ...formData, rating: Number(e.target.value) })}
-                  className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none"
-                />
-              </div>
-
-              <div>
-                <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
-                  Customer Review *
-                </label>
-                <textarea
-                  rows={3}
-                  required
-                  value={formData.review}
-                  onChange={(e) => setFormData({ ...formData, review: e.target.value })}
-                  className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none resize-none"
-                />
-              </div>
-
-              <div>
-                <div className="flex items-center justify-between mb-1">
-                  <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface font-semibold">
-                    Client Photo / Interior Setup (Cloudinary)
-                  </label>
-                  <label className={`cursor-pointer inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider text-primary hover:underline ${isUploading ? 'opacity-50 pointer-events-none' : ''}`}>
-                    <span className="material-symbols-outlined text-[16px]">cloud_upload</span>
-                    <span>{isUploading ? 'Uploading...' : 'Upload Photo'}</span>
-                    <input type="file" accept="image/*" onChange={handleImageUpload} disabled={isUploading} className="hidden" />
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  value={formData.image || ''}
-                  onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                  placeholder="https://res.cloudinary.com/..."
-                  className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-mono text-[12px] outline-none mb-2"
-                />
-                {formData.image && (
-                  <div className="w-16 h-16 rounded-full overflow-hidden border border-outline-variant/20 bg-surface-container">
-                    <img src={formData.image} alt="Reviewer" className="w-full h-full object-cover" />
+            {/* Modal Form */}
+            <form onSubmit={handleSubmit} className="flex flex-col flex-1 min-h-0 overflow-hidden">
+              {/* Scrollable form content */}
+              <div className="p-6 space-y-4 overflow-y-auto flex-1">
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
+                      Customer Name *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none"
+                    />
                   </div>
-                )}
+                  <div>
+                    <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
+                      Location
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.location}
+                      onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                      className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
+                    Rating (1-5)
+                  </label>
+                  <input
+                    type="number"
+                    min={1}
+                    max={5}
+                    value={formData.rating}
+                    onChange={(e) => setFormData({ ...formData, rating: Number(e.target.value) })}
+                    className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
+                    Customer Review *
+                  </label>
+                  <textarea
+                    rows={3}
+                    required
+                    value={formData.review}
+                    onChange={(e) => setFormData({ ...formData, review: e.target.value })}
+                    className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none resize-none"
+                  />
+                </div>
+
+                <div>
+                  <div className="flex items-center justify-between mb-1">
+                    <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface font-semibold">
+                      Client Photo / Interior Setup (Cloudinary)
+                    </label>
+                    <label className={`cursor-pointer inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider text-primary hover:underline ${isUploading ? 'opacity-50 pointer-events-none' : ''}`}>
+                      <span className="material-symbols-outlined text-[16px]">cloud_upload</span>
+                      <span>{isUploading ? 'Uploading...' : 'Upload Photo'}</span>
+                      <input type="file" accept="image/*" onChange={handleImageUpload} disabled={isUploading} className="hidden" />
+                    </label>
+                  </div>
+                  <input
+                    type="text"
+                    value={formData.image || ''}
+                    onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                    placeholder="https://res.cloudinary.com/..."
+                    className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-mono text-[12px] outline-none mb-2"
+                  />
+                  {formData.image && (
+                    <div className="w-16 h-16 rounded-full overflow-hidden border border-outline-variant/20 bg-surface-container">
+                      <img src={formData.image} alt="Reviewer" className="w-full h-full object-cover" />
+                    </div>
+                  )}
+                </div>
+
+                <div className="flex gap-4">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={formData.featured}
+                      onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
+                      className="w-4 h-4 rounded text-primary"
+                    />
+                    <span className="font-label-sm text-label-sm uppercase tracking-wider font-semibold">
+                      Featured
+                    </span>
+                  </label>
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={formData.isActive}
+                      onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
+                      className="w-4 h-4 rounded text-primary"
+                    />
+                    <span className="font-label-sm text-label-sm uppercase tracking-wider font-semibold">
+                      Active
+                    </span>
+                  </label>
+                </div>
               </div>
 
-              <div className="flex gap-4">
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={formData.featured}
-                    onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
-                    className="w-4 h-4 rounded text-primary"
-                  />
-                  <span className="font-label-sm text-label-sm uppercase tracking-wider font-semibold">
-                    Featured
-                  </span>
-                </label>
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={formData.isActive}
-                    onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
-                    className="w-4 h-4 rounded text-primary"
-                  />
-                  <span className="font-label-sm text-label-sm uppercase tracking-wider font-semibold">
-                    Active
-                  </span>
-                </label>
-              </div>
-
-              <div className="pt-3 border-t border-outline-variant/15 flex justify-end gap-2">
+              {/* Modal Footer */}
+              <div className="p-4 sm:px-6 border-t border-outline-variant/15 bg-surface-container-low/50 flex justify-end gap-2 shrink-0">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
@@ -293,7 +319,7 @@ export const AdminTestimonialsPage: React.FC = () => {
                   type="submit"
                   className="px-6 py-2 bg-on-secondary-fixed text-surface rounded-lg font-label-sm text-label-sm uppercase tracking-wider hover:bg-primary transition-colors"
                 >
-                  Save Reflection
+                  {editingId ? 'Update Reflection' : 'Save Reflection'}
                 </button>
               </div>
             </form>

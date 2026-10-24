@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useStoreData } from '../../context/StoreDataContext';
 import { useToast } from '../../context/ToastContext';
 import type { FAQItem } from '../../types';
@@ -9,6 +9,16 @@ export const AdminFAQsPage: React.FC = () => {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (modalOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [modalOpen]);
 
   const [formData, setFormData] = useState<Omit<FAQItem, 'id'>>({
     question: '',
@@ -142,87 +152,103 @@ export const AdminFAQsPage: React.FC = () => {
       </div>
 
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-on-secondary-fixed/50 backdrop-blur-sm">
-          <div className="bg-surface rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-outline-variant/20 animate-scaleIn">
-            <h2 className="font-headline-sm text-headline-sm text-on-surface mb-4 font-semibold">
-              {editingId ? 'Edit FAQ' : 'New FAQ'}
-            </h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-on-secondary-fixed/50 backdrop-blur-sm overflow-y-auto">
+          <div className="bg-surface rounded-2xl max-w-lg w-full shadow-2xl border border-outline-variant/20 animate-scaleIn flex flex-col max-h-[90vh] my-auto overflow-hidden">
+            {/* Modal Header */}
+            <div className="p-6 pb-4 border-b border-outline-variant/15 flex items-center justify-between shrink-0">
+              <h2 className="font-headline-sm text-headline-sm text-on-surface font-semibold">
+                {editingId ? 'Edit FAQ' : 'New FAQ'}
+              </h2>
+              <button
+                type="button"
+                onClick={() => setModalOpen(false)}
+                className="p-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"
+                title="Close modal"
+              >
+                <span className="material-symbols-outlined text-[20px]">close</span>
+              </button>
+            </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
-                    Category
-                  </label>
-                  <select
-                    value={formData.category}
-                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none"
-                  >
-                    <option value="Ordering">Ordering</option>
-                    <option value="Payments">Payments</option>
-                    <option value="Shipping">Shipping</option>
-                    <option value="Products">Products</option>
-                    <option value="Customization">Customization</option>
-                    <option value="Orders">Orders</option>
-                    <option value="Support">Support</option>
-                  </select>
+            {/* Modal Form */}
+            <form onSubmit={handleSubmit} className="flex flex-col flex-1 min-h-0 overflow-hidden">
+              {/* Scrollable form content */}
+              <div className="p-6 space-y-4 overflow-y-auto flex-1">
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
+                      Category
+                    </label>
+                    <select
+                      value={formData.category}
+                      onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                      className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none"
+                    >
+                      <option value="Ordering">Ordering</option>
+                      <option value="Payments">Payments</option>
+                      <option value="Shipping">Shipping</option>
+                      <option value="Products">Products</option>
+                      <option value="Customization">Customization</option>
+                      <option value="Orders">Orders</option>
+                      <option value="Support">Support</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
+                      Display Order
+                    </label>
+                    <input
+                      type="number"
+                      value={formData.order}
+                      onChange={(e) => setFormData({ ...formData, order: Number(e.target.value) })}
+                      className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none"
+                    />
+                  </div>
                 </div>
+
                 <div>
                   <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
-                    Display Order
+                    Question *
                   </label>
                   <input
-                    type="number"
-                    value={formData.order}
-                    onChange={(e) => setFormData({ ...formData, order: Number(e.target.value) })}
+                    type="text"
+                    required
+                    value={formData.question}
+                    onChange={(e) => setFormData({ ...formData, question: e.target.value })}
+                    placeholder="e.g. How can I place an order?"
                     className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none"
                   />
                 </div>
+
+                <div>
+                  <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
+                    Answer *
+                  </label>
+                  <textarea
+                    rows={4}
+                    required
+                    value={formData.answer}
+                    onChange={(e) => setFormData({ ...formData, answer: e.target.value })}
+                    placeholder="Detailed answer for collectors..."
+                    className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none resize-none"
+                  />
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    checked={formData.isActive}
+                    onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
+                    id="faqActive"
+                    className="w-4 h-4 rounded text-primary"
+                  />
+                  <label htmlFor="faqActive" className="font-label-sm text-label-sm uppercase tracking-wider font-semibold cursor-pointer">
+                    Active in Live FAQ
+                  </label>
+                </div>
               </div>
 
-              <div>
-                <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
-                  Question *
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={formData.question}
-                  onChange={(e) => setFormData({ ...formData, question: e.target.value })}
-                  placeholder="e.g. How can I place an order?"
-                  className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none"
-                />
-              </div>
-
-              <div>
-                <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
-                  Answer *
-                </label>
-                <textarea
-                  rows={4}
-                  required
-                  value={formData.answer}
-                  onChange={(e) => setFormData({ ...formData, answer: e.target.value })}
-                  placeholder="Detailed answer for collectors..."
-                  className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none resize-none"
-                />
-              </div>
-
-              <div className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  checked={formData.isActive}
-                  onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
-                  id="faqActive"
-                  className="w-4 h-4 rounded text-primary"
-                />
-                <label htmlFor="faqActive" className="font-label-sm text-label-sm uppercase tracking-wider font-semibold cursor-pointer">
-                  Active in Live FAQ
-                </label>
-              </div>
-
-              <div className="pt-3 border-t border-outline-variant/15 flex justify-end gap-2">
+              {/* Modal Footer */}
+              <div className="p-4 sm:px-6 border-t border-outline-variant/15 bg-surface-container-low/50 flex justify-end gap-2 shrink-0">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
@@ -234,7 +260,7 @@ export const AdminFAQsPage: React.FC = () => {
                   type="submit"
                   className="px-6 py-2 bg-on-secondary-fixed text-surface rounded-lg font-label-sm text-label-sm uppercase tracking-wider hover:bg-primary transition-colors"
                 >
-                  Save Question
+                  {editingId ? 'Update Question' : 'Save Question'}
                 </button>
               </div>
             </form>

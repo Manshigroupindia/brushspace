@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useStoreData } from '../../context/StoreDataContext';
 import { useToast } from '../../context/ToastContext';
 import type { Banner } from '../../types';
@@ -10,6 +10,17 @@ export const AdminBannersPage: React.FC = () => {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (modalOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [modalOpen]);
+
   const [isUploadingPrimary, setIsUploadingPrimary] = useState(false);
   const [isUploadingSecondary, setIsUploadingSecondary] = useState(false);
 
@@ -202,170 +213,186 @@ export const AdminBannersPage: React.FC = () => {
       </div>
 
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-on-secondary-fixed/50 backdrop-blur-sm">
-          <div className="bg-surface rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-outline-variant/20 animate-scaleIn">
-            <h2 className="font-headline-sm text-headline-sm text-on-surface mb-4 font-semibold">
-              {editingId ? 'Edit Banner' : 'Create Banner'}
-            </h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-on-secondary-fixed/50 backdrop-blur-sm overflow-y-auto">
+          <div className="bg-surface rounded-2xl max-w-lg w-full shadow-2xl border border-outline-variant/20 animate-scaleIn flex flex-col max-h-[90vh] my-auto overflow-hidden">
+            {/* Modal Header */}
+            <div className="p-6 pb-4 border-b border-outline-variant/15 flex items-center justify-between shrink-0">
+              <h2 className="font-headline-sm text-headline-sm text-on-surface font-semibold">
+                {editingId ? 'Edit Banner' : 'Create Banner'}
+              </h2>
+              <button
+                type="button"
+                onClick={() => setModalOpen(false)}
+                className="p-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"
+                title="Close modal"
+              >
+                <span className="material-symbols-outlined text-[20px]">close</span>
+              </button>
+            </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
-                    Banner Type
-                  </label>
-                  <select
-                    value={formData.type}
-                    onChange={(e) => setFormData({ ...formData, type: e.target.value as any })}
-                    className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none"
-                  >
-                    <option value="hero">Hero Banner</option>
-                    <option value="promo">Promotional Spotlight</option>
-                    <option value="category">Category Header</option>
-                    <option value="popup">Announcement Popup</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
-                    Badge Pill
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.badge}
-                    onChange={(e) => setFormData({ ...formData, badge: e.target.value })}
-                    placeholder="Crafted in Limited Batches"
-                    className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
-                  Title *
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={formData.title}
-                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  placeholder="Bring Art Into Your Space."
-                  className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none"
-                />
-              </div>
-
-              <div>
-                <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
-                  Subtitle
-                </label>
-                <textarea
-                  rows={2}
-                  value={formData.subtitle}
-                  onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })}
-                  className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none resize-none"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
-                    Button Text
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.buttonText}
-                    onChange={(e) => setFormData({ ...formData, buttonText: e.target.value })}
-                    className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none"
-                  />
-                </div>
-                <div>
-                  <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
-                    Button URL
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.buttonUrl}
-                    onChange={(e) => setFormData({ ...formData, buttonUrl: e.target.value })}
-                    className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <div className="flex items-center justify-between mb-1">
-                  <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface font-semibold">
-                    Primary Banner Image (Cloudinary)
-                  </label>
-                  <label className={`cursor-pointer inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider text-primary hover:underline ${isUploadingPrimary ? 'opacity-50 pointer-events-none' : ''}`}>
-                    <span className="material-symbols-outlined text-[16px]">cloud_upload</span>
-                    <span>{isUploadingPrimary ? 'Uploading...' : 'Upload Image'}</span>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handlePrimaryUpload}
-                      disabled={isUploadingPrimary}
-                      className="hidden"
-                    />
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  value={formData.image}
-                  onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                  placeholder="https://res.cloudinary.com/..."
-                  className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm font-mono text-[12px] outline-none mb-2"
-                />
-                {formData.image && (
-                  <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden border border-outline-variant/20 bg-surface-container mb-2">
-                    <img src={formData.image} alt="Primary Banner" className="w-full h-full object-cover" />
+            {/* Modal Form */}
+            <form onSubmit={handleSubmit} className="flex flex-col flex-1 min-h-0 overflow-hidden">
+              {/* Scrollable form content */}
+              <div className="p-6 space-y-4 overflow-y-auto flex-1">
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
+                      Banner Type
+                    </label>
+                    <select
+                      value={formData.type}
+                      onChange={(e) => setFormData({ ...formData, type: e.target.value as any })}
+                      className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none"
+                    >
+                      <option value="hero">Hero Banner</option>
+                      <option value="promo">Promotional Spotlight</option>
+                      <option value="category">Category Header</option>
+                      <option value="popup">Announcement Popup</option>
+                    </select>
                   </div>
-                )}
-              </div>
-
-              <div>
-                <div className="flex items-center justify-between mb-1">
-                  <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface font-semibold">
-                    Secondary Collage Image URL (Optional)
-                  </label>
-                  <label className={`cursor-pointer inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider text-primary hover:underline ${isUploadingSecondary ? 'opacity-50 pointer-events-none' : ''}`}>
-                    <span className="material-symbols-outlined text-[16px]">cloud_upload</span>
-                    <span>{isUploadingSecondary ? 'Uploading...' : 'Upload Image'}</span>
+                  <div>
+                    <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
+                      Badge Pill
+                    </label>
                     <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handleSecondaryUpload}
-                      disabled={isUploadingSecondary}
-                      className="hidden"
+                      type="text"
+                      value={formData.badge}
+                      onChange={(e) => setFormData({ ...formData, badge: e.target.value })}
+                      placeholder="Crafted in Limited Batches"
+                      className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none"
                     />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
+                    Title *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.title}
+                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                    placeholder="Bring Art Into Your Space."
+                    className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
+                    Subtitle
+                  </label>
+                  <textarea
+                    rows={2}
+                    value={formData.subtitle}
+                    onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })}
+                    className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none resize-none"
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
+                      Button Text
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.buttonText}
+                      onChange={(e) => setFormData({ ...formData, buttonText: e.target.value })}
+                      className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
+                      Button URL
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.buttonUrl}
+                      onChange={(e) => setFormData({ ...formData, buttonUrl: e.target.value })}
+                      className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <div className="flex items-center justify-between mb-1">
+                    <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface font-semibold">
+                      Primary Banner Image (Cloudinary)
+                    </label>
+                    <label className={`cursor-pointer inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider text-primary hover:underline ${isUploadingPrimary ? 'opacity-50 pointer-events-none' : ''}`}>
+                      <span className="material-symbols-outlined text-[16px]">cloud_upload</span>
+                      <span>{isUploadingPrimary ? 'Uploading...' : 'Upload Image'}</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handlePrimaryUpload}
+                        disabled={isUploadingPrimary}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+                  <input
+                    type="text"
+                    value={formData.image}
+                    onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                    placeholder="https://res.cloudinary.com/..."
+                    className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm font-mono text-[12px] outline-none mb-2"
+                  />
+                  {formData.image && (
+                    <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden border border-outline-variant/20 bg-surface-container mb-2">
+                      <img src={formData.image} alt="Primary Banner" className="w-full h-full object-cover" />
+                    </div>
+                  )}
+                </div>
+
+                <div>
+                  <div className="flex items-center justify-between mb-1">
+                    <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface font-semibold">
+                      Secondary Collage Image URL (Optional)
+                    </label>
+                    <label className={`cursor-pointer inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider text-primary hover:underline ${isUploadingSecondary ? 'opacity-50 pointer-events-none' : ''}`}>
+                      <span className="material-symbols-outlined text-[16px]">cloud_upload</span>
+                      <span>{isUploadingSecondary ? 'Uploading...' : 'Upload Image'}</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleSecondaryUpload}
+                        disabled={isUploadingSecondary}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+                  <input
+                    type="text"
+                    value={formData.secondaryImage}
+                    onChange={(e) => setFormData({ ...formData, secondaryImage: e.target.value })}
+                    placeholder="https://res.cloudinary.com/..."
+                    className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm font-mono text-[12px] outline-none mb-2"
+                  />
+                  {formData.secondaryImage && (
+                    <div className="relative w-28 aspect-square rounded-lg overflow-hidden border border-outline-variant/20 bg-surface-container">
+                      <img src={formData.secondaryImage} alt="Secondary Banner" className="w-full h-full object-cover" />
+                    </div>
+                  )}
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    checked={formData.isActive}
+                    onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
+                    id="banActive"
+                    className="w-4 h-4 rounded text-primary"
+                  />
+                  <label htmlFor="banActive" className="font-label-sm text-label-sm uppercase tracking-wider font-semibold cursor-pointer">
+                    Active
                   </label>
                 </div>
-                <input
-                  type="text"
-                  value={formData.secondaryImage}
-                  onChange={(e) => setFormData({ ...formData, secondaryImage: e.target.value })}
-                  placeholder="https://res.cloudinary.com/..."
-                  className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm font-mono text-[12px] outline-none mb-2"
-                />
-                {formData.secondaryImage && (
-                  <div className="relative w-28 aspect-square rounded-lg overflow-hidden border border-outline-variant/20 bg-surface-container">
-                    <img src={formData.secondaryImage} alt="Secondary Banner" className="w-full h-full object-cover" />
-                  </div>
-                )}
               </div>
 
-              <div className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  checked={formData.isActive}
-                  onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
-                  id="banActive"
-                  className="w-4 h-4 rounded text-primary"
-                />
-                <label htmlFor="banActive" className="font-label-sm text-label-sm uppercase tracking-wider font-semibold cursor-pointer">
-                  Active
-                </label>
-              </div>
-
-              <div className="pt-3 border-t border-outline-variant/15 flex justify-end gap-2">
+              {/* Modal Footer */}
+              <div className="p-4 sm:px-6 border-t border-outline-variant/15 bg-surface-container-low/50 flex justify-end gap-2 shrink-0">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
@@ -377,7 +404,7 @@ export const AdminBannersPage: React.FC = () => {
                   type="submit"
                   className="px-6 py-2 bg-on-secondary-fixed text-surface rounded-lg font-label-sm text-label-sm uppercase tracking-wider hover:bg-primary transition-colors"
                 >
-                  Save Banner
+                  {editingId ? 'Update Banner' : 'Save Banner'}
                 </button>
               </div>
             </form>
