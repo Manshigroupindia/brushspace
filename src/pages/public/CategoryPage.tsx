@@ -156,9 +156,9 @@ export const CategoryPage: React.FC = () => {
       </div>
 
       {/* Category Products Grid */}
-      <section className="w-full max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop py-space-xl">
+      <section className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-gutter-desktop py-5 sm:py-space-xl">
         {categoryProducts.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter-desktop">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-3.5 md:gap-gutter-desktop">
             {categoryProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

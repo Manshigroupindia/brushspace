@@ -37,7 +37,7 @@ export const FeaturedCollection: React.FC = () => {
 
   return (
     <section className="w-full bg-surface-container py-space-xl" id="featured-collection">
-      <div className="max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-gutter-desktop">
         <div className="flex flex-col items-center text-center mb-10">
           <p className="font-label-md text-label-md text-primary uppercase tracking-widest mb-2 font-semibold">
             Handpicked Edit
@@ -71,11 +71,11 @@ export const FeaturedCollection: React.FC = () => {
 
         {/* Product Cards Grid / Empty State */}
         {isLoading && products.length === 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-3.5 md:gap-gutter">
             {Array.from({ length: 4 }).map((_, i) => (
               <div key={i} className="animate-pulse bg-surface-container-low rounded-xl overflow-hidden border border-outline-variant/15 flex flex-col">
-                <div className="w-full aspect-[4/5] bg-surface-container-high"></div>
-                <div className="p-4 space-y-2">
+                <div className="w-full aspect-square bg-surface-container-high"></div>
+                <div className="p-2.5 sm:p-4 space-y-2">
                   <div className="h-4 bg-surface-variant rounded w-2/3"></div>
                   <div className="h-3 bg-surface-variant/60 rounded w-1/3"></div>
                 </div>
@@ -83,7 +83,7 @@ export const FeaturedCollection: React.FC = () => {
             ))}
           </div>
         ) : displayedProducts.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-3.5 md:gap-gutter">
             {displayedProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

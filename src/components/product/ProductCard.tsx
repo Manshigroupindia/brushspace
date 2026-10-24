@@ -64,10 +64,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, layout = 'gri
 
   if (layout === 'editorial') {
     return (
-      <div className="product-item group flex flex-col md:flex-row bg-surface rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-outline-variant/15">
+      <div className="product-item group flex flex-col md:flex-row bg-surface rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-outline-variant/15 h-full">
         <Link
           to={`/product/${product.slug}`}
-          className="relative w-full md:w-1/2 aspect-[4/3] bg-surface-container-low overflow-hidden block"
+          className="relative w-full md:w-1/2 aspect-square md:aspect-[4/3] bg-surface-container-low overflow-hidden block shrink-0"
         >
           <img
             src={primaryImage}
@@ -76,22 +76,22 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, layout = 'gri
             loading="lazy"
           />
           {product.featured && (
-            <span className="absolute top-3 left-3 bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm uppercase tracking-widest px-2.5 py-1 rounded">
+            <span className="absolute top-2 left-2 md:top-3 md:left-3 bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-[9px] md:text-label-sm uppercase tracking-wider md:tracking-widest px-2 py-0.5 md:px-2.5 md:py-1 rounded shadow-sm font-semibold">
               Bestseller
             </span>
           )}
           {product.newArrival && !product.featured && (
-            <span className="absolute top-3 left-3 bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm uppercase tracking-widest px-2.5 py-1 rounded">
+            <span className="absolute top-2 left-2 md:top-3 md:left-3 bg-secondary-fixed text-on-secondary-fixed font-label-sm text-[9px] md:text-label-sm uppercase tracking-wider md:tracking-widest px-2 py-0.5 md:px-2.5 md:py-1 rounded shadow-sm font-semibold">
               New
             </span>
           )}
           <button
             onClick={handleWishlistToggle}
             aria-label="Add to wishlist"
-            className="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-tertiary transition-colors shadow-sm"
+            className="absolute top-2 right-2 md:top-3 md:right-3 w-7 h-7 md:w-8 md:h-8 rounded-full bg-surface/85 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-tertiary transition-colors shadow-sm"
           >
             <span
-              className={`material-symbols-outlined text-[18px] ${
+              className={`material-symbols-outlined text-[16px] md:text-[18px] ${
                 isFavorited ? 'text-tertiary material-symbols-fill' : ''
               }`}
             >
@@ -99,34 +99,35 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, layout = 'gri
             </span>
           </button>
         </Link>
-        <div className="p-6 md:p-8 flex flex-col flex-1 justify-between">
+        <div className="p-2.5 sm:p-3.5 md:p-6 lg:p-8 flex flex-col flex-1 justify-between">
           <div>
-            <div className="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm mb-1">
-              <span className="uppercase tracking-widest text-primary font-semibold">{product.productCode}</span>
-              <span>{product.material}</span>
+            <div className="flex items-center justify-between text-on-surface-variant font-label-sm text-[10px] md:text-label-sm mb-0.5 md:mb-1">
+              <span className="uppercase tracking-wider md:tracking-widest text-primary font-semibold truncate max-w-[80px] md:max-w-none">{product.productCode}</span>
+              <span className="truncate max-w-[70px] md:max-w-none">{product.material}</span>
             </div>
-            <Link to={`/product/${product.slug}`}>
-              <h3 className="font-headline-md text-headline-md text-on-surface mt-1 mb-2 font-medium group-hover:text-primary transition-colors">
+            <Link to={`/product/${product.slug}`} className="block">
+              <h3 className="font-headline-sm text-[13px] sm:text-sm md:text-headline-md text-on-surface font-medium group-hover:text-primary transition-colors line-clamp-2 md:line-clamp-1 leading-snug my-1 md:my-2">
                 {product.name}
               </h3>
             </Link>
-            <p className="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4 leading-relaxed">
+            <p className="hidden md:block font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4 leading-relaxed">
               {product.shortDescription}
             </p>
-            <p className="font-headline-sm text-headline-sm text-primary font-bold">
+            <p className="font-headline-sm text-[13px] sm:text-sm md:text-headline-sm text-primary font-bold">
               {product.price > 0 ? formatINR(product.price) : 'Price on Request'}
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-3 mt-6 pt-4 border-t border-outline-variant/15">
+          <div className="flex flex-col sm:grid sm:grid-cols-2 gap-1.5 md:gap-3 mt-2 sm:mt-4 md:mt-6 pt-2 md:pt-4 border-t border-outline-variant/15">
             <button
               onClick={handleAddToCart}
-              className="w-full py-2.5 rounded bg-surface-container hover:bg-surface-container-high font-label-md text-label-md uppercase tracking-wider text-on-surface transition-colors flex items-center justify-center gap-1.5"
+              className="w-full py-1.5 md:py-2.5 rounded bg-surface-container hover:bg-surface-container-high font-label-md text-[10px] md:text-label-md uppercase tracking-wider text-on-surface transition-colors flex items-center justify-center gap-1 active:scale-[0.98]"
             >
-              <span className="material-symbols-outlined text-[16px]">shopping_bag</span> Add to Cart
+              <span className="material-symbols-outlined text-[14px] md:text-[16px]">shopping_bag</span>
+              <span>Cart</span>
             </button>
             <button
               onClick={handleBuyNow}
-              className="w-full py-2.5 rounded bg-on-secondary-fixed hover:bg-primary text-surface font-label-md text-label-md uppercase tracking-wider transition-colors shadow-sm"
+              className="w-full py-1.5 md:py-2.5 rounded bg-on-secondary-fixed hover:bg-primary text-surface font-label-md text-[10px] md:text-label-md uppercase tracking-wider transition-colors shadow-sm text-center active:scale-[0.98]"
             >
               BUY NOW
             </button>
@@ -137,10 +138,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, layout = 'gri
   }
 
   return (
-    <div className="product-item group flex flex-col bg-surface rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-outline-variant/15">
+    <div className="product-item group flex flex-col bg-surface rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-outline-variant/15 h-full">
       <Link
         to={`/product/${product.slug}`}
-        className="relative w-full aspect-square bg-surface-container-low overflow-hidden block"
+        className="relative w-full aspect-square bg-surface-container-low overflow-hidden block shrink-0"
       >
         <img
           src={primaryImage}
@@ -149,22 +150,22 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, layout = 'gri
           loading="lazy"
         />
         {product.featured && (
-          <span className="absolute top-3 left-3 bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm uppercase tracking-widest px-2.5 py-1 rounded">
+          <span className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-[9px] sm:text-label-sm uppercase tracking-wider sm:tracking-widest px-2 py-0.5 sm:px-2.5 sm:py-1 rounded shadow-sm font-semibold">
             Bestseller
           </span>
         )}
         {product.newArrival && !product.featured && (
-          <span className="absolute top-3 left-3 bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm uppercase tracking-widest px-2.5 py-1 rounded">
+          <span className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 bg-secondary-fixed text-on-secondary-fixed font-label-sm text-[9px] sm:text-label-sm uppercase tracking-wider sm:tracking-widest px-2 py-0.5 sm:px-2.5 sm:py-1 rounded shadow-sm font-semibold">
             New
           </span>
         )}
         <button
           onClick={handleWishlistToggle}
           aria-label="Add to wishlist"
-          className="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-tertiary transition-colors shadow-sm"
+          className="absolute top-2 right-2 sm:top-2.5 sm:right-2.5 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-surface/85 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-tertiary transition-colors shadow-sm"
         >
           <span
-            className={`material-symbols-outlined text-[18px] ${
+            className={`material-symbols-outlined text-[16px] sm:text-[18px] ${
               isFavorited ? 'text-tertiary material-symbols-fill' : ''
             }`}
           >
@@ -173,32 +174,33 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, layout = 'gri
         </button>
       </Link>
 
-      <div className="p-5 flex flex-col flex-grow justify-between">
+      <div className="p-2.5 sm:p-3.5 md:p-5 flex flex-col flex-1 justify-between">
         <div>
-          <div className="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest">
-            <span>{product.productCode}</span>
-            <span className="text-[10px] truncate max-w-[120px]">{product.material}</span>
+          <div className="flex items-center justify-between text-on-surface-variant font-label-sm text-[10px] sm:text-label-sm uppercase tracking-wider sm:tracking-widest mb-0.5 sm:mb-1">
+            <span className="truncate max-w-[80px] sm:max-w-none">{product.productCode}</span>
+            <span className="truncate max-w-[70px] sm:max-w-[120px]">{product.material}</span>
           </div>
-          <Link to={`/product/${product.slug}`}>
-            <h3 className="font-headline-sm text-headline-sm text-on-surface mt-1 mb-2 font-medium group-hover:text-primary transition-colors line-clamp-1">
+          <Link to={`/product/${product.slug}`} className="block">
+            <h3 className="font-headline-sm text-[13px] sm:text-sm md:text-headline-sm text-on-surface font-medium group-hover:text-primary transition-colors line-clamp-2 leading-snug min-h-[2.4em] mb-1 sm:mb-2">
               {product.name}
             </h3>
           </Link>
-          <p className="font-title-md text-title-md text-primary font-semibold">
+          <p className="font-title-md text-[13px] sm:text-sm md:text-title-md text-primary font-bold">
             {product.price > 0 ? formatINR(product.price) : 'Price on Request'}
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-2 mt-5">
+        <div className="flex flex-col sm:grid sm:grid-cols-2 gap-1.5 sm:gap-2 mt-2 sm:mt-4 pt-2 border-t border-outline-variant/15">
           <button
             onClick={handleAddToCart}
-            className="w-full py-2.5 rounded bg-surface-container hover:bg-surface-container-high font-label-md text-label-md uppercase tracking-wider text-on-surface transition-colors flex items-center justify-center gap-1"
+            className="w-full py-1.5 sm:py-2.5 rounded bg-surface-container hover:bg-surface-container-high font-label-md text-[10px] sm:text-label-md uppercase tracking-wider text-on-surface transition-colors flex items-center justify-center gap-1 active:scale-[0.98]"
           >
-            <span className="material-symbols-outlined text-[16px]">shopping_bag</span> Cart
+            <span className="material-symbols-outlined text-[14px] sm:text-[16px]">shopping_bag</span>
+            <span>Cart</span>
           </button>
           <button
             onClick={handleBuyNow}
-            className="w-full py-2.5 rounded bg-on-secondary-fixed hover:bg-primary text-surface font-label-md text-label-md uppercase tracking-wider transition-colors shadow-sm"
+            className="w-full py-1.5 sm:py-2.5 rounded bg-on-secondary-fixed hover:bg-primary text-surface font-label-md text-[10px] sm:text-label-md uppercase tracking-wider transition-colors shadow-sm text-center active:scale-[0.98]"
           >
             BUY NOW
           </button>

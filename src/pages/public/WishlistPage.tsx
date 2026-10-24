@@ -63,7 +63,7 @@ export const WishlistPage: React.FC = () => {
       </section>
 
       {/* Grid or Empty */}
-      <section className="max-w-7xl mx-auto w-full px-margin-mobile md:px-gutter-desktop pb-space-xl">
+      <section className="max-w-7xl mx-auto w-full px-3 sm:px-4 md:px-gutter-desktop pb-space-xl">
         {wishlistProducts.length === 0 ? (
           <div className="bg-surface-container-lowest p-12 md:p-16 rounded-2xl text-center border border-outline-variant/15 shadow-sm max-w-2xl mx-auto my-8">
             <span className="material-symbols-outlined text-[56px] text-outline mb-4">
@@ -83,7 +83,7 @@ export const WishlistPage: React.FC = () => {
             </Link>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter-desktop">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-3.5 md:gap-gutter-desktop">
             {wishlistProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
