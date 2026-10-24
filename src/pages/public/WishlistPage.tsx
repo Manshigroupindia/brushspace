@@ -5,6 +5,7 @@ import { useStoreData } from '../../context/StoreDataContext';
 import { useCart } from '../../context/CartContext';
 import { useToast } from '../../context/ToastContext';
 import { ProductCard } from '../../components/product/ProductCard';
+import { SEO } from '../../components/common/SEO';
 
 export const WishlistPage: React.FC = () => {
   const { wishlistIds } = useWishlist();
@@ -13,7 +14,6 @@ export const WishlistPage: React.FC = () => {
   const { showToast } = useToast();
 
   useEffect(() => {
-    document.title = 'Saved Artifacts — BRUSHSPACE Wishlist';
     window.scrollTo(0, 0);
   }, []);
 
@@ -26,6 +26,12 @@ export const WishlistPage: React.FC = () => {
 
   return (
     <div className="flex flex-col w-full">
+      <SEO
+        title="Saved Artifacts — Wishlist | Brushspace"
+        description="Review your saved handcrafted home décor items and curated collection."
+        canonical="/wishlist"
+        type="website"
+      />
       {/* Header */}
       <section className="max-w-7xl mx-auto w-full px-margin-mobile md:px-gutter-desktop pt-space-md pb-space-lg">
         <nav aria-label="Breadcrumb" className="flex items-center gap-space-xs text-on-surface-variant mb-space-sm font-label-sm text-label-sm uppercase tracking-widest">

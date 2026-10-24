@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useStoreData } from '../../context/StoreDataContext';
+import { SEO } from '../../components/common/SEO';
 
 export const CategoriesPage: React.FC = () => {
   const { categories, products, isLoading } = useStoreData();
 
   useEffect(() => {
-    document.title = 'Disciplines & Mediums — BRUSHSPACE Categories';
     window.scrollTo(0, 0);
   }, []);
 
@@ -16,6 +16,13 @@ export const CategoriesPage: React.FC = () => {
 
   return (
     <div className="w-full flex flex-col">
+      <SEO
+        title="Disciplines & Mediums — Curated Categories | Brushspace"
+        description="Browse handcrafted collections across Vases & Vessels, Paintings, Gift Décor, 3-D Art, Festive Accents, and Decorative Furniture."
+        canonical="/categories"
+        image="https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699698/brushspace/banners/banner_ban-spotlight-1.jpg"
+        type="website"
+      />
       {/* Header Banner */}
       <section className="w-full bg-surface-container-low px-margin-mobile md:px-gutter-desktop py-10 md:py-14 border-b border-outline-variant/15">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6">

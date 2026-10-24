@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useStoreData } from '../../context/StoreDataContext';
+import { SEO } from '../../components/common/SEO';
 
 export const FAQPage: React.FC = () => {
   const { faqs, isLoading } = useStoreData();
@@ -7,7 +8,6 @@ export const FAQPage: React.FC = () => {
   const [openIds, setOpenIds] = useState<string[]>(['faq-1']);
 
   useEffect(() => {
-    document.title = 'Studio FAQs & Ordering Inquiries — BRUSHSPACE';
     window.scrollTo(0, 0);
   }, []);
 
@@ -24,6 +24,13 @@ export const FAQPage: React.FC = () => {
 
   return (
     <div className="flex flex-col w-full">
+      <SEO
+        title="Studio FAQs & Ordering Inquiries | Brushspace"
+        description="Frequently asked questions about our handcrafted artifacts, care instructions, pan-India delivery, and custom gifting."
+        canonical="/faq"
+        image="https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699698/brushspace/banners/banner_ban-spotlight-1.jpg"
+        type="website"
+      />
       {/* Header */}
       <section className="w-full bg-surface-container-low px-margin-mobile md:px-gutter-desktop py-16 border-b border-outline-variant/15">
         <div className="max-w-4xl mx-auto text-center">

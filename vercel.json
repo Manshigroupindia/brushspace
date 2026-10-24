@@ -1,5 +1,28 @@
 {
+  "cleanUrls": true,
   "rewrites": [
+    {
+      "source": "/product/:slug",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": "(.*)(facebookexternalhit|WhatsApp|Twitterbot|TelegramBot|LinkedInBot|Slackbot|Discordbot|Googlebot|bingbot|Pinterest)(.*)"
+        }
+      ],
+      "destination": "/api/og-preview?type=product&slug=:slug"
+    },
+    {
+      "source": "/category/:slug",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": "(.*)(facebookexternalhit|WhatsApp|Twitterbot|TelegramBot|LinkedInBot|Slackbot|Discordbot|Googlebot|bingbot|Pinterest)(.*)"
+        }
+      ],
+      "destination": "/api/og-preview?type=category&slug=:slug"
+    },
     {
       "source": "/(.*)",
       "destination": "/index.html"

@@ -5,6 +5,7 @@ import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
 import { useToast } from '../../context/ToastContext';
 import { generateSingleProductWhatsAppUrl, recordOrderInquiry, formatINR } from '../../utils/whatsapp';
+import { SEO } from '../../components/common/SEO';
 
 export const ProductDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -26,15 +27,13 @@ export const ProductDetailPage: React.FC = () => {
   );
 
   useEffect(() => {
-    if (product) {
-      document.title = `${product.name} — BRUSHSPACE`;
-    }
     window.scrollTo(0, 0);
   }, [product]);
 
   if (!product) {
     return (
       <div className="max-w-7xl mx-auto px-margin-mobile py-24 text-center">
+        <SEO title="Product Not Found | Brushspace" canonical="/404" />
         <h2 className="font-headline-lg text-headline-lg text-on-surface mb-4">Product Not Found</h2>
         <p className="font-body-md text-body-md text-on-surface-variant mb-6">
           The handcrafted piece you are looking for has been archived or does not exist.
@@ -53,7 +52,7 @@ export const ProductDetailPage: React.FC = () => {
   const activeImage =
     (product.images && product.images[activeImageIndex]) ||
     (product.images && product.images[0]) ||
-    'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=1200&q=80';
+    'https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699698/brushspace/banners/banner_ban-spotlight-1.jpg';
 
   const handleWishlistToggle = () => {
     const added = toggleWishlist(product);
@@ -115,6 +114,15 @@ export const ProductDetailPage: React.FC = () => {
 
   return (
     <div className="flex flex-col w-full">
+      <SEO
+        title={`${product.name} | Brushspace`}
+        description={product.description || product.shortDescription || 'Discover handcrafted artistic home décor pieces from Brushspace.'}
+        canonical={`/product/${product.slug}`}
+        image={(product.images && product.images[0]) || 'https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699698/brushspace/banners/banner_ban-spotlight-1.jpg'}
+        type="product"
+        price={product.price}
+        availability="in stock"
+      />
       {/* Top Breadcrumb & Quick Actions Bar */}
       <section className="w-full max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop pt-space-md pb-space-sm border-b border-outline-variant/15">
         <div className="flex flex-wrap items-center justify-between gap-space-sm">

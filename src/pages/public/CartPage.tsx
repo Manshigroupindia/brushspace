@@ -4,6 +4,7 @@ import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
 import { useToast } from '../../context/ToastContext';
 import { formatINR } from '../../utils/whatsapp';
+import { SEO } from '../../components/common/SEO';
 
 export const CartPage: React.FC = () => {
   const {
@@ -21,7 +22,6 @@ export const CartPage: React.FC = () => {
   const { showToast } = useToast();
 
   useEffect(() => {
-    document.title = 'Your Curated Bag — BRUSHSPACE';
     window.scrollTo(0, 0);
   }, []);
 
@@ -38,6 +38,12 @@ export const CartPage: React.FC = () => {
 
   return (
     <div className="flex flex-col w-full">
+      <SEO
+        title="Your Curated Bag | Brushspace"
+        description="Review items in your shopping bag and checkout securely via WhatsApp."
+        canonical="/cart"
+        type="website"
+      />
       {/* Editorial Breadcrumb & Header Section */}
       <section className="max-w-7xl mx-auto w-full px-margin-mobile md:px-gutter-desktop pt-space-md pb-space-lg">
         <nav aria-label="Breadcrumb" className="flex items-center gap-space-xs text-on-surface-variant mb-space-sm font-label-sm text-label-sm uppercase tracking-widest">

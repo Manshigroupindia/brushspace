@@ -1,13 +1,19 @@
 import React, { useEffect } from 'react';
+import { SEO } from '../../components/common/SEO';
 
 export const ReturnPolicyPage: React.FC = () => {
   useEffect(() => {
-    document.title = 'Returns & Exchanges Policy — BRUSHSPACE';
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <div className="max-w-4xl mx-auto px-margin-mobile md:px-gutter-desktop py-16">
+      <SEO
+        title="Returns & Exchanges Policy | Brushspace"
+        description="Guidelines on transit damage, replacements, and our collector satisfaction guarantee."
+        canonical="/return-policy"
+        type="website"
+      />
       <span className="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold block mb-2">
         Collector Protection
       </span>

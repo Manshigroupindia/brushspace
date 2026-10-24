@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useStoreData } from '../../context/StoreDataContext';
 import { ProductCard } from '../../components/product/ProductCard';
+import { SEO } from '../../components/common/SEO';
 
 export const ShopPage: React.FC = () => {
   const { products, categories, isLoading } = useStoreData();
@@ -15,7 +16,6 @@ export const ShopPage: React.FC = () => {
   const [layoutMode, setLayoutMode] = useState<'grid' | 'editorial'>('grid');
 
   useEffect(() => {
-    document.title = 'Shop Artistic Décor — BRUSHSPACE Catalog';
     window.scrollTo(0, 0);
 
     const catParam = searchParams.get('category');
@@ -114,6 +114,13 @@ export const ShopPage: React.FC = () => {
 
   return (
     <div className="flex flex-col w-full">
+      <SEO
+        title="Shop Handcrafted Décor & Studio Objects | Brushspace"
+        description="Explore our complete catalog of sculptural vases, ceramic artifacts, metallic trees, and artistic home décor accents."
+        canonical="/shop"
+        image="https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699698/brushspace/banners/banner_ban-spotlight-1.jpg"
+        type="website"
+      />
       {/* Top Curatorial Banner & Metrics */}
       <section className="w-full bg-surface-container-low px-3.5 sm:px-margin-mobile md:px-gutter-desktop py-6 sm:py-space-xl border-b border-outline-variant/15">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-space-lg">

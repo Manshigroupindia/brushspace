@@ -9,15 +9,22 @@ import { TestimonialsSection } from '../../components/home/TestimonialsSection';
 import { FAQAccordion } from '../../components/home/FAQAccordion';
 import { InstagramShowcase } from '../../components/home/InstagramShowcase';
 import { Newsletter } from '../../components/home/Newsletter';
+import { SEO } from '../../components/common/SEO';
 
 export const HomePage: React.FC = () => {
   useEffect(() => {
-    document.title = 'BRUSHSPACE — Artistic Home Décor & Curated Objects';
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <div className="flex flex-col w-full">
+      <SEO
+        title="BRUSHSPACE — Artistic Home Décor & Curated Objects"
+        description="Discover handcrafted vases, decorative trees, trays, mirror mosaic and floral home décor pieces designed to add warmth and quiet beauty to modern spaces."
+        canonical="/"
+        image="https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699698/brushspace/banners/banner_ban-spotlight-1.jpg"
+        type="website"
+      />
       <Hero />
       <CategorySection />
       <FeaturedCollection />

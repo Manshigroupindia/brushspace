@@ -1,14 +1,21 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { SEO } from '../../components/common/SEO';
 
 export const AboutPage: React.FC = () => {
   useEffect(() => {
-    document.title = 'About Our Atelier — BRUSHSPACE Story & Philosophy';
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <div className="flex flex-col w-full">
+      <SEO
+        title="About Our Atelier — Story & Philosophy | Brushspace"
+        description="Learn about Brushspace — an artisan atelier dedicated to slow craft, tactile textures, and timeless living room statement pieces."
+        canonical="/about"
+        image="https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699698/brushspace/banners/banner_ban-spotlight-1.jpg"
+        type="website"
+      />
       {/* Header */}
       <section className="w-full bg-surface-container-low px-margin-mobile md:px-gutter-desktop py-16 md:py-24 border-b border-outline-variant/15">
         <div className="max-w-4xl mx-auto text-center">

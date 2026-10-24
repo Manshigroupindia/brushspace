@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useStoreData } from '../../context/StoreDataContext';
 import { useToast } from '../../context/ToastContext';
+import { SEO } from '../../components/common/SEO';
 
 export const ContactPage: React.FC = () => {
   const { settings, addCustomerInquiry } = useStoreData();
@@ -14,7 +15,6 @@ export const ContactPage: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    document.title = 'Contact Studio & Showrooms — BRUSHSPACE';
     window.scrollTo(0, 0);
   }, []);
 
@@ -47,6 +47,13 @@ export const ContactPage: React.FC = () => {
 
   return (
     <div className="flex flex-col w-full">
+      <SEO
+        title="Contact Studio & Showrooms | Brushspace"
+        description="Get in touch with the Brushspace atelier team for bespoke orders, showroom visits, and styling inquiries."
+        canonical="/contact"
+        image="https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699698/brushspace/banners/banner_ban-spotlight-1.jpg"
+        type="website"
+      />
       {/* Header */}
       <section className="w-full bg-surface-container-low px-margin-mobile md:px-gutter-desktop py-16 border-b border-outline-variant/15">
         <div className="max-w-4xl mx-auto text-center">

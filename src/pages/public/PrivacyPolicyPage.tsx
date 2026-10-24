@@ -1,13 +1,19 @@
 import React, { useEffect } from 'react';
+import { SEO } from '../../components/common/SEO';
 
 export const PrivacyPolicyPage: React.FC = () => {
   useEffect(() => {
-    document.title = 'Privacy Policy — BRUSHSPACE';
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <div className="max-w-4xl mx-auto px-margin-mobile md:px-gutter-desktop py-16">
+      <SEO
+        title="Privacy Policy | Brushspace"
+        description="Learn how Brushspace protects collector and visitor data."
+        canonical="/privacy-policy"
+        type="website"
+      />
       <span className="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold block mb-2">
         Legal &amp; Transparency
       </span>

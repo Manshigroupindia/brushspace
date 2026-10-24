@@ -1,13 +1,19 @@
 import React, { useEffect } from 'react';
+import { SEO } from '../../components/common/SEO';
 
 export const ShippingPolicyPage: React.FC = () => {
   useEffect(() => {
-    document.title = 'Shipping & Delivery Policy — BRUSHSPACE';
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <div className="max-w-4xl mx-auto px-margin-mobile md:px-gutter-desktop py-16">
+      <SEO
+        title="Shipping & Delivery Policy | Brushspace"
+        description="Learn about our white-glove packaging and pan-India safe shipping standards."
+        canonical="/shipping-policy"
+        type="website"
+      />
       <span className="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold block mb-2">
         White-Glove Care
       </span>

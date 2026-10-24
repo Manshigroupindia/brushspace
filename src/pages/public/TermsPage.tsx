@@ -1,13 +1,19 @@
 import React, { useEffect } from 'react';
+import { SEO } from '../../components/common/SEO';
 
 export const TermsPage: React.FC = () => {
   useEffect(() => {
-    document.title = 'Terms of Service — BRUSHSPACE';
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <div className="max-w-4xl mx-auto px-margin-mobile md:px-gutter-desktop py-16">
+      <SEO
+        title="Terms of Service | Brushspace"
+        description="Review terms and conditions for purchasing handcrafted decorative pieces from Brushspace."
+        canonical="/terms"
+        type="website"
+      />
       <span className="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold block mb-2">
         Studio Regulations
       </span>

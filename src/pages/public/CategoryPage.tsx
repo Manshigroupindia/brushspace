@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useStoreData } from '../../context/StoreDataContext';
 import { ProductCard } from '../../components/product/ProductCard';
+import { SEO } from '../../components/common/SEO';
 
 export const CategoryPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -15,11 +16,6 @@ export const CategoryPage: React.FC = () => {
   );
 
   useEffect(() => {
-    if (category) {
-      document.title = `${category.name} — BRUSHSPACE Curated Collection`;
-    } else {
-      document.title = 'Category — BRUSHSPACE';
-    }
     window.scrollTo(0, 0);
   }, [category]);
 
@@ -73,10 +69,17 @@ export const CategoryPage: React.FC = () => {
     'Handcrafted artistic pieces celebrating subtle tactile balance, rich earthy patinas, and modern architectural poise.';
   const categoryImage =
     category?.image ||
-    (categoryProducts[0] ? categoryProducts[0].images[0] : 'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=1200&q=80');
+    (categoryProducts[0] ? categoryProducts[0].images[0] : 'https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699698/brushspace/banners/banner_ban-spotlight-1.jpg');
 
   return (
     <div className="flex flex-col w-full">
+      <SEO
+        title={`${categoryName} | Brushspace`}
+        description={categoryDesc}
+        canonical={`/category/${slug || category?.slug || ''}`}
+        image={categoryImage}
+        type="website"
+      />
       {/* Category Hero Banner */}
       <section className="relative w-full overflow-hidden bg-surface-container-low border-b border-outline-variant/15">
         <div className="max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop py-12 md:py-20">

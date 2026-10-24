@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { useStoreData } from '../../context/StoreDataContext';
 import { ProductCard } from '../../components/product/ProductCard';
+import { SEO } from '../../components/common/SEO';
 
 export const SearchPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -10,7 +11,6 @@ export const SearchPage: React.FC = () => {
   const { products } = useStoreData();
 
   useEffect(() => {
-    document.title = query ? `Search: "${query}" — BRUSHSPACE` : 'Search Artifacts — BRUSHSPACE';
     window.scrollTo(0, 0);
   }, [query]);
 
@@ -35,6 +35,13 @@ export const SearchPage: React.FC = () => {
 
   return (
     <div className="flex flex-col w-full">
+      <SEO
+        title={query ? `Search: "${query}" | Brushspace` : 'Search Artifacts | Brushspace'}
+        description="Search across our collection of studio handmade vases, paintings, and artistic décor."
+        canonical="/search"
+        image="https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699698/brushspace/banners/banner_ban-spotlight-1.jpg"
+        type="website"
+      />
       {/* Search Header */}
       <section className="w-full bg-surface-container-low px-margin-mobile md:px-gutter-desktop py-space-xl border-b border-outline-variant/15">
         <div className="max-w-4xl mx-auto text-center">
