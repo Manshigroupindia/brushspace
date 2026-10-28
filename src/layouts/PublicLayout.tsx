@@ -1,13 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { AnnouncementBar } from '../components/common/AnnouncementBar';
 import { Navbar } from '../components/common/Navbar';
 import { Footer } from '../components/common/Footer';
 import { MobileBottomNav } from '../components/common/MobileBottomNav';
 import { SearchModal } from '../components/common/SearchModal';
+import { FestiveSalePopup } from '../components/common/FestiveSalePopup';
+import { FloatingFestiveButton } from '../components/common/FloatingFestiveButton';
+import { useStoreData } from '../context/StoreDataContext';
+import { isCampaignActive } from '../utils/campaign';
 
 export const PublicLayout: React.FC = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isFestivePopupOpen, setIsFestivePopupOpen] = useState(false);
+  const { settings } = useStoreData();
+
+  const campaignActive = isCampaignActive(settings.festiveCampaign);
+
+  // Auto-open promotional popup once per session after initial load
+  useEffect(() => {
+    if (!campaignActive) return;
+
+    try {
+      const alreadyShown = sessionStorage.getItem('brushspace_festive_popup_shown');
+      if (!alreadyShown) {
+        // Small 1.2s delay for seamless initial page render
+        const timer = setTimeout(() => {
+          setIsFestivePopupOpen(true);
+          sessionStorage.setItem('brushspace_festive_popup_shown', 'true');
+        }, 1200);
+        return () => clearTimeout(timer);
+      }
+    } catch {
+      // ignore
+    }
+  }, [campaignActive]);
+
+  const handleClosePopup = () => {
+    setIsFestivePopupOpen(false);
+    try {
+      sessionStorage.setItem('brushspace_festive_popup_shown', 'true');
+    } catch {
+      // ignore
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-surface text-on-surface relative">
@@ -30,6 +66,21 @@ export const PublicLayout: React.FC = () => {
 
       {/* Search Modal */}
       <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+
+      {/* Festive Promotion Components (Public only) */}
+      {campaignActive && (
+        <>
+          <FloatingFestiveButton
+            onClick={() => setIsFestivePopupOpen(true)}
+            campaign={settings.festiveCampaign}
+          />
+          <FestiveSalePopup
+            isOpen={isFestivePopupOpen}
+            onClose={handleClosePopup}
+            campaign={settings.festiveCampaign}
+          />
+        </>
+      )}
     </div>
   );
 };

@@ -13,5 +13,16 @@ export const initialSettings: StoreSettings = {
   "showroomAddress": "Artisan Atelier Gallery, Mumbai & New Delhi, India",
   "socialInstagram": "https://instagram.com/brushspace.decor",
   "socialPinterest": "https://pinterest.com/brushspacedecor",
-  "socialFacebook": "https://facebook.com/brushspace.art"
+  "socialFacebook": "https://facebook.com/brushspace.art",
+  "festiveCampaign": {
+    "isActive": true,
+    "campaignName": "FESTIVE BONANZA",
+    "headline": "FLAT 20% OFF ON EVERY PRODUCT",
+    "supportingLine": "Celebrate the season with beautiful décor. Shop your favourites and enjoy 20% OFF!",
+    "ctaText": "SHOP NOW — LIMITED-TIME FESTIVE OFFER",
+    "ctaLink": "/shop",
+    "discountPercentage": 20,
+    "floatingButtonText": "🎉 FESTIVE SALE — 20% OFF",
+    "bannerImage": "https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699698/brushspace/banners/banner_ban-spotlight-1.jpg"
+  }
 };

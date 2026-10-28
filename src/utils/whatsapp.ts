@@ -1,5 +1,6 @@
-import type { Product, CartItem } from '../types';
+import type { Product, CartItem, FestiveCampaignConfig } from '../types';
 import { saveOrderDoc } from '../services/firestore';
+import { calculateProductPrice } from './campaign';
 
 /**
  * Centralized configurable seller WhatsApp phone number
@@ -33,27 +34,29 @@ export function generateSingleProductWhatsAppUrl(
   product: Product,
   quantity: number = 1,
   customUrl?: string,
-  sellerNumber?: string
+  sellerNumber?: string,
+  campaign?: FestiveCampaignConfig
 ): string {
   const number = sellerNumber || getActiveWhatsAppNumber();
-  const productUrl = customUrl || (typeof window !== 'undefined' ? window.location.href : `https://brushspace.com/product/${product.slug}`);
-  const today = new Date().toLocaleDateString('en-IN', {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-  });
+  const productUrl = customUrl || (typeof window !== 'undefined' ? window.location.href : `https://www.brushspace.in/product/${product.slug}`);
 
-  const message = `Hello, I am interested in ordering this product.
+  const priceInfo = calculateProductPrice(product, campaign);
+  const effectivePrice = priceInfo.discountedPrice;
+  const subtotal = effectivePrice * quantity;
 
-Product: ${product.name}
-Product Code: ${product.productCode}
-Price: ${formatINR(product.price)}
+  const message = `Hello, I am interested in placing an order.
+
+Products:
+${product.name} — ${product.productCode}
+Price: ${formatINR(effectivePrice)}
 Quantity: ${quantity}
-Date: ${today}
+Subtotal: ${formatINR(subtotal)}
 
+Shipping: Payable by customer; final charges to be confirmed separately.
+Return Policy: No return, no refund and no exchange, subject to applicable law.
 Product Link: ${productUrl}
 
-Please share the next steps for placing the order.`;
+Please confirm the shipping charges, availability and next steps for placing my order.`;
 
   return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 }
@@ -63,29 +66,38 @@ Please share the next steps for placing the order.`;
  */
 export function generateCartWhatsAppUrl(
   cartItems: CartItem[],
-  totalAmount: number,
+  totalAmountOverride?: number,
   customCartUrl?: string,
-  sellerNumber?: string
+  sellerNumber?: string,
+  campaign?: FestiveCampaignConfig
 ): string {
   const number = sellerNumber || getActiveWhatsAppNumber();
-  const cartUrl = customCartUrl || (typeof window !== 'undefined' ? window.location.href : 'https://brushspace.com/cart');
+  const cartUrl = customCartUrl || (typeof window !== 'undefined' ? window.location.href : 'https://www.brushspace.in/cart');
 
+  let computedSubtotal = 0;
   const itemsList = cartItems
-    .map(
-      (item, idx) =>
-        `${idx + 1}. ${item.product.name}\n   Product Code: ${item.product.productCode}\n   Price: ${formatINR(item.product.price)}\n   Quantity: ${item.quantity}`
-    )
+    .map((item, idx) => {
+      const priceInfo = calculateProductPrice(item.product, campaign);
+      const effectivePrice = priceInfo.discountedPrice;
+      const itemSubtotal = effectivePrice * item.quantity;
+      computedSubtotal += itemSubtotal;
+      return `${idx + 1}. ${item.product.name} — ${item.product.productCode}\n   Price: ${formatINR(effectivePrice)}\n   Quantity: ${item.quantity}\n   Subtotal: ${formatINR(itemSubtotal)}`;
+    })
     .join('\n\n');
 
-  const message = `Hello, I am interested in ordering the following products.
+  const finalSubtotal = totalAmountOverride !== undefined ? totalAmountOverride : computedSubtotal;
 
+  const message = `Hello, I am interested in placing an order.
+
+Products:
 ${itemsList}
 
-Total: ${formatINR(totalAmount)}
-
+Subtotal: ${formatINR(finalSubtotal)}
+Shipping: Payable by customer; final charges to be confirmed separately.
+Return Policy: No return, no refund and no exchange, subject to applicable law.
 Cart Link: ${cartUrl}
 
-Please share the next steps for placing the order.`;
+Please confirm the shipping charges, availability and next steps for placing my order.`;
 
   return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 }

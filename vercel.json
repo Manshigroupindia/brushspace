@@ -7,7 +7,7 @@
         {
           "type": "header",
           "key": "user-agent",
-          "value": "(.*)(facebookexternalhit|WhatsApp|Twitterbot|TelegramBot|LinkedInBot|Slackbot|Discordbot|Googlebot|bingbot|Pinterest)(.*)"
+          "value": "(.*)(facebookexternalhit|Facebot|Twitterbot|TelegramBot|LinkedInBot|Slackbot|Discordbot|Googlebot|bingbot|Pinterest)(.*)"
         }
       ],
       "destination": "/api/og-preview?type=product&slug=:slug"
@@ -18,14 +18,14 @@
         {
           "type": "header",
           "key": "user-agent",
-          "value": "(.*)(facebookexternalhit|WhatsApp|Twitterbot|TelegramBot|LinkedInBot|Slackbot|Discordbot|Googlebot|bingbot|Pinterest)(.*)"
+          "value": "(.*)(facebookexternalhit|Facebot|Twitterbot|TelegramBot|LinkedInBot|Slackbot|Discordbot|Googlebot|bingbot|Pinterest)(.*)"
         }
       ],
       "destination": "/api/og-preview?type=category&slug=:slug"
     },
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "source": "/((?!api/).*)",
+      "destination": "/index"
     }
   ]
 }

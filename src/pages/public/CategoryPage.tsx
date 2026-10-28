@@ -6,7 +6,7 @@ import { SEO } from '../../components/common/SEO';
 
 export const CategoryPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  const { categories, products } = useStoreData();
+  const { categories, products, isLoading } = useStoreData();
 
   const [selectedSort, setSelectedSort] = useState<string>('featured');
   const [selectedPriceRange, setSelectedPriceRange] = useState<string>('all');
@@ -45,6 +45,33 @@ export const CategoryPage: React.FC = () => {
         return (b.featured ? 1 : 0) - (a.featured ? 1 : 0);
       });
   }, [products, slug, category, selectedPriceRange, selectedSort]);
+
+  // Loading skeleton state while waiting for initial Firestore snapshots
+  if (isLoading) {
+    return (
+      <div className="flex flex-col w-full animate-pulse">
+        <div className="w-full bg-surface-container-low py-12 border-b border-outline-variant/15">
+          <div className="max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop space-y-4">
+            <div className="h-4 w-32 bg-surface-container rounded"></div>
+            <div className="h-10 w-64 bg-surface-container-high rounded"></div>
+            <div className="h-4 w-96 bg-surface-container rounded"></div>
+          </div>
+        </div>
+        <div className="w-full max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop py-space-xl">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {[...Array(8)].map((_, i) => (
+              <div key={i} className="flex flex-col rounded-xl overflow-hidden bg-surface border border-outline-variant/15 p-3 space-y-3">
+                <div className="aspect-square w-full rounded-lg bg-surface-container"></div>
+                <div className="h-4 w-3/4 bg-surface-container rounded"></div>
+                <div className="h-4 w-1/2 bg-surface-container-high rounded"></div>
+                <div className="h-8 w-full bg-surface-container-low rounded"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (!category && categoryProducts.length === 0) {
     return (

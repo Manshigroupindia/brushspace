@@ -84,6 +84,20 @@ export interface Banner {
   endDate?: string;
 }
 
+export interface FestiveCampaignConfig {
+  isActive: boolean;
+  campaignName: string;
+  headline: string;
+  supportingLine: string;
+  ctaText: string;
+  ctaLink: string;
+  discountPercentage: number;
+  floatingButtonText: string;
+  bannerImage?: string;
+  startDate?: string;
+  endDate?: string;
+}
+
 export interface StoreSettings {
   brandName: string;
   tagline: string;
@@ -99,6 +113,7 @@ export interface StoreSettings {
   socialPinterest: string;
   socialFacebook: string;
   socialYoutube?: string;
+  festiveCampaign?: FestiveCampaignConfig;
 }
 
 export interface OrderInquiry {

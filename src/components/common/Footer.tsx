@@ -61,7 +61,7 @@ export const Footer: React.FC = () => {
                 <Link to="/shipping-policy">Shipping &amp; Delivery</Link>
               </li>
               <li className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors">
-                <Link to="/return-policy">Returns &amp; Exchanges</Link>
+                <Link to="/return-policy">No Return &amp; Refund Policy</Link>
               </li>
               <li className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors">
                 <Link to="/faq">FAQs</Link>
@@ -131,6 +131,25 @@ export const Footer: React.FC = () => {
               </a>
             </div>
           </div>
+        </div>
+
+        {/* Policy Notice Strip */}
+        <div className="mb-space-lg p-space-md rounded-xl bg-surface border border-outline-variant/20 flex flex-col md:flex-row items-center justify-between gap-space-sm text-center md:text-left shadow-sm">
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
+            <span className="px-2.5 py-1 rounded bg-primary text-surface font-label-sm text-[11px] uppercase tracking-wider font-bold shrink-0">
+              NO RETURN • NO REFUND • NO EXCHANGE
+            </span>
+            <p className="font-body-sm text-body-sm text-on-surface-variant">
+              Purchases are subject to our applicable policy, except where required by law. Shipping is payable by the customer.
+            </p>
+          </div>
+          <Link
+            to="/return-policy"
+            className="font-label-sm text-label-sm uppercase tracking-wider text-primary hover:underline font-semibold shrink-0 inline-flex items-center gap-1"
+          >
+            <span>Review Full Policy</span>
+            <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
+          </Link>
         </div>
 
         {/* Bottom Bar */}

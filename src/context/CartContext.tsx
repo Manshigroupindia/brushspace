@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { Product, CartItem } from '../types';
 import { generateCartWhatsAppUrl, recordOrderInquiry } from '../utils/whatsapp';
+import { useStoreData } from './StoreDataContext';
+import { calculateCartTotals, calculateProductPrice } from '../utils/campaign';
 
 interface CartContextType {
   items: CartItem[];
@@ -9,19 +11,20 @@ interface CartContextType {
   updateQuantity: (productId: string, quantity: number) => void;
   clearCart: () => void;
   totalItems: number;
+  originalSubtotal: number;
   subtotal: number;
-  shippingFee: number;
+  totalSavings: number;
   totalAmount: number;
-  isFreeShippingUnlocked: boolean;
   buyNowWhatsApp: (sellerNumber?: string) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 const CART_STORAGE_KEY = 'brushspace_cart';
-const FREE_SHIPPING_THRESHOLD = 5000;
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { settings } = useStoreData();
+
   const [items, setItems] = useState<CartItem[]>(() => {
     try {
       const saved = localStorage.getItem(CART_STORAGE_KEY);
@@ -73,24 +76,37 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setItems([]);
   };
 
-  const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
-  const subtotal = items.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
-  const isFreeShippingUnlocked = subtotal >= FREE_SHIPPING_THRESHOLD || subtotal === 0;
-  const shippingFee = subtotal === 0 || isFreeShippingUnlocked ? 0 : 350;
-  const totalAmount = subtotal + shippingFee;
+  // Centralized calculations taking festive campaign into account
+  const totals = calculateCartTotals(items, settings.festiveCampaign);
+  const totalItems = totals.totalItemsCount;
+  const originalSubtotal = totals.originalSubtotal;
+  const subtotal = totals.subtotal;
+  const totalSavings = totals.totalSavings;
+  const totalAmount = subtotal; // Shipping is payable by customer and confirmed separately
 
   const buyNowWhatsApp = (sellerNumber?: string) => {
     if (items.length === 0) return;
+
     recordOrderInquiry(
-      items.map((i) => ({
-        productName: i.product.name,
-        productCode: i.product.productCode,
-        price: i.product.price,
-        quantity: i.quantity,
-      })),
+      items.map((i) => {
+        const priceInfo = calculateProductPrice(i.product, settings.festiveCampaign);
+        return {
+          productName: i.product.name,
+          productCode: i.product.productCode,
+          price: priceInfo.discountedPrice,
+          quantity: i.quantity,
+        };
+      }),
       totalAmount
     );
-    const url = generateCartWhatsAppUrl(items, totalAmount, undefined, sellerNumber);
+
+    const url = generateCartWhatsAppUrl(
+      items,
+      totalAmount,
+      undefined,
+      sellerNumber || settings.whatsappNumber,
+      settings.festiveCampaign
+    );
     window.open(url, '_blank');
   };
 
@@ -103,10 +119,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         updateQuantity,
         clearCart,
         totalItems,
+        originalSubtotal,
         subtotal,
-        shippingFee,
+        totalSavings,
         totalAmount,
-        isFreeShippingUnlocked,
         buyNowWhatsApp,
       }}
     >

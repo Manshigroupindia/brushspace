@@ -335,10 +335,26 @@ async function main() {
     },
     {
       route: 'return-policy',
-      title: 'Returns & Exchanges Policy | Brushspace',
-      description: 'Guidelines on transit damage, replacements, and our collector satisfaction guarantee.',
+      title: 'No Return, No Refund & No Exchange Policy | Brushspace',
+      description: 'Review our professional No Return, No Refund and No Exchange policy for handcrafted studio objects, subject to applicable law.',
       image: DEFAULT_IMAGE,
       url: `${BASE_URL}/return-policy`,
+      type: 'website'
+    },
+    {
+      route: 'admin',
+      title: 'Admin Studio Atelier | Brushspace',
+      description: 'Brushspace Atelier Administration Portal.',
+      image: DEFAULT_IMAGE,
+      url: `${BASE_URL}/admin`,
+      type: 'website'
+    },
+    {
+      route: 'admin/login',
+      title: 'Admin Login | Brushspace',
+      description: 'Secure authentication for Brushspace studio administration.',
+      image: DEFAULT_IMAGE,
+      url: `${BASE_URL}/admin/login`,
       type: 'website'
     }
   ];

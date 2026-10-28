@@ -5,7 +5,8 @@ import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
 import { useToast } from '../../context/ToastContext';
 import { useStoreData } from '../../context/StoreDataContext';
-import { generateSingleProductWhatsAppUrl, recordOrderInquiry, formatINR } from '../../utils/whatsapp';
+import { generateSingleProductWhatsAppUrl, recordOrderInquiry } from '../../utils/whatsapp';
+import { calculateProductPrice } from '../../utils/campaign';
 
 interface ProductCardProps {
   product: Product;
@@ -19,6 +20,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, layout = 'gri
   const { settings } = useStoreData();
 
   const isFavorited = isInWishlist(product.id);
+  const priceInfo = calculateProductPrice(product, settings.festiveCampaign);
 
   const handleWishlistToggle = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -45,17 +47,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, layout = 'gri
         {
           productName: product.name,
           productCode: product.productCode,
-          price: product.price,
+          price: priceInfo.discountedPrice,
           quantity: 1,
         },
       ],
-      product.price
+      priceInfo.discountedPrice
     );
     const url = generateSingleProductWhatsAppUrl(
       product,
       1,
       `${window.location.origin}/product/${product.slug}`,
-      settings.whatsappNumber
+      settings.whatsappNumber,
+      settings.festiveCampaign
     );
     window.open(url, '_blank');
   };
@@ -75,20 +78,27 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, layout = 'gri
             className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             loading="lazy"
           />
-          {product.featured && (
-            <span className="absolute top-2 left-2 md:top-3 md:left-3 bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-[9px] md:text-label-sm uppercase tracking-wider md:tracking-widest px-2 py-0.5 md:px-2.5 md:py-1 rounded shadow-sm font-semibold">
-              Bestseller
-            </span>
-          )}
-          {product.newArrival && !product.featured && (
-            <span className="absolute top-2 left-2 md:top-3 md:left-3 bg-secondary-fixed text-on-secondary-fixed font-label-sm text-[9px] md:text-label-sm uppercase tracking-wider md:tracking-widest px-2 py-0.5 md:px-2.5 md:py-1 rounded shadow-sm font-semibold">
-              New
-            </span>
-          )}
+          <div className="absolute top-2 left-2 md:top-3 md:left-3 flex flex-col gap-1 z-10">
+            {priceInfo.isDiscounted && (
+              <span className="bg-amber-600 text-white font-label-sm text-[9px] md:text-label-sm uppercase tracking-wider px-2 py-0.5 md:px-2.5 md:py-1 rounded shadow-sm font-bold">
+                20% OFF
+              </span>
+            )}
+            {product.featured && (
+              <span className="bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-[9px] md:text-label-sm uppercase tracking-wider md:tracking-widest px-2 py-0.5 md:px-2.5 md:py-1 rounded shadow-sm font-semibold">
+                Bestseller
+              </span>
+            )}
+            {product.newArrival && !product.featured && (
+              <span className="bg-secondary-fixed text-on-secondary-fixed font-label-sm text-[9px] md:text-label-sm uppercase tracking-wider md:tracking-widest px-2 py-0.5 md:px-2.5 md:py-1 rounded shadow-sm font-semibold">
+                New
+              </span>
+            )}
+          </div>
           <button
             onClick={handleWishlistToggle}
             aria-label="Add to wishlist"
-            className="absolute top-2 right-2 md:top-3 md:right-3 w-7 h-7 md:w-8 md:h-8 rounded-full bg-surface/85 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-tertiary transition-colors shadow-sm"
+            className="absolute top-2 right-2 md:top-3 md:right-3 w-7 h-7 md:w-8 md:h-8 rounded-full bg-surface/85 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-tertiary transition-colors shadow-sm z-10"
           >
             <span
               className={`material-symbols-outlined text-[16px] md:text-[18px] ${
@@ -113,9 +123,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, layout = 'gri
             <p className="hidden md:block font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4 leading-relaxed">
               {product.shortDescription}
             </p>
-            <p className="font-headline-sm text-[13px] sm:text-sm md:text-headline-sm text-primary font-bold">
-              {product.price > 0 ? formatINR(product.price) : 'Price on Request'}
-            </p>
+            <div className="flex items-baseline gap-2 flex-wrap">
+              <span className="font-headline-sm text-[13px] sm:text-sm md:text-headline-sm text-primary font-bold">
+                {product.price > 0 ? priceInfo.formattedDiscounted : 'Price on Request'}
+              </span>
+              {product.price > 0 && priceInfo.isDiscounted && (
+                <span className="font-label-sm text-[11px] sm:text-label-sm text-outline line-through">
+                  {priceInfo.formattedOriginal}
+                </span>
+              )}
+            </div>
           </div>
           <div className="flex flex-col sm:grid sm:grid-cols-2 gap-1.5 md:gap-3 mt-2 sm:mt-4 md:mt-6 pt-2 md:pt-4 border-t border-outline-variant/15">
             <button
@@ -149,20 +166,27 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, layout = 'gri
           className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
           loading="lazy"
         />
-        {product.featured && (
-          <span className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-[9px] sm:text-label-sm uppercase tracking-wider sm:tracking-widest px-2 py-0.5 sm:px-2.5 sm:py-1 rounded shadow-sm font-semibold">
-            Bestseller
-          </span>
-        )}
-        {product.newArrival && !product.featured && (
-          <span className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 bg-secondary-fixed text-on-secondary-fixed font-label-sm text-[9px] sm:text-label-sm uppercase tracking-wider sm:tracking-widest px-2 py-0.5 sm:px-2.5 sm:py-1 rounded shadow-sm font-semibold">
-            New
-          </span>
-        )}
+        <div className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 flex flex-col gap-1 z-10">
+          {priceInfo.isDiscounted && (
+            <span className="bg-amber-600 text-white font-label-sm text-[9px] sm:text-label-sm uppercase tracking-wider px-2 py-0.5 sm:px-2.5 sm:py-1 rounded shadow-sm font-bold">
+              20% OFF
+            </span>
+          )}
+          {product.featured && (
+            <span className="bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-[9px] sm:text-label-sm uppercase tracking-wider sm:tracking-widest px-2 py-0.5 sm:px-2.5 sm:py-1 rounded shadow-sm font-semibold">
+              Bestseller
+            </span>
+          )}
+          {product.newArrival && !product.featured && (
+            <span className="bg-secondary-fixed text-on-secondary-fixed font-label-sm text-[9px] sm:text-label-sm uppercase tracking-wider sm:tracking-widest px-2 py-0.5 sm:px-2.5 sm:py-1 rounded shadow-sm font-semibold">
+              New
+            </span>
+          )}
+        </div>
         <button
           onClick={handleWishlistToggle}
           aria-label="Add to wishlist"
-          className="absolute top-2 right-2 sm:top-2.5 sm:right-2.5 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-surface/85 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-tertiary transition-colors shadow-sm"
+          className="absolute top-2 right-2 sm:top-2.5 sm:right-2.5 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-surface/85 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-tertiary transition-colors shadow-sm z-10"
         >
           <span
             className={`material-symbols-outlined text-[16px] sm:text-[18px] ${
@@ -185,9 +209,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, layout = 'gri
               {product.name}
             </h3>
           </Link>
-          <p className="font-title-md text-[13px] sm:text-sm md:text-title-md text-primary font-bold">
-            {product.price > 0 ? formatINR(product.price) : 'Price on Request'}
-          </p>
+          <div className="flex items-baseline gap-1.5 flex-wrap">
+            <span className="font-title-md text-[13px] sm:text-sm md:text-title-md text-primary font-bold">
+              {product.price > 0 ? priceInfo.formattedDiscounted : 'Price on Request'}
+            </span>
+            {product.price > 0 && priceInfo.isDiscounted && (
+              <span className="font-label-sm text-[11px] sm:text-label-sm text-outline line-through">
+                {priceInfo.formattedOriginal}
+              </span>
+            )}
+          </div>
         </div>
 
         <div className="flex flex-col sm:grid sm:grid-cols-2 gap-1.5 sm:gap-2 mt-2 sm:mt-4 pt-2 border-t border-outline-variant/15">

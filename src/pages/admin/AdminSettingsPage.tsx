@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useStoreData } from '../../context/StoreDataContext';
 import { useToast } from '../../context/ToastContext';
 import { uploadImage } from '../../services/cloudinary';
+import { DEFAULT_FESTIVE_CAMPAIGN } from '../../utils/campaign';
 
 export const AdminSettingsPage: React.FC = () => {
   const { settings, updateSettings, runOneClickMigration } = useStoreData();
@@ -56,6 +57,55 @@ export const AdminSettingsPage: React.FC = () => {
       showToast(err.message || 'Favicon upload failed', 'error');
     } finally {
       setIsUploadingFavicon(false);
+      e.target.value = '';
+    }
+  };
+
+  const [isUploadingCampaignBanner, setIsUploadingCampaignBanner] = useState(false);
+
+  const campaignData = formData.festiveCampaign || DEFAULT_FESTIVE_CAMPAIGN;
+
+  const handleCampaignChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      festiveCampaign: {
+        ...(prev.festiveCampaign || DEFAULT_FESTIVE_CAMPAIGN),
+        [name]: name === 'discountPercentage' ? Number(value) : value,
+      },
+    }));
+  };
+
+  const handleCampaignCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      festiveCampaign: {
+        ...(prev.festiveCampaign || DEFAULT_FESTIVE_CAMPAIGN),
+        [name]: checked,
+      },
+    }));
+  };
+
+  const handleCampaignImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setIsUploadingCampaignBanner(true);
+    showToast('Uploading festive campaign image to Cloudinary...', 'cloud_upload');
+    try {
+      const res = await uploadImage(file, 'brushspace/banners');
+      setFormData((prev) => ({
+        ...prev,
+        festiveCampaign: {
+          ...(prev.festiveCampaign || DEFAULT_FESTIVE_CAMPAIGN),
+          bannerImage: res.secureUrl,
+        },
+      }));
+      showToast('Festive campaign image uploaded.', 'task_alt');
+    } catch (err: any) {
+      showToast(err.message || 'Image upload failed', 'error');
+    } finally {
+      setIsUploadingCampaignBanner(false);
       e.target.value = '';
     }
   };
@@ -200,6 +250,191 @@ export const AdminSettingsPage: React.FC = () => {
               onChange={handleChange}
               className="w-full bg-surface-container-low px-4 py-3 rounded-lg border border-outline-variant/30 text-body-sm font-body-sm outline-none focus:border-primary shadow-sm"
             />
+          </div>
+        </div>
+
+        {/* Festive Bonanza Campaign Management */}
+        <div className="bg-surface p-6 sm:p-8 rounded-2xl border border-amber-600/30 shadow-sm space-y-4">
+          <div className="flex items-center justify-between flex-wrap gap-2">
+            <div className="flex items-center gap-2">
+              <span className="text-[24px]">🎉</span>
+              <div>
+                <h2 className="font-headline-sm text-headline-sm font-semibold text-on-surface">
+                  Festive Bonanza Campaign Settings
+                </h2>
+                <p className="font-body-sm text-body-sm text-on-surface-variant">
+                  Centralized promotion control for flat 20% discount, promotional popup, cards badge, and floating banner
+                </p>
+              </div>
+            </div>
+            <label className="flex items-center gap-2 cursor-pointer bg-surface-container px-3 py-1.5 rounded-lg border border-outline-variant/20">
+              <input
+                type="checkbox"
+                name="isActive"
+                checked={campaignData.isActive}
+                onChange={handleCampaignCheckbox}
+                className="w-4 h-4 rounded text-primary"
+              />
+              <span className="font-label-sm text-label-sm uppercase tracking-wider font-bold">
+                {campaignData.isActive ? 'Campaign Active' : 'Campaign Paused'}
+              </span>
+            </label>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+            <div>
+              <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
+                Campaign Name
+              </label>
+              <input
+                type="text"
+                name="campaignName"
+                value={campaignData.campaignName}
+                onChange={handleCampaignChange}
+                placeholder="FESTIVE BONANZA"
+                className="w-full bg-surface-container-low px-4 py-2.5 rounded-lg border border-outline-variant/30 text-body-sm outline-none font-semibold"
+              />
+            </div>
+            <div>
+              <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
+                Discount Percentage (%)
+              </label>
+              <input
+                type="number"
+                min="0"
+                max="100"
+                name="discountPercentage"
+                value={campaignData.discountPercentage}
+                onChange={handleCampaignChange}
+                placeholder="20"
+                className="w-full bg-surface-container-low px-4 py-2.5 rounded-lg border border-outline-variant/30 text-body-sm outline-none font-bold text-amber-700 dark:text-amber-300"
+              />
+            </div>
+            <div>
+              <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
+                Floating Button Label
+              </label>
+              <input
+                type="text"
+                name="floatingButtonText"
+                value={campaignData.floatingButtonText}
+                onChange={handleCampaignChange}
+                placeholder="🎉 FESTIVE SALE — 20% OFF"
+                className="w-full bg-surface-container-low px-4 py-2.5 rounded-lg border border-outline-variant/30 text-body-sm outline-none"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
+              Offer Headline
+            </label>
+            <input
+              type="text"
+              name="headline"
+              value={campaignData.headline}
+              onChange={handleCampaignChange}
+              placeholder="FLAT 20% OFF ON EVERY PRODUCT"
+              className="w-full bg-surface-container-low px-4 py-2.5 rounded-lg border border-outline-variant/30 text-body-sm outline-none font-medium"
+            />
+          </div>
+
+          <div>
+            <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
+              Supporting Line
+            </label>
+            <textarea
+              rows={2}
+              name="supportingLine"
+              value={campaignData.supportingLine}
+              onChange={handleCampaignChange}
+              placeholder="Celebrate the season with beautiful décor. Shop your favourites and enjoy 20% OFF!"
+              className="w-full bg-surface-container-low px-4 py-2 rounded-lg border border-outline-variant/30 text-body-sm outline-none"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
+                CTA Button Text
+              </label>
+              <input
+                type="text"
+                name="ctaText"
+                value={campaignData.ctaText}
+                onChange={handleCampaignChange}
+                placeholder="SHOP NOW — LIMITED-TIME FESTIVE OFFER"
+                className="w-full bg-surface-container-low px-4 py-2.5 rounded-lg border border-outline-variant/30 text-body-sm outline-none"
+              />
+            </div>
+            <div>
+              <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
+                CTA Destination Route
+              </label>
+              <input
+                type="text"
+                name="ctaLink"
+                value={campaignData.ctaLink}
+                onChange={handleCampaignChange}
+                placeholder="/shop"
+                className="w-full bg-surface-container-low px-4 py-2.5 rounded-lg border border-outline-variant/30 text-body-sm outline-none"
+              />
+            </div>
+          </div>
+
+          {/* Campaign Schedule Dates */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+            <div>
+              <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
+                Optional Start Date (Auto-activates)
+              </label>
+              <input
+                type="datetime-local"
+                name="startDate"
+                value={campaignData.startDate || ''}
+                onChange={handleCampaignChange}
+                className="w-full bg-surface-container-low px-4 py-2 rounded-lg border border-outline-variant/30 text-body-sm outline-none"
+              />
+            </div>
+            <div>
+              <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface mb-1 font-semibold">
+                Optional End Date (Auto-stops)
+              </label>
+              <input
+                type="datetime-local"
+                name="endDate"
+                value={campaignData.endDate || ''}
+                onChange={handleCampaignChange}
+                className="w-full bg-surface-container-low px-4 py-2 rounded-lg border border-outline-variant/30 text-body-sm outline-none"
+              />
+            </div>
+          </div>
+
+          {/* Campaign Promotional Image */}
+          <div className="pt-2">
+            <div className="flex items-center justify-between mb-1">
+              <label className="block font-label-sm text-label-sm uppercase tracking-wider text-on-surface font-semibold">
+                Popup Promotional Image URL
+              </label>
+              <label className={`cursor-pointer inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider text-primary hover:underline ${isUploadingCampaignBanner ? 'opacity-50 pointer-events-none' : ''}`}>
+                <span className="material-symbols-outlined text-[16px]">cloud_upload</span>
+                <span>{isUploadingCampaignBanner ? 'Uploading...' : 'Upload Image'}</span>
+                <input type="file" accept="image/*" onChange={handleCampaignImageUpload} disabled={isUploadingCampaignBanner} className="hidden" />
+              </label>
+            </div>
+            <input
+              type="text"
+              name="bannerImage"
+              value={campaignData.bannerImage || ''}
+              onChange={handleCampaignChange}
+              placeholder="https://res.cloudinary.com/..."
+              className="w-full bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/30 text-body-sm font-mono text-[12px] outline-none mb-2"
+            />
+            {campaignData.bannerImage && (
+              <div className="h-20 w-36 bg-surface-container rounded-lg border border-outline-variant/20 overflow-hidden">
+                <img src={campaignData.bannerImage} alt="Campaign Preview" className="w-full h-full object-cover" />
+              </div>
+            )}
           </div>
         </div>
 

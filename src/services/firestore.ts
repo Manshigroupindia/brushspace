@@ -7,6 +7,9 @@ import {
   addDoc,
   updateDoc,
   deleteDoc,
+  query,
+  where,
+  limit,
   serverTimestamp,
   Timestamp,
 } from 'firebase/firestore';
@@ -195,6 +198,56 @@ export async function fetchProducts(): Promise<Product[]> {
   const colRef = collection(db, PRODUCTS_COLLECTION);
   const snapshot = await getDocs(colRef);
   return snapshot.docs.map((d) => normalizeProduct(d.id, d.data()));
+}
+
+export async function fetchProductBySlugOrId(slugOrId: string): Promise<Product | null> {
+  const clean = slugOrId.trim();
+  if (!clean) return null;
+
+  try {
+    const colRef = collection(db, PRODUCTS_COLLECTION);
+
+    // 1. Direct document ID lookup
+    const docRef = doc(db, PRODUCTS_COLLECTION, clean);
+    const snap = await getDoc(docRef);
+    if (snap.exists()) {
+      return normalizeProduct(snap.id, snap.data());
+    }
+
+    // 2. Query by slug
+    const qSlug = query(colRef, where('slug', '==', clean.toLowerCase()), limit(1));
+    const slugSnap = await getDocs(qSlug);
+    if (!slugSnap.empty) {
+      const d = slugSnap.docs[0];
+      return normalizeProduct(d.id, d.data());
+    }
+
+    // 3. Query by productCode
+    const qCode = query(colRef, where('productCode', '==', clean.toUpperCase()), limit(1));
+    const codeSnap = await getDocs(qCode);
+    if (!codeSnap.empty) {
+      const d = codeSnap.docs[0];
+      return normalizeProduct(d.id, d.data());
+    }
+
+    // 4. Fallback search across collection snapshot for case insensitivity or alias
+    const allSnap = await getDocs(colRef);
+    const foundDoc = allSnap.docs.find((d) => {
+      const data = d.data();
+      const s = data.slug ? String(data.slug).toLowerCase() : '';
+      const c = data.productCode || data.code ? String(data.productCode || data.code).toLowerCase() : '';
+      const target = clean.toLowerCase();
+      return d.id.toLowerCase() === target || s === target || c === target;
+    });
+
+    if (foundDoc) {
+      return normalizeProduct(foundDoc.id, foundDoc.data());
+    }
+  } catch (err) {
+    console.warn('Notice in fetchProductBySlugOrId:', err);
+  }
+
+  return null;
 }
 
 export async function saveProduct(product: Omit<Product, 'id' | 'createdAt'> & { id?: string }): Promise<string> {
@@ -496,8 +549,21 @@ export function normalizeSettings(data: any): StoreSettings {
       socialInstagram: 'https://instagram.com/brushspace',
       socialPinterest: 'https://pinterest.com/brushspace',
       socialFacebook: 'https://facebook.com/brushspace',
+      festiveCampaign: {
+        isActive: true,
+        campaignName: 'FESTIVE BONANZA',
+        headline: 'FLAT 20% OFF ON EVERY PRODUCT',
+        supportingLine: 'Celebrate the season with beautiful décor. Shop your favourites and enjoy 20% OFF!',
+        ctaText: 'SHOP NOW — LIMITED-TIME FESTIVE OFFER',
+        ctaLink: '/shop',
+        discountPercentage: 20,
+        floatingButtonText: '🎉 FESTIVE SALE — 20% OFF',
+        bannerImage: 'https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699698/brushspace/banners/banner_ban-spotlight-1.jpg',
+      },
     };
   }
+
+  const campaign = data.festiveCampaign || {};
 
   return {
     brandName: data.siteName || data.brandName || 'BRUSHSPACE',
@@ -514,6 +580,19 @@ export function normalizeSettings(data: any): StoreSettings {
     socialPinterest: data.pinterest || data.socialPinterest || '',
     socialFacebook: data.facebook || data.socialFacebook || '',
     socialYoutube: data.youtube || data.socialYoutube || '',
+    festiveCampaign: {
+      isActive: campaign.isActive ?? true,
+      campaignName: campaign.campaignName || 'FESTIVE BONANZA',
+      headline: campaign.headline || 'FLAT 20% OFF ON EVERY PRODUCT',
+      supportingLine: campaign.supportingLine || 'Celebrate the season with beautiful décor. Shop your favourites and enjoy 20% OFF!',
+      ctaText: campaign.ctaText || 'SHOP NOW — LIMITED-TIME FESTIVE OFFER',
+      ctaLink: campaign.ctaLink || '/shop',
+      discountPercentage: Number(campaign.discountPercentage ?? 20),
+      floatingButtonText: campaign.floatingButtonText || '🎉 FESTIVE SALE — 20% OFF',
+      bannerImage: campaign.bannerImage || 'https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699698/brushspace/banners/banner_ban-spotlight-1.jpg',
+      startDate: campaign.startDate || '',
+      endDate: campaign.endDate || '',
+    },
   };
 }
 

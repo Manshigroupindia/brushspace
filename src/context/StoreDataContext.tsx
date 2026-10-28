@@ -59,6 +59,7 @@ import {
   saveSettingsDoc,
   updateOrderDocStatus,
   saveCustomerInquiryDoc,
+  fetchProductBySlugOrId,
 } from '../services/firestore';
 
 interface StoreDataContextType {
@@ -76,6 +77,7 @@ interface StoreDataContextType {
     wishlistAdditions: number;
   };
   // Product Actions
+  getProductBySlugOrId: (slugOrId: string) => Promise<Product | null>;
   addProduct: (product: Omit<Product, 'id' | 'createdAt'>) => Promise<string>;
   updateProduct: (id: string, updates: Partial<Product>) => Promise<void>;
   deleteProduct: (id: string) => Promise<void>;
@@ -300,6 +302,20 @@ export const StoreDataProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   // ==========================================
   // PRODUCT ACTIONS
   // ==========================================
+  const getProductBySlugOrId = async (slugOrId: string): Promise<Product | null> => {
+    if (!slugOrId) return null;
+    const clean = slugOrId.toLowerCase();
+    const inMemory = products.find(
+      (p) =>
+        p.slug.toLowerCase() === clean ||
+        p.id.toLowerCase() === clean ||
+        p.productCode.toLowerCase() === clean
+    );
+    if (inMemory) return inMemory;
+
+    return await fetchProductBySlugOrId(slugOrId);
+  };
+
   const addProduct = async (productData: Omit<Product, 'id' | 'createdAt'>): Promise<string> => {
     const docId = await saveProduct(productData);
     const newProduct: Product = {
@@ -551,6 +567,7 @@ export const StoreDataProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         customerInquiries,
         isLoading,
         metrics,
+        getProductBySlugOrId,
         addProduct,
         updateProduct,
         deleteProduct,

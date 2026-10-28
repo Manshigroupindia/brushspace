@@ -1,15 +1,54 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import type { Product } from '../../types';
 import { useStoreData } from '../../context/StoreDataContext';
 import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
 import { useToast } from '../../context/ToastContext';
 import { generateSingleProductWhatsAppUrl, recordOrderInquiry, formatINR } from '../../utils/whatsapp';
+import { calculateProductPrice } from '../../utils/campaign';
+import { RETURN_POLICY, SHIPPING_POLICY } from '../../utils/policyConstants';
 import { SEO } from '../../components/common/SEO';
+
+const ProductDetailSkeleton: React.FC = () => {
+  return (
+    <div className="flex flex-col w-full animate-pulse">
+      {/* Top Breadcrumb Skeleton */}
+      <div className="w-full max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop pt-space-md pb-space-sm border-b border-outline-variant/15">
+        <div className="h-4 w-56 bg-surface-container rounded"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop py-space-xl w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+          {/* Left Column Gallery Skeleton */}
+          <div className="lg:col-span-7 flex flex-col gap-space-md">
+            <div className="w-full aspect-square rounded-2xl bg-surface-container-high"></div>
+            <div className="grid grid-cols-4 gap-2">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="aspect-square rounded-lg bg-surface-container"></div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Column Content Skeleton */}
+          <div className="lg:col-span-5 flex flex-col gap-space-md">
+            <div className="h-4 w-32 bg-surface-container rounded"></div>
+            <div className="h-8 w-4/5 bg-surface-container-high rounded"></div>
+            <div className="h-4 w-40 bg-surface-container rounded"></div>
+            <div className="h-28 w-full bg-surface-container-low rounded-xl"></div>
+            <div className="h-20 w-full bg-surface-container rounded-lg"></div>
+            <div className="h-14 w-full bg-surface-container rounded-lg"></div>
+            <div className="h-12 w-full bg-surface-container-highest rounded-lg"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export const ProductDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  const { products, settings } = useStoreData();
+  const { products, settings, isLoading, getProductBySlugOrId } = useStoreData();
   const { addToCart } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
   const { showToast } = useToast();
@@ -18,18 +57,103 @@ export const ProductDetailPage: React.FC = () => {
   const [quantity, setQuantity] = useState(1);
   const [openAccordion, setOpenAccordion] = useState<string | null>('craftStory');
 
-  // Find product by slug or id or productCode
-  const product = products.find(
+  // Targeted single-product state
+  const [targetedProduct, setTargetedProduct] = useState<Product | null>(null);
+  const [isTargetedLoading, setIsTargetedLoading] = useState(false);
+  const [hasLookupFinished, setHasLookupFinished] = useState(false);
+  const [targetedError, setTargetedError] = useState<string | null>(null);
+
+  // 1. In-memory product lookup
+  const inMemoryProduct = products.find(
     (p) =>
       p.slug.toLowerCase() === slug?.toLowerCase() ||
       p.id.toLowerCase() === slug?.toLowerCase() ||
       p.productCode.toLowerCase() === slug?.toLowerCase()
   );
 
+  // Active product is either in-memory or targeted
+  const product = inMemoryProduct || targetedProduct;
+
+  // 2. Resolve product with targeted fallback on route change or direct mount
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [product]);
+    setActiveImageIndex(0);
+    setQuantity(1);
+    setTargetedError(null);
 
+    // If found in-memory, no need for targeted network call
+    if (inMemoryProduct) {
+      setHasLookupFinished(true);
+      setIsTargetedLoading(false);
+      return;
+    }
+
+    if (!slug) {
+      setHasLookupFinished(true);
+      return;
+    }
+
+    let isSubscribed = true;
+    setIsTargetedLoading(true);
+    setHasLookupFinished(false);
+
+    getProductBySlugOrId(slug)
+      .then((found) => {
+        if (!isSubscribed) return;
+        setTargetedProduct(found);
+        setHasLookupFinished(true);
+        setIsTargetedLoading(false);
+      })
+      .catch((err) => {
+        if (!isSubscribed) return;
+        console.warn('Direct product fetch error:', err);
+        setTargetedError('Unable to load artifact at this time. Please check your connection.');
+        setHasLookupFinished(true);
+        setIsTargetedLoading(false);
+      });
+
+    return () => {
+      isSubscribed = false;
+    };
+  }, [slug, inMemoryProduct, getProductBySlugOrId]);
+
+  // Loading state: Show skeleton while request is unresolved
+  const isResolving = (!product && (isLoading || isTargetedLoading)) || (!hasLookupFinished && !product);
+
+  if (isResolving) {
+    return <ProductDetailSkeleton />;
+  }
+
+  // Error state: If network or permission error occurred
+  if (!product && targetedError) {
+    return (
+      <div className="max-w-7xl mx-auto px-margin-mobile py-24 text-center">
+        <SEO title="Error Loading Product | Brushspace" canonical="/404" />
+        <span className="material-symbols-outlined text-[48px] text-tertiary mb-3">error_outline</span>
+        <h2 className="font-headline-lg text-headline-lg text-on-surface mb-3">Unable to Load Artifact</h2>
+        <p className="font-body-md text-body-md text-on-surface-variant mb-6 max-w-md mx-auto">
+          {targetedError}
+        </p>
+        <div className="flex items-center justify-center gap-4">
+          <button
+            onClick={() => window.location.reload()}
+            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-surface rounded-lg font-label-md text-label-md uppercase tracking-wider hover:opacity-90 transition-opacity"
+          >
+            <span className="material-symbols-outlined text-[18px]">refresh</span>
+            <span>Try Again</span>
+          </button>
+          <Link
+            to="/shop"
+            className="inline-flex items-center px-6 py-3 bg-surface-container text-on-surface rounded-lg font-label-md text-label-md uppercase tracking-wider hover:bg-surface-container-high transition-colors"
+          >
+            Explore All Pieces
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  // Genuine Not Found: Both collection and targeted query completed without finding product
   if (!product) {
     return (
       <div className="max-w-7xl mx-auto px-margin-mobile py-24 text-center">
@@ -54,6 +178,9 @@ export const ProductDetailPage: React.FC = () => {
     (product.images && product.images[0]) ||
     'https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699698/brushspace/banners/banner_ban-spotlight-1.jpg';
 
+  // Centralized price calculation with festive discount
+  const priceInfo = calculateProductPrice(product, settings.festiveCampaign);
+
   const handleWishlistToggle = () => {
     const added = toggleWishlist(product);
     showToast(
@@ -73,18 +200,19 @@ export const ProductDetailPage: React.FC = () => {
         {
           productName: product.name,
           productCode: product.productCode,
-          price: product.price,
+          price: priceInfo.discountedPrice,
           quantity,
         },
       ],
-      product.price * quantity
+      priceInfo.discountedPrice * quantity
     );
 
     const url = generateSingleProductWhatsAppUrl(
       product,
       quantity,
       window.location.href,
-      settings.whatsappNumber
+      settings.whatsappNumber,
+      settings.festiveCampaign
     );
     window.open(url, '_blank');
   };
@@ -120,9 +248,10 @@ export const ProductDetailPage: React.FC = () => {
         canonical={`/product/${product.slug}`}
         image={(product.images && product.images[0]) || 'https://res.cloudinary.com/f3nn4gbc/image/upload/v1790699698/brushspace/banners/banner_ban-spotlight-1.jpg'}
         type="product"
-        price={product.price}
+        price={priceInfo.discountedPrice}
         availability="in stock"
       />
+
       {/* Top Breadcrumb & Quick Actions Bar */}
       <section className="w-full max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop pt-space-md pb-space-sm border-b border-outline-variant/15">
         <div className="flex flex-wrap items-center justify-between gap-space-sm">
@@ -158,85 +287,96 @@ export const ProductDetailPage: React.FC = () => {
               >
                 favorite
               </span>
-              <span>{isFavorited ? 'In Wishlist' : 'Curate to Wishlist'}</span>
+              <span>{isFavorited ? 'Saved in Wishlist' : 'Add to Wishlist'}</span>
             </button>
           </div>
         </div>
       </section>
 
-      {/* Main Showcase: Architectural Two-Column Split Grid */}
-      <section className="w-full max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop py-space-md lg:py-space-xl">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-lg lg:gap-gutter-desktop items-start">
-          {/* LEFT COLUMN: Gallery (7 Columns) */}
+      {/* Main Product Showcase Section */}
+      <section className="max-w-7xl mx-auto px-margin-mobile md:px-gutter-desktop py-space-xl w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+          {/* Left Column: Gallery (7 Cols) */}
           <div className="lg:col-span-7 flex flex-col gap-space-md">
-            {/* Main Focal Frame */}
-            <div className="relative w-full aspect-[4/5] rounded-xl bg-surface-container-low overflow-hidden shadow-sm group border border-outline-variant/20">
+            {/* Primary Gallery Image */}
+            <div className="relative w-full aspect-square rounded-2xl overflow-hidden bg-surface-container-low border border-outline-variant/15 shadow-sm group">
               <img
                 src={activeImage}
                 alt={product.name}
                 className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
               />
-              {/* Floating Badges */}
-              <div className="absolute top-4 left-4 flex flex-col gap-2 pointer-events-none">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-lowest/90 backdrop-blur-md shadow-sm font-label-sm text-label-sm uppercase tracking-wider text-on-secondary-fixed">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-                  Authentic Studio Handcraft
-                </span>
-                <span className="inline-flex items-center px-3 py-1 rounded-full bg-secondary-container/90 backdrop-blur-md font-label-sm text-label-sm tracking-widest text-on-secondary-fixed-variant uppercase">
-                  Batch: #04/2025
-                </span>
+
+              {/* Badges Container (Top Left) */}
+              <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
+                {priceInfo.isDiscounted && (
+                  <span className="bg-amber-600 text-white font-label-sm text-[11px] uppercase tracking-wider px-3 py-1.5 rounded-md shadow-md font-bold flex items-center gap-1.5">
+                    <span>🎉</span>
+                    <span>{settings.festiveCampaign?.campaignName || 'FESTIVE SALE'} · {priceInfo.discountPercentage}% OFF</span>
+                  </span>
+                )}
+                {product.featured && (
+                  <span className="bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm uppercase tracking-widest px-3 py-1 rounded shadow-sm font-semibold">
+                    Studio Signature Selection
+                  </span>
+                )}
+                {product.newArrival && !product.featured && (
+                  <span className="bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm uppercase tracking-widest px-3 py-1 rounded shadow-sm font-semibold">
+                    New Studio Edition
+                  </span>
+                )}
               </div>
+
+              {/* Wishlist Button Overlay (Top Right) */}
+              <button
+                onClick={handleWishlistToggle}
+                aria-label="Save to Wishlist"
+                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-surface/85 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-tertiary transition-colors shadow-md z-10"
+              >
+                <span
+                  className={`material-symbols-outlined text-[22px] ${
+                    isFavorited ? 'text-tertiary material-symbols-fill' : ''
+                  }`}
+                >
+                  favorite
+                </span>
+              </button>
             </div>
 
-            {/* Thumbnails Multi-Angle Mosaic */}
-            {product.images.length > 1 && (
-              <div className="grid grid-cols-4 gap-space-sm sm:gap-space-md">
+            {/* Thumbnails Row */}
+            {product.images && product.images.length > 1 && (
+              <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-space-xs">
                 {product.images.map((img, idx) => (
                   <button
                     key={idx}
                     onClick={() => setActiveImageIndex(idx)}
-                    className={`relative aspect-square rounded-lg overflow-hidden bg-surface-container-low transition-all duration-300 shadow-sm border ${
-                      activeImageIndex === idx ? 'border-primary ring-2 ring-primary/20' : 'border-outline-variant/20 hover:opacity-80'
+                    className={`aspect-square rounded-lg overflow-hidden bg-surface-container-low border-2 transition-all duration-200 ${
+                      activeImageIndex === idx
+                        ? 'border-primary ring-2 ring-primary/20 scale-[0.98]'
+                        : 'border-transparent opacity-75 hover:opacity-100'
                     }`}
                   >
-                    <img src={img} alt={`Angle ${idx + 1}`} className="w-full h-full object-cover" />
+                    <img src={img} alt={`${product.name} view ${idx + 1}`} className="w-full h-full object-cover" />
                   </button>
                 ))}
               </div>
             )}
-
-            {/* Craftsmanship Authenticity Bento */}
-            <div className="mt-space-sm p-space-md rounded-xl bg-surface-container-low flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md border border-outline-variant/15">
-              <div className="flex items-center gap-space-sm">
-                <div className="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-primary shrink-0">
-                  <span className="material-symbols-outlined text-[20px]">verified</span>
-                </div>
-                <div>
-                  <p className="font-title-md text-title-md text-on-surface">Numbered Studio Certificate</p>
-                  <p className="font-body-sm text-body-sm text-on-surface-variant">
-                    Hand-signed by Master Potter &amp; Artisan Studio
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center gap-space-xs text-primary font-label-sm text-label-sm uppercase tracking-widest font-semibold">
-                <span>Archival Edition</span>
-                <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-              </div>
-            </div>
           </div>
 
-          {/* RIGHT COLUMN: Curatorial Narrative & Studio Actions (5 Columns) */}
-          <div className="lg:col-span-5 flex flex-col gap-space-lg lg:pl-space-sm">
-            {/* Header & Signature Tag */}
-            <div className="flex flex-col gap-space-xs">
-              <div className="flex items-center justify-between">
-                <span className="font-label-sm text-label-sm uppercase tracking-[0.2em] text-primary font-semibold">
-                  BRUSHSPACE Atelier • Signature Collection
-                </span>
-                <span className="font-label-sm text-label-sm text-on-surface-variant bg-surface-container px-2.5 py-0.5 rounded-full border border-outline-variant/20">
-                  Code: {product.productCode}
-                </span>
+          {/* Right Column: Curatorial Details & WhatsApp Buy Flow (5 Cols) */}
+          <div className="lg:col-span-5 flex flex-col gap-space-md">
+            <div>
+              <div className="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest">
+                <span className="text-primary font-bold">{product.productCode}</span>
+                <span>•</span>
+                <span>{product.category}</span>
+                {product.subcategory && (
+                  <>
+                    <span>•</span>
+                    <span>{product.subcategory}</span>
+                  </>
+                )}
               </div>
+
               <h1 className="font-headline-lg text-headline-lg text-on-surface leading-tight mt-1">
                 {product.name}
               </h1>
@@ -253,22 +393,39 @@ export const ProductDetailPage: React.FC = () => {
                 <span className="font-label-md text-label-md text-on-surface font-bold">4.9</span>
                 <span className="text-outline-variant">•</span>
                 <span className="font-body-sm text-body-sm text-on-surface-variant underline decoration-outline-variant underline-offset-4">
-                  28 collector reviews
+                  Collector Verified
                 </span>
               </div>
             </div>
 
             {/* Price & Availability Block */}
             <div className="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs border border-outline-variant/15">
+              {priceInfo.isDiscounted && (
+                <div className="flex flex-wrap items-center gap-2 pb-1">
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-500/15 border border-amber-600/30 text-amber-900 dark:text-amber-200 font-label-sm text-[11px] uppercase tracking-wider font-bold">
+                    <span>🎉</span>
+                    <span>{settings.festiveCampaign?.campaignName || 'FESTIVE SALE'} · {priceInfo.discountPercentage}% OFF</span>
+                  </span>
+                  <span className="text-emerald-700 dark:text-emerald-400 font-label-sm text-[12px] font-semibold">
+                    Save {priceInfo.formattedSavings}
+                  </span>
+                </div>
+              )}
+
               <div className="flex items-baseline justify-between">
                 <div className="flex items-baseline gap-space-xs">
-                  <span className="font-headline-lg text-headline-lg font-normal text-on-surface">
-                    {product.price > 0 ? formatINR(product.price) : 'Price on Request'}
+                  <span className="font-headline-lg text-headline-lg font-bold text-primary">
+                    {product.price > 0 ? priceInfo.formattedDiscounted : 'Price on Request'}
                   </span>
                   {product.price > 0 && (
                     <span className="font-body-sm text-body-sm text-on-surface-variant">INR</span>
                   )}
-                  {product.price > 0 && product.compareAtPrice && (
+                  {product.price > 0 && priceInfo.isDiscounted && (
+                    <span className="font-body-sm text-body-sm text-outline line-through ml-2">
+                      {priceInfo.formattedOriginal}
+                    </span>
+                  )}
+                  {product.price > 0 && !priceInfo.isDiscounted && product.compareAtPrice && (
                     <span className="font-body-sm text-body-sm text-outline line-through ml-2">
                       {formatINR(product.compareAtPrice)}
                     </span>
@@ -284,7 +441,7 @@ export const ProductDetailPage: React.FC = () => {
                 </span>
               </div>
               <p className="font-label-sm text-label-sm text-on-surface-variant">
-                Includes all bespoke taxes &amp; archival packaging within India
+                Includes all bespoke studio taxes &amp; archival protective packing
               </p>
             </div>
 
@@ -377,13 +534,32 @@ export const ProductDetailPage: React.FC = () => {
                 </button>
               </div>
 
-              {/* Direct WhatsApp Dispatch Notice */}
-              <div className="flex items-start gap-space-xs p-space-sm rounded-lg bg-surface-container-low text-on-surface-variant border border-outline-variant/15">
-                <span className="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">
-                  forum
-                </span>
-                <p className="font-body-sm text-body-sm leading-relaxed">
-                  When clicking <strong className="text-on-surface font-medium">BUY NOW</strong>, you will connect directly with our studio via WhatsApp with your order specifications and shipping address query pre-filled.
+              {/* Requirement 1: Clearly Visible Professional No-Return, No-Refund, No-Exchange Policy */}
+              <div className="p-4 rounded-xl bg-surface-container-low border border-outline-variant/25 flex flex-col gap-2 shadow-sm">
+                <div className="flex items-center gap-2 text-primary font-label-sm text-label-sm uppercase tracking-wider font-bold">
+                  <span className="material-symbols-outlined text-[18px]">verified_user</span>
+                  <span>{RETURN_POLICY.BADGE}</span>
+                </div>
+                <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                  {RETURN_POLICY.FULL_TEXT}
+                </p>
+                <Link
+                  to="/return-policy"
+                  className="text-primary font-label-sm text-label-sm uppercase tracking-wider hover:underline inline-flex items-center gap-1 font-semibold mt-0.5"
+                >
+                  <span>Review full policy guidelines</span>
+                  <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
+                </Link>
+              </div>
+
+              {/* Requirement 2: Shipping Charges Notice */}
+              <div className="p-4 rounded-xl bg-surface-container-low border border-outline-variant/25 flex flex-col gap-1.5 shadow-sm">
+                <div className="flex items-center gap-2 text-on-surface font-label-sm text-label-sm uppercase tracking-wider font-semibold">
+                  <span className="material-symbols-outlined text-primary text-[18px]">local_shipping</span>
+                  <span>{SHIPPING_POLICY.TITLE}</span>
+                </div>
+                <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                  {SHIPPING_POLICY.NOTICE}
                 </p>
               </div>
 
@@ -392,26 +568,27 @@ export const ProductDetailPage: React.FC = () => {
                 <div className="flex items-center justify-between text-on-surface">
                   <span className="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
-                    WhatsApp Atelier Dispatch Preview
+                    WhatsApp Atelier Order Inquiry Preview
                   </span>
                   <span className="font-label-sm text-label-sm text-on-surface-variant">
                     {todayFormatted}
                   </span>
                 </div>
                 {/* WhatsApp Message Bubble Look */}
-                <div className="bg-surface-container-lowest p-space-md rounded-lg shadow-sm font-body-sm text-body-sm text-on-surface flex flex-col gap-1 leading-relaxed border border-outline-variant/10">
-                  <p className="text-on-surface-variant font-medium">Hello, I am interested in ordering this product.</p>
-                  <div className="pl-2 border-l-2 border-primary/40 my-1 text-on-surface-variant text-[13px] flex flex-col gap-0.5">
-                    <p><span className="font-medium text-on-surface">Product:</span> {product.name}</p>
-                    <p><span className="font-medium text-on-surface">Product Code:</span> {product.productCode}</p>
-                    <p><span className="font-medium text-on-surface">Price:</span> {formatINR(product.price)}</p>
-                    <p><span className="font-medium text-on-surface">Quantity:</span> {quantity} (Total: {formatINR(product.price * quantity)})</p>
-                    <p><span className="font-medium text-on-surface">Date:</span> {todayFormatted}</p>
-                    <p><span className="font-medium text-on-surface">Product Link:</span> <span className="text-primary underline">{window.location.href}</span></p>
-                  </div>
-                  <p className="text-on-surface-variant font-medium pt-1">
-                    Please share the next steps for placing the order.
-                  </p>
+                <div className="bg-surface-container-lowest p-space-md rounded-lg shadow-sm font-mono text-[12px] text-on-surface flex flex-col gap-1.5 leading-relaxed border border-outline-variant/10 select-all whitespace-pre-wrap">
+{`Hello, I am interested in placing an order.
+
+Products:
+${product.name} — ${product.productCode}
+Price: ${priceInfo.formattedDiscounted}
+Quantity: ${quantity}
+Subtotal: ${formatINR(priceInfo.discountedPrice * quantity)}
+
+Shipping: Payable by customer; final charges to be confirmed separately.
+Return Policy: No return, no refund and no exchange, subject to applicable law.
+Product Link: ${window.location.href}
+
+Please confirm the shipping charges, availability and next steps for placing my order.`}
                 </div>
               </div>
             </div>
